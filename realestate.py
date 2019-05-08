@@ -25,7 +25,7 @@ import requests
 # specify webpage to scrape
 
 url = 'https://www.mlslistings.com/Search/Result/5d7bfc3d-5380-4f74-beda-b4a787e3a1f3/1'
-page = requests.get(url)
+page = requests.get(url, verify=False)
 tree = html.fromstring(page.content)
 
 # scrape desired information
@@ -34,22 +34,34 @@ price_raw = list(map(str, tree.xpath('//span[@class="font-weight-bold listing-pr
 hometype_raw = list(map(str, tree.xpath('//div[@class="listing-info clearfix font-size-sm line-height-base listing-type mb-25"]//text()')))
 beds_raw = list(map(str, tree.xpath('//span[@class="listing-info-item font-size-sm line-height-base d-block pull-left pr-50 listing-beds"]//text()')))
 baths_raw = list(map(str, tree.xpath('//span[@class="listing-info-item font-size-sm line-height-base d-block pull-left pr-50 listing-baths"]//text()')))
-lot_raw = list(map(str, tree.xpath('//span[@class="font-weight-bold info-item-value d-block pull-left pr-25"]//text()')))
-garage_raw = list(map(str, tree.xpath('//span[@class="font-weight-bold info-item-value d-block pull-left pr-25"]//text()')))
+lot_raw = list(map(str, tree.xpath('//span[@class="listing-info-item font-size-sm line-height-base d-block pull-left pr-50 listing-lot-size"]//text()')))
+garage_raw = list(map(str, tree.xpath('//span[@class="listing-info-item font-size-sm line-height-base d-block pull-left pr-50 listing-garage"]//text()')))
 
 yearbuilt_raw = list(map(str, tree.xpath('//span[@class="listing-info-item font-size-sm line-height-base d-block pull-left pr-50 listing-sqft last"]//text()')))
-
 
 
 # clean data
 import re
 hometype = re.findall(r'\s\s(\w+)',str(hometype_raw))
 beds = re.findall(r'(\d+)',str(beds_raw))
-baths = re.findall(r'(\d+)',str(baths_raw))
+
+
+baths_temp = list(map(lambda m: tuple(filter(bool, m)), re.findall(r'(\d+/+\d+)|(\d+)',str(baths_raw))))
+
+
+baths_temp = re.findall(r'([\d+/])', str(baths_raw))  # need to fix
+baths = []
+for element in baths_temp:
+    if baths_temp[element+1] == '/'
+    baths = 
 
 
 
+lot = re.findall(r'(\d\,\d\d\d)' | r'(\d\.\d\d)', str(lot_raw))
+yearbuilt = re.findall(r'(\d\d\d\d)',str(yearbuilt_raw))
 
+
+junk = re.findall(r'(\\r\\n\s+)',str(baths_raw))
 
 
 
