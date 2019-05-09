@@ -24,7 +24,7 @@ import requests
 
 # specify webpage to scrape
 
-url = 'https://www.mlslistings.com/Search/Result/5d7bfc3d-5380-4f74-beda-b4a787e3a1f3/1'
+url = 'https://www.mlslistings.com/Search/Result/299ae029-54cd-404d-bf6c-edab2dc896cc/1'
 page = requests.get(url, verify=False)
 tree = html.fromstring(page.content)
 
@@ -42,22 +42,24 @@ yearbuilt_raw = list(map(str, tree.xpath('//span[@class="listing-info-item font-
 
 # clean data
 import re
+address = address_raw
+price = price_raw
+
 hometype = re.findall(r'\s\s(\w+)',str(hometype_raw))
 beds = re.findall(r'(\d+)',str(beds_raw))
 
+baths_temp1 = list(map(lambda m: tuple(filter(bool, m)), re.findall(r'(\d+/+\d+)|(\d+)',str(baths_raw))))
+baths_temp2 =  [i[0] for i in baths_temp1]
+baths = [re.sub('/1','.5', i) for i in baths_temp2]
 
-baths_temp = list(map(lambda m: tuple(filter(bool, m)), re.findall(r'(\d+/+\d+)|(\d+)',str(baths_raw))))
+def sqft2acre(match):
+    match = match.group()
+    return str(match/43560)
 
+lot_temp1 = list(map(lambda m: tuple(filter(bool, m)), re.findall(r'(\d\,\d\d\d)|(\d\.\d+)', str(lot_raw))))
+lot_temp2 = [i[0] for i in lot_temp1]
+lot = [re.sub(r'\d\,\d\d\d', sqft2acre, i) for i in lot_temp2]  # need to fix -- -temp2 array prints vertically, diff from baths_temp2
 
-baths_temp = re.findall(r'([\d+/])', str(baths_raw))  # need to fix
-baths = []
-for element in baths_temp:
-    if baths_temp[element+1] == '/'
-    baths = 
-
-
-
-lot = re.findall(r'(\d\,\d\d\d)' | r'(\d\.\d\d)', str(lot_raw))
 yearbuilt = re.findall(r'(\d\d\d\d)',str(yearbuilt_raw))
 
 
