@@ -36,38 +36,67 @@ beds_raw = list(map(str, tree.xpath('//span[@class="listing-info-item font-size-
 baths_raw = list(map(str, tree.xpath('//span[@class="listing-info-item font-size-sm line-height-base d-block pull-left pr-50 listing-baths"]//text()')))
 lot_raw = list(map(str, tree.xpath('//span[@class="listing-info-item font-size-sm line-height-base d-block pull-left pr-50 listing-lot-size"]//text()')))
 garage_raw = list(map(str, tree.xpath('//span[@class="listing-info-item font-size-sm line-height-base d-block pull-left pr-50 listing-garage"]//text()')))
-
 yearbuilt_raw = list(map(str, tree.xpath('//span[@class="listing-info-item font-size-sm line-height-base d-block pull-left pr-50 listing-sqft last"]//text()')))
 
 
 # clean data
 import re
-address = address_raw
-price = price_raw
 
+# scraped address needs work: pull out address, city, zip separately...
+address = list(map(str, re.findall(r'(.+),.+,.+,.+',str(address_raw))))
+
+# convert price to integer
+price = list(map(int, [re.sub('[$,]','',i) for i in price_raw]))
+
+# need to remove extra whitespace from scraped hometype, beds, year, garage
 hometype = re.findall(r'\s\s(\w+)',str(hometype_raw))
-beds = re.findall(r'(\d+)',str(beds_raw))
+beds = list(map(int, re.findall(r'(\d+)',str(beds_raw))))
+yearbuilt = list(map(int, re.findall(r'(\d\d\d\d)',str(yearbuilt_raw))))
+garage = list(map(int, re.findall(r'(\d)',str(garage_raw))))
 
-baths_temp1 = list(map(lambda m: tuple(filter(bool, m)), re.findall(r'(\d+/+\d+)|(\d+)',str(baths_raw))))
-baths_temp2 =  [i[0] for i in baths_temp1]
-baths = [re.sub('/1','.5', i) for i in baths_temp2]
+# need to remove whitespace, extra text, and convert slashes from baths
+def baths_clean(baths_raw):
+    baths_temp1 = list(map(lambda m: tuple(filter(bool, m)), re.findall(r'(\d+/+\d+)|(\d+)',str(baths_raw))))
+    baths_temp2 =  [i[0] for i in baths_temp1]
+    baths_temp3 = [re.sub('/1','.5', i) for i in baths_temp2]
+    baths_temp4 = []
+    for i in baths_temp3:
+        if i[-2:] == '/2':
+            baths_temp4.append(str(int(i[0])+1))
+        else:
+            baths_temp4.append(i)
+    baths = list(map(float, baths_temp4))
+    return baths
 
-def sqft2acre(match):
-    match = match.group()
-    return str(match/43560)
+baths = baths_clean(baths_raw)
 
-lot_temp1 = list(map(lambda m: tuple(filter(bool, m)), re.findall(r'(\d\,\d\d\d)|(\d\.\d+)', str(lot_raw))))
-lot_temp2 = [i[0] for i in lot_temp1]
-lot = [re.sub(r'\d\,\d\d\d', sqft2acre, i) for i in lot_temp2]  # need to fix -- -temp2 array prints vertically, diff from baths_temp2
+def sqft2acre(lotinsqft):
+    return round(lotinsqft/43560,3)
 
-yearbuilt = re.findall(r'(\d\d\d\d)',str(yearbuilt_raw))
+# need to remove extra text, whitespace, and convert sqft values to acres
+def lot_clean(lot_raw):
+    lot_temp1 = list(map(lambda m: tuple(filter(bool, m)), re.findall(r'(\d\,\d\d\d)|(\d\.\d+)', str(lot_raw))))
+    lot_temp2 = [i[0] for i in lot_temp1]
+    lot_temp3 = [re.sub(',','',i) for i in lot_temp2]
+    lot_temp4 = [float(i) for i in lot_temp3]
+    lot = []
+    for i in lot_temp4:
+        if i > 10:      # assume if lot size is > 10 units are sqft not acres
+            lot.append(sqft2acre(i))
+        else:
+            lot.append(i)
+    return lot
+    
+lot = lot_clean(lot_raw)
 
+import pandas as pd
 
-junk = re.findall(r'(\\r\\n\s+)',str(baths_raw))
+data = {'Address': address, 'Beds': beds, 'Baths': baths,
+        'Lot size': lot, 'Year built': yearbuilt, 'Garage': garage, 
+        'Home type': hometype, 'Price': price}
 
+dataframe = pd.DataFrame(data)
 
-
-                            
 
 # Calls the above functions
 def main():
