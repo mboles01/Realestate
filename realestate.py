@@ -25,8 +25,22 @@ import requests
 # specify webpage to scrape
 
 url = 'https://www.mlslistings.com/Search/Result/299ae029-54cd-404d-bf6c-edab2dc896cc/1'
-page = requests.get(url, verify=False)
+page = requests.get(url) #, verify=False)
 tree = html.fromstring(page.content)
+
+# input zipcode into search box (needs work)
+
+#<input id="searchText" type="text" name="searchText" class="form-control font-size-lg" placeholder="California City, Zip, Address, School District, MLS #" data-type="search" maxlength="300" aria-label="California City, Zip, Address, School District, MLS #" autocomplete="off">
+
+
+url2 = 'https://www.mlslistings.com/'
+page2 = requests.get(url2) #, verify=False)
+data = {''}
+
+data = {"eventType": "AAS_PORTAL_START", "data": {"uid": "hfe3hf45huf33545", "aid": "1", "vid": "1"}}
+params = {'sessionKey': '9ebbd0b25760557393a43064a92bae539d962103', 'format': 'xml', 'platformId': 1}
+
+requests.post(url2, data=data)
 
 # scrape desired information
 address_raw = list(map(str, tree.xpath('//a[@class="search-nav-link"]//text()')))
@@ -42,14 +56,24 @@ yearbuilt_raw = list(map(str, tree.xpath('//span[@class="listing-info-item font-
 # clean data
 import re
 
-# scraped address needs work: pull out address, city, zip separately...
-address = list(map(str, re.findall(r'(.+),.+,.+,.+',str(address_raw))))
+# separate address from city, zip
+def address_clean(address_raw):
+    address_temp1 = list(map(lambda m: tuple(filter(bool, m)), 
+                   re.findall(r'(\d+\s\w+\s\w+),|(\d+\s\w+\s\w+\s\w+),',str(address_raw))))
+    address = [i[0] for i in address_temp1]
+    return address
+
+address = address_clean(address_raw)
+
+# obtain city and zipcode
+city = re.findall(r',\s(\w+), CA',str(address_raw))
+zipcode = re.findall(r'\d\d\d\d\d',str(address_raw))
 
 # convert price to integer
 price = list(map(int, [re.sub('[$,]','',i) for i in price_raw]))
 
 # need to remove extra whitespace from scraped hometype, beds, year, garage
-hometype = re.findall(r'\s\s(\w+)',str(hometype_raw))
+hometype = re.findall(r'\s\s(\w+\s\w+\s\w+)',str(hometype_raw))
 beds = list(map(int, re.findall(r'(\d+)',str(beds_raw))))
 yearbuilt = list(map(int, re.findall(r'(\d\d\d\d)',str(yearbuilt_raw))))
 garage = list(map(int, re.findall(r'(\d)',str(garage_raw))))
@@ -91,7 +115,7 @@ lot = lot_clean(lot_raw)
 
 import pandas as pd
 
-data = {'Address': address, 'Beds': beds, 'Baths': baths,
+data = {'Address': address, 'City': city, 'Zip': zipcode, 'Beds': beds, 'Baths': baths,
         'Lot size': lot, 'Year built': yearbuilt, 'Garage': garage, 
         'Home type': hometype, 'Price': price}
 
