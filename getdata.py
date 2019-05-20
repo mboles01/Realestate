@@ -36,10 +36,18 @@ def lookup(zip):
 
 url = 'http://www.mlslistings.com'
 data = {'input id': '94618'}
-page = requests.post(url, data=data, verify=False)
-response = page.text
+data = {'transactionType':'buy', 'listing_status':'Active', 'searchTextType':'94618', 'searchText':''}
+response = requests.post(url, data=data, verify=False)
+response_text = response.text
 
-#<input id="searchText" type="text" name="searchText" class="form-control font-size-lg" placeholder="California City, Zip, Address, School District, MLS #" data-type="search" maxlength="300" aria-label="California City, Zip, Address, School District, MLS #" autocomplete="off">
+tree = html.fromstring(response.content)
+
+# 'transactionType':'Buy' / listing_status=Active / searchTextType= / searchText= 
+
+# <input id="searchText" type="text" name="searchText" class="form-control 
+# font-size-lg" placeholder="California City, Zip, Address, School District, 
+# MLS #" data-type="search" maxlength="300" aria-label="California City, Zip, 
+# Address, School District, MLS #" autocomplete="off">
 
 # define a function that scrapes the listing information from a specified url
 
