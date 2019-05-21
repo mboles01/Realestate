@@ -2,6 +2,7 @@
 # set up working directory
 import sys, os
 os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate')
+os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate')
 
 # import zipcodes
 import csv
@@ -19,7 +20,7 @@ def csvread(filename):
 
 def address_clean(address_raw):
     address_temp = list(map(lambda m: tuple(filter(bool, m)), 
-                   re.findall(r'(\d+\s\w+),|(\d+\s\w+\s\w+),|(\d+\s\w+\s\w+\s\w+),',str(address_raw))))
+                   re.findall(r'(\d+\s\w+),|(\d+\s\w+\s\w+),|(\d+\s\w+\s\w+\s\w+),|\'(\w+\s\w+),',str(address_raw))))
     address = [i[0] for i in address_temp]
     return address
 
@@ -39,6 +40,10 @@ def baths_clean(baths_raw):
             baths_temp4.append(str(int(i[0])+1))
         elif i[-2:] == '/3':
             baths_temp4.append(str(int(i[0])+1.5))
+        elif i[-2:] == '/4':
+            baths_temp4.append(str(int(i[0])+2))        
+        elif i[-2:] == '/5':
+            baths_temp4.append(str(int(i[0])+2.5))
         else:
             baths_temp4.append(i)
     baths = list(map(float, baths_temp4))
@@ -50,7 +55,7 @@ def sqft2acre(lotinsqft):
 
 # need to remove extra text, whitespace, and convert sqft values to acres
 def lot_clean(lot_raw):
-    lot_temp1 = list(map(lambda m: tuple(filter(bool, m)), re.findall(r'(\d\,\d\d\d)|(\d\.\d+)', str(lot_raw))))
+    lot_temp1 = list(map(lambda m: tuple(filter(bool, m)), re.findall(r'(\d+\,\d\d\d)|(\d\.\d+)|(\d+)', str(lot_raw))))
     lot_temp2 = [i[0] for i in lot_temp1]
     lot_temp3 = [re.sub(',','',i) for i in lot_temp2]
     lot_temp4 = [float(i) for i in lot_temp3]
@@ -75,6 +80,8 @@ import time
 # scrape MLS
 
 #zipcodes = ['94401','95126','94618']
+#zipcodes = ['94949']
+
 
 # create empty data frame
 data_all = pd.DataFrame()
@@ -83,7 +90,7 @@ for zipcode in zipcodes:
     
     # get homepage session
     session = requests.Session()
-    homepage = session.get('https://www.mlslistings.com/')
+    homepage = session.get('https://www.mlslistings.com/',verify='C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate\\Lam_certificate_MLS_May2019.cer')
     soup = BeautifulSoup(homepage.content, "html.parser")
     
     # get security token, post search data
@@ -105,6 +112,10 @@ for zipcode in zipcodes:
     # update status
     print('Scraping data for zipcode: ' + str(zipcode))
 
+# add something to show progress
+    #print('%s got: %s expected: %s' % (prefix, repr(got), repr(expected)))
+
+
     # clean raw data
     import re
     address = address_clean(address_raw)
@@ -122,17 +133,17 @@ for zipcode in zipcodes:
     data_temp = {'Address': address, 'City': city, 'Zip': zip_code, 'Beds': beds, 'Baths': baths,
         'Lot size': lot, 'Year built': yearbuilt, 'Garage': garage, 
         'Home type': hometype, 'Price': price}
-   # try:
-    dataframe_temp = pd.DataFrame(data_temp)
-    data_all = data_all.append(dataframe_temp)
-   # except:
-   #     pass
+    try:
+        dataframe_temp = pd.DataFrame(data_temp)
+        data_all = data_all.append(dataframe_temp)
+    except:
+        pass
     
     # wait 2 seconds, then scrape next zipcode
-    time.sleep(2)
+    time.sleep(1)
 
 # write .csv file with data
-    data_all.to_csv('data_all.csv')
+data_all.to_csv('data_all.csv')
     
 
 # Calls the above functions
