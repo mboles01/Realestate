@@ -24,36 +24,45 @@ import requests
 
 # specify webpage to scrape
 
-url = 'https://www.mlslistings.com/Search/Result/299ae029-54cd-404d-bf6c-edab2dc896cc/1'
-page = requests.get(url) #, verify=False)
+url = 'https://www.mlslistings.com/Search/Result/621e5704-c9fd-4fb8-adc0-1b5448adcad5/1'
+page = requests.get(url, verify='C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate\\Lam_certificate_MLS_May2019.cer')
+# page = requests.get(url) #mac
 tree = html.fromstring(page.content)
 
 # input zipcode into search box (needs work)
 
+# define a function that returns a url showing real estate listings for a given zip code
+
+#def lookup(zip):
+#    
+#    return url
+
+url = 'http://www.mlslistings.com'
+data = {'input id': '94618'}
+page = requests.post(url, data=data, verify=False)
+response = page.text
+
 #<input id="searchText" type="text" name="searchText" class="form-control font-size-lg" placeholder="California City, Zip, Address, School District, MLS #" data-type="search" maxlength="300" aria-label="California City, Zip, Address, School District, MLS #" autocomplete="off">
 
+# define a function that scrapes the listing information from a specified url
 
-url2 = 'https://www.mlslistings.com/'
-page2 = requests.get(url2) #, verify=False)
-data = {''}
+def scrape(url):
+    
+    page = requests.get(url, verify='C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate\\Lam_certificate_MLS_May2019.cer')
+    tree = html.fromstring(page.content)
+    
+    address_raw = list(map(str, tree.xpath('//a[@class="search-nav-link"]//text()')))
+    price_raw = list(map(str, tree.xpath('//span[@class="font-weight-bold listing-price d-block pull-left pr-25"]//text()')))
+    hometype_raw = list(map(str, tree.xpath('//div[@class="listing-info clearfix font-size-sm line-height-base listing-type mb-25"]//text()')))
+    beds_raw = list(map(str, tree.xpath('//span[@class="listing-info-item font-size-sm line-height-base d-block pull-left pr-50 listing-beds"]//text()')))
+    baths_raw = list(map(str, tree.xpath('//span[@class="listing-info-item font-size-sm line-height-base d-block pull-left pr-50 listing-baths"]//text()')))
+    lot_raw = list(map(str, tree.xpath('//span[@class="listing-info-item font-size-sm line-height-base d-block pull-left pr-50 listing-lot-size"]//text()')))
+    garage_raw = list(map(str, tree.xpath('//span[@class="listing-info-item font-size-sm line-height-base d-block pull-left pr-50 listing-garage"]//text()')))
+    yearbuilt_raw = list(map(str, tree.xpath('//span[@class="listing-info-item font-size-sm line-height-base d-block pull-left pr-50 listing-sqft last"]//text()')))
+    
+    return address_raw, price_raw, hometype_raw, beds_raw, baths_raw, lot_raw, garage_raw, yearbuilt_raw
 
-data = {"eventType": "AAS_PORTAL_START", "data": {"uid": "hfe3hf45huf33545", "aid": "1", "vid": "1"}}
-params = {'sessionKey': '9ebbd0b25760557393a43064a92bae539d962103', 'format': 'xml', 'platformId': 1}
-
-requests.post(url2, data=data)
-
-# scrape desired information
-address_raw = list(map(str, tree.xpath('//a[@class="search-nav-link"]//text()')))
-price_raw = list(map(str, tree.xpath('//span[@class="font-weight-bold listing-price d-block pull-left pr-25"]//text()')))
-hometype_raw = list(map(str, tree.xpath('//div[@class="listing-info clearfix font-size-sm line-height-base listing-type mb-25"]//text()')))
-beds_raw = list(map(str, tree.xpath('//span[@class="listing-info-item font-size-sm line-height-base d-block pull-left pr-50 listing-beds"]//text()')))
-baths_raw = list(map(str, tree.xpath('//span[@class="listing-info-item font-size-sm line-height-base d-block pull-left pr-50 listing-baths"]//text()')))
-lot_raw = list(map(str, tree.xpath('//span[@class="listing-info-item font-size-sm line-height-base d-block pull-left pr-50 listing-lot-size"]//text()')))
-garage_raw = list(map(str, tree.xpath('//span[@class="listing-info-item font-size-sm line-height-base d-block pull-left pr-50 listing-garage"]//text()')))
-yearbuilt_raw = list(map(str, tree.xpath('//span[@class="listing-info-item font-size-sm line-height-base d-block pull-left pr-50 listing-sqft last"]//text()')))
-
-
-# clean data
+# define special functions for data cleaning
 import re
 
 # separate address from city, zip
@@ -62,21 +71,6 @@ def address_clean(address_raw):
                    re.findall(r'(\d+\s\w+\s\w+),|(\d+\s\w+\s\w+\s\w+),',str(address_raw))))
     address = [i[0] for i in address_temp1]
     return address
-
-address = address_clean(address_raw)
-
-# obtain city and zipcode
-city = re.findall(r',\s(\w+), CA',str(address_raw))
-zipcode = re.findall(r'\d\d\d\d\d',str(address_raw))
-
-# convert price to integer
-price = list(map(int, [re.sub('[$,]','',i) for i in price_raw]))
-
-# need to remove extra whitespace from scraped hometype, beds, year, garage
-hometype = re.findall(r'\s\s(\w+\s\w+\s\w+)',str(hometype_raw))
-beds = list(map(int, re.findall(r'(\d+)',str(beds_raw))))
-yearbuilt = list(map(int, re.findall(r'(\d\d\d\d)',str(yearbuilt_raw))))
-garage = list(map(int, re.findall(r'(\d)',str(garage_raw))))
 
 # need to remove whitespace, extra text, and convert slashes from baths
 def baths_clean(baths_raw):
@@ -91,8 +85,6 @@ def baths_clean(baths_raw):
             baths_temp4.append(i)
     baths = list(map(float, baths_temp4))
     return baths
-
-baths = baths_clean(baths_raw)
 
 def sqft2acre(lotinsqft):
     return round(lotinsqft/43560,3)
@@ -111,15 +103,30 @@ def lot_clean(lot_raw):
             lot.append(i)
     return lot
     
-lot = lot_clean(lot_raw)
 
-import pandas as pd
+# define function to clean data: eliminate whitespace, convert to integer, etc.
 
-data = {'Address': address, 'City': city, 'Zip': zipcode, 'Beds': beds, 'Baths': baths,
-        'Lot size': lot, 'Year built': yearbuilt, 'Garage': garage, 
+def cleanall(address_raw, price_raw, hometype_raw, beds_raw, yearbuilt_raw, garage_raw, baths_raw, lot_raw):
+    
+    address = address_clean(address_raw)
+    city = re.findall(r',\s(\w+), CA',str(address_raw))
+    zipcode = re.findall(r'\d\d\d\d\d',str(address_raw))
+    price = list(map(int, [re.sub('[$,]','',i) for i in price_raw])) 
+    hometype = re.findall(r'\s\s(\w+\s\w+\s\w+)',str(hometype_raw)) 
+    beds = list(map(int, re.findall(r'(\d+)',str(beds_raw))))
+    yearbuilt = list(map(int, re.findall(r'(\d\d\d\d)',str(yearbuilt_raw))))
+    garage = list(map(int, re.findall(r'(\d)',str(garage_raw))))
+    baths = baths_clean(baths_raw)
+    lot = lot_clean(lot_raw)
+    
+    import pandas as pd
+    data = {'Address': address, 'City': city, 'Zip': zipcode, 'Beds': beds, 'Baths': baths,
+        'Lot size': lot, 'Garage': garage, 'Year built': yearbuilt, 
         'Home type': hometype, 'Price': price}
+    dataframe = pd.DataFrame(data)
+    
+    return dataframe
 
-dataframe = pd.DataFrame(data)
 
 
 # Calls the above functions
@@ -128,6 +135,11 @@ def main():
         print('usage: python realestate.py zipcodes')
         sys.exit(1)
     zips = csvread(sys.argv[1])
+    
+    for zip in zips:
+        url = lookup(zip)
+        
+    
     print(zips)
 
 # Calls the main function
