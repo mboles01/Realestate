@@ -9,19 +9,15 @@ filename = 'zipcodes.csv'
 zipcodes_all = csvread(filename)
 
 # select subset of zip codes
-zipcodes = zipcodes_all[225:235]
+zipcodes = zipcodes_all[200:250]
 
 # scrape MLS listings
 from webscraper2 import webscrape
 data_all = webscrape(zipcodes)
 
-# find zip codes that errored out 
+# find zip codes with no listings found
 import numpy as np
 missing_zips = np.setdiff1d(zipcodes,data_all.loc[:,'Zip'])
-
-# debug zip errors
-zipcodes = missing_zips[1:2]
-data_all = webscrape(zipcodes)
 
 # write .csv file with data
 data_all.to_csv('data_all.csv')

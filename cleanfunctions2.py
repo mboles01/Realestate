@@ -15,11 +15,10 @@ def address_clean(address_raw):
         address_temp2 = []; city_temp2 = []; zip_code_temp = []
         # get address
         try:
-            address_temp = re.findall(r'(\d+\s\w+),|(\d+\s\w+\s\w+),|(\d+\s\w+\s\w+\s\w+),|\"(\w+\s\w+),|\'(\d+\s\w+)\\.,', f'"{line}"')
+            address_temp = re.findall(r'\"(\S+\s\S+),|\"(\S+\s\S+\s\S+),|\"(\S+\s\S+\s\S+\s\S+),',f'"{line}"')
             address_temp2 = list(filter(None, [i for i in address_temp[0]]))[0]
         except: 
             print('Failed to capture address of %s' % line)
-            failed = counter
             continue
         # get city
         city_temp = re.findall(r',\s(\w+), CA|,\s(\w+\s\w+), CA|,\s(–), CA', line)
@@ -36,7 +35,7 @@ def address_clean(address_raw):
     if not 'failed' in locals():
         return address, city, zip_code
     else: 
-        return address, city, zip_code, failed
+        return address, city, zip_code
 
 
 # need to remove whitespace, extra text, and convert slashes from baths
@@ -71,7 +70,7 @@ def lot_clean(lot_raw):
     lot_temp4 = [float(i) for i in lot_temp3]
     lot = []
     for i in lot_temp4:
-        if i > 10:      # assume if lot size is > 10 units are sqft not acres
+        if i > 100:      # assume if lot size is > 100 units are sqft not acres
             lot.append(sqft2acre(i))
         else:
             lot.append(i)

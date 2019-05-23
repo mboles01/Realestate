@@ -25,7 +25,8 @@ def webscrape(zipcodes):
         
         # get homepage session
         session = requests.Session()
-        homepage = session.get('https://www.mlslistings.com/',verify='C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate\\Lam_certificate_MLS_May2019.cer')
+        homepage = session.get('https://www.mlslistings.com/')  # Mac
+#        homepage = session.get('https://www.mlslistings.com/',verify='C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate\\Lam_certificate_MLS_May2019.cer')
         soup = BeautifulSoup(homepage.content, "html.parser")
         
         # get security token, post search data
