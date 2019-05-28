@@ -9,7 +9,7 @@ filename = 'zipcodes.csv'
 zipcodes_all = csvread(filename)
 
 # select subset of zip codes
-zipcodes = zipcodes_all[315:]
+zipcodes = zipcodes_all[:26]
 
 # scrape MLS listings
 from scrapeweb import webscrape
@@ -20,7 +20,7 @@ data_all = webscrape(zipcodes)
 #missing_zips = np.setdiff1d(zipcodes,data_all.loc[:,'Zip'])
 
 # write .csv file with data
-data_all.to_csv('data_from_315.csv')
+data_all.to_csv('data_to_27.csv')
     
 
 # Calls the above functions
