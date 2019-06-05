@@ -16,16 +16,13 @@ import pandas as pd
 import time
 
 
-
-
-
 from lxml.html import fromstring
 
-gurl = 'https://www.realtor.com/' #url for get requests
+gurl = 'https://www.mlslistings.com/' #url for get requests
 purl = 'https://www.realtor.com/Search/ResultPost' #url for post requests
 
 with requests.Session() as session:
-    r = session.get(gurl)
+    r = session.get(gurl,verify='C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate\\Lam_certificate_MLS_May2019.cer')
     root = fromstring(r.text)
     payload = {item.get('name'):item.get('value') for item in root.cssselect('input[name]')}
     payload['searchbox-input'] = '94618'
@@ -35,7 +32,19 @@ with requests.Session() as session:
     print(address)
 
 
+gurl = 'https://www.realtor.com/' #url for get requests
+purl = 'https://www.realtor.com/Search/ResultPost' #url for post requests
 
+with requests.Session() as session:
+#    r = session.get(gurl,verify='C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate\\Lam_certificate_Realtor_June2019.cer')
+    r = session.get(gurl,verify=False)
+    root = fromstring(r.text)
+    payload = {item.get('name'):item.get('value') for item in root.cssselect('input[name]')}
+    payload['searchbox-input'] = '94618'
+    res = session.post(purl,data=payload)
+    tree = fromstring(res.text)
+    address = [item.text.strip() for item in tree.cssselect('.listing-address a.search-nav-link')]
+    print(address)
 
 
 def webscrape(zipcodes):
@@ -47,8 +56,8 @@ def webscrape(zipcodes):
         
         # get homepage session
         session = requests.Session()
-        homepage = session.get('https://www.realtor.com/')  # Mac
-#        homepage = session.get('https://www.mlslistings.com/',verify='C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate\\Lam_certificate_MLS_May2019.cer')
+#        homepage = session.get('https://www.realtor.com/')  # Mac
+        homepage = session.get('https://www.realtor.com/',verify='C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate\\Lam_certificate_Realtor_June2019.cer')
         soup = BeautifulSoup(homepage.content, "html.parser")
         
         # get security token, post search data
