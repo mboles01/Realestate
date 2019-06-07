@@ -19,7 +19,7 @@ import time
 from lxml.html import fromstring
 
 gurl = 'https://www.mlslistings.com/' #url for get requests
-purl = 'https://www.realtor.com/Search/ResultPost' #url for post requests
+purl = 'https://www.mlslistings.com/Search/ResultPost' #url for post requests
 
 with requests.Session() as session:
     r = session.get(gurl,verify='C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate\\Lam_certificate_MLS_May2019.cer')
@@ -36,8 +36,8 @@ gurl = 'https://www.realtor.com/' #url for get requests
 purl = 'https://www.realtor.com/Search/ResultPost' #url for post requests
 
 with requests.Session() as session:
-#    r = session.get(gurl,verify='C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate\\Lam_certificate_Realtor_June2019.cer')
-    r = session.get(gurl,verify=False)
+    r = session.get(gurl,verify='C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate\\Lam_certificate_Realtor_June2019.cer')
+#    r = session.get(gurl,verify=False)
     root = fromstring(r.text)
     payload = {item.get('name'):item.get('value') for item in root.cssselect('input[name]')}
     payload['searchbox-input'] = '94618'
