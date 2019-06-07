@@ -7,8 +7,8 @@ Created on Thu Jun  6 15:26:33 2019
 
 # set up working directory
 import os
-#os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
-os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
+os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
+#os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
 
 # import data
 filename = 'data_all.csv'
@@ -23,6 +23,17 @@ f.close()
 # or import csv as pandas dataframe?
 import pandas as pd
 data_all2 = pd.read_csv('data_all.csv')
+
+# try google api
+from geopy import geocoders
+g = geocoders.GoogleV3(api_key='AIzaSyAhFM1oWVQ7U_YnpOmMMI9v4s19DUBD1JY')
+location = g.geocode(address, timeout=10)
+
+#some things you can get from the result
+print(location.latitude, location.longitude)
+print(location.raw)
+print(location.address)
+
 
 # loop over addresses, find lat/long coordinates
 from geopy.geocoders import Nominatim
@@ -45,7 +56,7 @@ for address in addresses[:99]:
     address_long.append(long)
     time.sleep(1)    
 
-
+address = addresses[9]
 
 data_part = data_all[1:100]
 
