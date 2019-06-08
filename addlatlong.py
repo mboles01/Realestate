@@ -20,10 +20,6 @@ with open(filename, mode='r') as f:
     addresses = [i[1] + str(' ') + i[2] + str(' CA ') + i[3] for i in data_all][1:]
 f.close()
 
-# or import csv as pandas dataframe
-import pandas as pd
-data_all2 = pd.read_csv('data_all_2.csv')
-
 # loop over addresses, find lat/long coordinates
 from geopy.geocoders import Nominatim
 import time
@@ -31,7 +27,7 @@ geolocator = Nominatim(user_agent="Mozilla/5.0", timeout = 10)
 
 address_lat = []
 address_long = []
-for counter, address in enumerate(addresses[0:100],1):
+for counter, address in enumerate(addresses,1):
     location = geolocator.geocode(address)
     try:
         lat = location.latitude
@@ -48,15 +44,18 @@ for counter, address in enumerate(addresses[0:100],1):
 
 
 # create dataframe of longitude and latitudes, append to full data set and resave
+import pandas as pd
+data_all2 = pd.read_csv('data_all_2.csv')
+
 d = {'Longitude': address_long, 'Latitude': address_lat}
 latlong = pd.DataFrame(data=d)
 
-data_subset = data_all2[0:100]
+data_subset = data_all2[0:4253]
 
 data_with_coords = data_subset.join(latlong)
 
 # write .csv file with data
-data_with_coords.to_csv('data_with_coords.csv')
+data_with_coords.to_csv('data_with_coords_to_4253.csv')
 
 
 
