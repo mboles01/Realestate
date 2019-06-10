@@ -9,18 +9,22 @@ Created on Fri Jun  7 16:36:29 2019
 import os
 os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
 
-# import plot functions
-from cartoplotfunctions import cartoplot_bay, cartoplot_sf, cartoplot_eastbay, cartoplot_southbay
-
 # import data, create plots
 import pandas as pd
-data_with_coords = pd.read_csv('data_with_coords_to_4253.csv')
-long = data_with_coords.loc[:,"Longitude"]
-lat = data_with_coords.loc[:,"Latitude"]
-color = data_with_coords.loc[:,"Price"]
-mincolor = 750000; maxcolor = 3000000; size = 20
+data_full = pd.read_csv('data_full.csv')
 
-cartoplot_bay(long, lat, color, mincolor, maxcolor, size)
-cartoplot_sf(long, lat, color, mincolor, maxcolor, size)
-cartoplot_eastbay(long, lat, color, mincolor, maxcolor, size)
-cartoplot_southbay(long, lat, color, mincolor, maxcolor, size)
+# calculate quintiles
+from calculatequintiles import price_quintiles, pricepersqft_quintiles, priceperlotsqft_quintiles
+pricequintiles = price_quintiles(data_full)
+pricepersqftquintiles = pricepersqft_quintiles(data_full)
+priceperlotsqftquintiles = priceperlotsqft_quintiles(data_full)
+
+# plot maps
+from cartoplotfunctions import cartoplot_bay_price, cartoplot_bay_pricepersqft, cartoplot_bay_priceperlotsqft
+#cartoplot_sf, cartoplot_eastbay, cartoplot_southbay
+
+mapsize = 30
+cartoplot_bay_price(data_full, mapsize, pricequintiles)
+cartoplot_bay_pricepersqft(data_full, mapsize, pricepersqftquintiles)
+cartoplot_bay_priceperlotsqft(data_full, mapsize, priceperlotsqftquintiles)
+
