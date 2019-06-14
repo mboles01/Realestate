@@ -15,38 +15,6 @@ import requests
 import pandas as pd
 import time
 
-
-from lxml.html import fromstring
-
-gurl = 'https://www.mlslistings.com/' #url for get requests
-purl = 'https://www.mlslistings.com/Search/ResultPost' #url for post requests
-
-with requests.Session() as session:
-    r = session.get(gurl,verify='C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate\\Lam_certificate_MLS_May2019.cer')
-    root = fromstring(r.text)
-    payload = {item.get('name'):item.get('value') for item in root.cssselect('input[name]')}
-    payload['searchbox-input'] = '94618'
-    res = session.post(purl,data=payload)
-    tree = fromstring(res.text)
-    address = [item.text.strip() for item in tree.cssselect('.listing-address a.search-nav-link')]
-    print(address)
-
-
-gurl = 'https://www.realtor.com/' #url for get requests
-purl = 'https://www.realtor.com/Search/ResultPost' #url for post requests
-
-with requests.Session() as session:
-    r = session.get(gurl,verify='C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate\\Lam_certificate_Realtor_June2019.cer')
-#    r = session.get(gurl,verify=False)
-    root = fromstring(r.text)
-    payload = {item.get('name'):item.get('value') for item in root.cssselect('input[name]')}
-    payload['searchbox-input'] = '94618'
-    res = session.post(purl,data=payload)
-    tree = fromstring(res.text)
-    address = [item.text.strip() for item in tree.cssselect('.listing-address a.search-nav-link')]
-    print(address)
-
-
 def webscrape(zipcodes):
     
     # create empty data frame
@@ -55,30 +23,27 @@ def webscrape(zipcodes):
     for counter, zipcode in enumerate(zipcodes,1):
         
         # get homepage session
+        url = 'https://www.realtor.com/realestateandhomes-search/94618/type-single-family-home'
         session = requests.Session()
-#        homepage = session.get('https://www.realtor.com/')  # Mac
-        homepage = session.get('https://www.realtor.com/',verify='C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate\\Lam_certificate_Realtor_June2019.cer')
-        soup = BeautifulSoup(homepage.content, "html.parser")
-        
-        # get security token, post search data
-        token = soup.find("input", attrs={"name" : "__RequestVerificationToken"})['value']
-        data = {'transactionType': 'buy', 'listing_status': 'Active', 'searchTextType': '', 'searchText': zipcode,'__RequestVerificationToken': token, 'property_type': 'SingleFamilyResidence'}
-        search_results = session.post("https://www.mlslistings.com/Search/ResultPost", data=data)
-        tree = html.fromstring(search_results.content)
+        homepage = session.get(url,verify='C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate\\Lam_certificate_Realtor_June2019.cer')
+        tree = html.fromstring(homepage.content)
+        soup = BeautifulSoup(homepage.content)
+        p = soup.prettify()
         
         # update status
         print('Scraping data for zipcode (%s/%s): ' % (counter,len(zipcodes)) + str(zipcode))
         
         # scrape desired information
-        address_raw = list(map(str, tree.xpath('//a[@class="search-nav-link"]//text()')))
-        price_raw = list(map(str, tree.xpath('//span[@class="font-weight-bold listing-price d-block pull-left pr-25"]//text()')))
-        hometype_raw = list(map(str, tree.xpath('//div[@class="listing-info clearfix font-size-sm line-height-base listing-type mb-25"]//text()')))
-        beds_raw = list(map(str, tree.xpath('//span[@class="listing-info-item font-size-sm line-height-base d-block pull-left pr-50 listing-beds"]//text()')))
-        baths_raw = list(map(str, tree.xpath('//span[@class="listing-info-item font-size-sm line-height-base d-block pull-left pr-50 listing-baths"]//text()')))
-        homesize_raw = list(map(str, tree.xpath('//span[@class="font-weight-bold info-item-value d-block pull-left pr-25"]//text()')))
-        lot_raw = list(map(str, tree.xpath('//span[@class="listing-info-item font-size-sm line-height-base d-block pull-left pr-50 listing-lot-size"]//text()')))
-        garage_raw = list(map(str, tree.xpath('//span[@class="listing-info-item font-size-sm line-height-base d-block pull-left pr-50 listing-garage"]//text()')))
-        yearbuilt_raw = list(map(str, tree.xpath('//span[@class="listing-info-item font-size-sm line-height-base d-block pull-left pr-50 listing-sqft last"]//text()')))
+        address_raw = list(map(str, tree.xpath('//span[@class="listing-street-address"]//text()')))
+        city_raw = list(map(str, tree.xpath('//span[@class="listing-city"]//text()')))
+        state_raw = list(map(str, tree.xpath('//span[@class="listing-region"]//text()')))
+        zipcode_raw = list(map(str, tree.xpath('//span[@class="listing-postal"]//text()')))
+        price_raw = list(map(str, tree.xpath('//span[@class="data-price"]//text()')))
+        beds_raw = list(map(str, tree.xpath('//span[@class="data-value meta-beds"]//text()')))
+        baths_raw = list(map(str, tree.xpath('//li[@data-label="property-meta-baths"]//span[@class="data-value"]//text()')))
+        homesize_raw = list(map(str, tree.xpath('//li[@data-label="property-meta-sqft"]//span[@class="data-value"]//text()')))
+        lotsize_raw = list(map(str, tree.xpath('//li[@data-label="property-meta-lotsize"]//span[@class="data-value"]//text()')))
+        garage_raw = list(map(str, tree.xpath('//li[@data-label="property-meta-garage"]//span[@class="data-value"]//text()')))
         
         # clean raw data
         import re
