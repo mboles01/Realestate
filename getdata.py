@@ -9,7 +9,7 @@ filename = 'zipcodes.csv'
 zipcodes_all = csvread(filename)
 
 # select subset of zip codes
-zipcodes = zipcodes_all[:26]
+zipcodes = zipcodes_all
 
 # scrape MLS listings
 from scrapeweb import webscrape

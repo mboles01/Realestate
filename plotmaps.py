@@ -23,8 +23,14 @@ priceperlotsqftquintiles = priceperlotsqft_quintiles(data_full)
 from cartoplotfunctions import cartoplot_bay_price, cartoplot_bay_pricepersqft, cartoplot_bay_priceperlotsqft
 #cartoplot_sf, cartoplot_eastbay, cartoplot_southbay
 
+# bay area overview
 mapsize = 30
 cartoplot_bay_price(data_full, mapsize, pricequintiles)
 cartoplot_bay_pricepersqft(data_full, mapsize, pricepersqftquintiles)
 cartoplot_bay_priceperlotsqft(data_full, mapsize, priceperlotsqftquintiles)
 
+# south bay
+mapsize = 30
+cartoplot_bay_price(data_full, mapsize, pricequintiles)
+cartoplot_bay_pricepersqft(data_full, mapsize, pricepersqftquintiles)
+cartoplot_bay_priceperlotsqft(data_full, mapsize, priceperlotsqftquintiles)
