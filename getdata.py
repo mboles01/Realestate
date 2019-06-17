@@ -9,13 +9,13 @@ filename = 'zipcodes.csv'
 zipcodes_all = csvread(filename)
 
 # select subset of zip codes
-zipcodes = zipcodes_all
+zipcodes = zipcodes_all[1:2]
 
 # scrape MLS listings
-from scrapeweb import webscrape
+from scrapeweb_realtor import webscrape
 data_all = webscrape(zipcodes)
-
 ## find zip codes with no listings found
+
 #import numpy as np
 #missing_zips = np.setdiff1d(zipcodes,data_all.loc[:,'Zip'])
 
