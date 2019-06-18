@@ -34,7 +34,7 @@ def webscrape(zipcodes):
         url = 'https://www.realtor.com/realestateandhomes-search/' + zipcode + '/beds-1/baths-1/type-single-family-home'
         session = requests.Session()
         headers = {'User-Agent': generate_user_agent()}
-#        homepage = session.get(url, timeout = 5, headers = headers) # Mac
+        homepage = session.get(url, timeout = 5, headers = headers) # Mac
         homepage = session.get(url, verify='Lam_certificate_Realtor_June2019.cer', timeout = 5, headers = headers) # PC
         tree = html.fromstring(homepage.content)
 #        soup = BeautifulSoup(homepage.content, "html.parser")
@@ -50,48 +50,56 @@ def webscrape(zipcodes):
         else:
             print('No results found for zipcode %s' % zipcode)
             continue
-        #        noresults = tree.xpath('//h3[@class="no-result-subtitle"]//text()')
 
-        # address each listing individually
-        
         # get listing and order of appearance ids
         from collections import OrderedDict
         listing_ids = list(OrderedDict.fromkeys(tree.xpath('//li[@class="component_property-card js-component_property-card js-quick-view"]//@data-propertyid')))
         order_ids = list(OrderedDict.fromkeys(tree.xpath('//div[@class="data-wrap"]//@id')))
+        listing_order = dict(zip(listing_ids, order_ids))
+        
+        # create list to 
+        data_zipcode = []
 
         
         # check zips for listing ids, only scrape those matching query zip
         for listing_id in listing_ids:
+            order = listing_order[listing_id]
             xpath_zip = '//*[@id="' + listing_id + '"]/div[2]/div[3]/div[1]/a/span[4]//text()'
             listing_zip = tree.xpath(xpath_zip)
             if listing_zip[0] != zipcode:
                 continue
 
-        # scrape desired information for each listing using appropriate xpath
-            address_raw = tree.xpath('//*[@id="' + listing_id + '"]/div[2]/div[3]/div[1]/a/span[1]//text()')[0]
-            city = tree.xpath('//*[@id="' + listing_id + '"]/div[2]/div[3]/div[1]/a/span[2]//text()')[0]       
-            state = tree.xpath('//*[@id="' + listing_id + '"]/div[2]/div[3]/div[1]/a/span[3]//text()')[0]
-            zip_code = tree.xpath('//*[@id="' + listing_id + '"]/div[2]/div[3]/div[1]/a/span[4]//text()')[0]
-            price_raw = tree.xpath('//*[@id="' + listing_id + '"]/div[2]/div[1]/div[2]/span//text()')[0]
-            beds_raw = tree.xpath('//*[@id="' + listing_id + '"]/div[2]/ul/li[1]/span//text()')[0]
-            baths_raw = tree.xpath('//*[@id="' + listing_id + '"]/div[2]/ul/li[2]//text()')[0]
-            homesize_raw = tree.xpath('//*[@id="' + listing_id + '"]/div[2]/ul/li[3]//text()')[0]
-            lotsize_raw = tree.xpath('//*[@id="' + listing_id + '"]/div[2]/ul/li[4]/span[1]//text()')[0]
-            lotunits_raw = tree.xpath('//*[@id="' + listing_id + '"]/div[2]/ul/li[4]/span[2]//text()')[0]
+            # scrape desired information for each listing using appropriate xpath
+            address_raw = tree.xpath('//*[@id="' + listing_id + '"]/div[2]/div[3]/div[1]/a/span[1]//text()')
+            city = tree.xpath('//*[@id="' + listing_id + '"]/div[2]/div[3]/div[1]/a/span[2]//text()')       
+            state = tree.xpath('//*[@id="' + listing_id + '"]/div[2]/div[3]/div[1]/a/span[3]//text()')
+            zip_code = tree.xpath('//*[@id="' + listing_id + '"]/div[2]/div[3]/div[1]/a/span[4]//text()')
+            price_raw = tree.xpath('//*[@id="' + listing_id + '"]/div[2]/div[1]/div[2]/span//text()')
+            beds_raw = tree.xpath('//*[@id="' + listing_id + '"]/div[2]/ul/li[1]/span//text()')
+            baths_raw = tree.xpath('//*[@id="' + listing_id + '"]/div[2]/ul/li[2]//text()')
+            homesize_raw = tree.xpath('//*[@id="' + listing_id + '"]/div[2]/ul/li[3]/span[1]//text()')
+            lotsize_raw = tree.xpath('//*[@id="' + listing_id + '"]/div[2]/ul/li[4]/span[1]//text()')
+            lotunits_raw = tree.xpath('//*[@id="' + listing_id + '"]/div[2]/ul/li[4]/span[2]//text()')
+            latitude = tree.xpath('//*[@id="' + order + '"]/div[1]/span[2]/meta[1]//@content')
+            longitude = tree.xpath('//*[@id="' + order + '"]/div[1]/span[2]/meta[2]//@content')
+               
+            # compile data for a single listing
+            data_listing = [order, address_raw, city, state, zip_code, price_raw,
+                            beds_raw, baths_raw, homesize_raw, lotsize_raw, lotunits_raw,
+                            latitude, longitude]
             
+            # compile listings across zipcode 
+            data_zipcode = 
             
-            latitude = tree.xpath('//*[@id="2"]/div[1]/span[2]/meta[1]//@content')
-            longitude = tree.xpath('//*[@id="2"]/div[1]/span[2]/meta[2]//@content')
-
-                                   //*[@id="3"]/div[1]/span[2]/meta[1]
-        # clean raw data
-        address = address_clean(address_raw)
-        beds = beds_clean(beds_raw)
-        baths = baths_clean(baths_raw)
-        homesize = homesize_clean(homesize_raw)
-        lotsize = lotsize_clean(lotsize_raw, lotunits_raw)
-        price = price_clean(price_raw)
-        latitude, longitude = coords_clean(coords_raw)
+                                
+            # clean raw data
+            address = address_clean(address_raw)
+            beds = beds_clean(beds_raw)
+            baths = baths_clean(baths_raw)
+            homesize = homesize_clean(homesize_raw)
+            lotsize = lotsize_clean(lotsize_raw, lotunits_raw)
+            price = price_clean(price_raw)
+            latitude, longitude = coords_clean(coords_raw)
         
         # count up lengths of arrays to be joined
         len_address = 'Address', len(address)
