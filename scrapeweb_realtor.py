@@ -6,12 +6,9 @@ Created on Tue May 21 13:45:56 2019
 """
 
 ## set up working directory
-#import os
-##os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
-#os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
-
-# import data cleaning functions
-from cleandata_realtor import address_clean, beds_clean, baths_clean, homesize_clean, lotsize_clean, price_clean, coords_clean
+import os
+#os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
+os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
 
 # import modules
 from lxml import html
@@ -19,9 +16,11 @@ import requests
 from user_agent import generate_user_agent
 import pandas as pd
 import time
-from bs4 import BeautifulSoup
 import re
+from collections import OrderedDict
+from cleanfunctions_realtor import flatten, acretosqft
 
+# define webscraping function
 
 def webscrape(zipcodes):
     
@@ -30,11 +29,17 @@ def webscrape(zipcodes):
     
     for counter, zipcode in enumerate(zipcodes,1):
         
+        # build in wait time
+        time.sleep(1)
+        
+        # will need to randomize IP address
+        # https://pypi.org/project/http-request-randomizer/
+        
         # get homepage session
         url = 'https://www.realtor.com/realestateandhomes-search/' + zipcode + '/beds-1/baths-1/type-single-family-home'
         session = requests.Session()
         headers = {'User-Agent': generate_user_agent()}
-        homepage = session.get(url, timeout = 5, headers = headers) # Mac
+#        homepage = session.get(url, timeout = 5, headers = headers) # Mac
         homepage = session.get(url, verify='Lam_certificate_Realtor_June2019.cer', timeout = 5, headers = headers) # PC
         tree = html.fromstring(homepage.content)
 #        soup = BeautifulSoup(homepage.content, "html.parser")
@@ -52,95 +57,69 @@ def webscrape(zipcodes):
             continue
 
         # get listing and order of appearance ids
-        from collections import OrderedDict
         listing_ids = list(OrderedDict.fromkeys(tree.xpath('//li[@class="component_property-card js-component_property-card js-quick-view"]//@data-propertyid')))
         order_ids = list(OrderedDict.fromkeys(tree.xpath('//div[@class="data-wrap"]//@id')))
         listing_order = dict(zip(listing_ids, order_ids))
         
-        # create list to 
-        data_zipcode = []
-
+        # create empty dataframe to catch listings within a zipcode
+        data_zipcode = pd.DataFrame()
         
         # check zips for listing ids, only scrape those matching query zip
         for listing_id in listing_ids:
             order = listing_order[listing_id]
-            xpath_zip = '//*[@id="' + listing_id + '"]/div[2]/div[3]/div[1]/a/span[4]//text()'
+            xpath_zip = '//*[@id="' + listing_id + '"]//span[@class="listing-postal"]//text()' 
             listing_zip = tree.xpath(xpath_zip)
             if listing_zip[0] != zipcode:
                 continue
 
             # scrape desired information for each listing using appropriate xpath
-            address_raw = tree.xpath('//*[@id="' + listing_id + '"]/div[2]/div[3]/div[1]/a/span[1]//text()')
-            city = tree.xpath('//*[@id="' + listing_id + '"]/div[2]/div[3]/div[1]/a/span[2]//text()')       
-            state = tree.xpath('//*[@id="' + listing_id + '"]/div[2]/div[3]/div[1]/a/span[3]//text()')
-            zip_code = tree.xpath('//*[@id="' + listing_id + '"]/div[2]/div[3]/div[1]/a/span[4]//text()')
-            price_raw = tree.xpath('//*[@id="' + listing_id + '"]/div[2]/div[1]/div[2]/span//text()')
-            beds_raw = tree.xpath('//*[@id="' + listing_id + '"]/div[2]/ul/li[1]/span//text()')
-            baths_raw = tree.xpath('//*[@id="' + listing_id + '"]/div[2]/ul/li[2]//text()')
-            homesize_raw = tree.xpath('//*[@id="' + listing_id + '"]/div[2]/ul/li[3]/span[1]//text()')
-            lotsize_raw = tree.xpath('//*[@id="' + listing_id + '"]/div[2]/ul/li[4]/span[1]//text()')
-            lotunits_raw = tree.xpath('//*[@id="' + listing_id + '"]/div[2]/ul/li[4]/span[2]//text()')
+            address_raw = tree.xpath('//*[@id="' + listing_id + '"]//span[@class="listing-street-address"]//text()')
+            city = tree.xpath('//*[@id="' + listing_id + '"]//span[@class="listing-city"]//text()')     
+            state = tree.xpath('//*[@id="' + listing_id + '"]//span[@class="listing-region"]//text()') 
+            zip_code = tree.xpath('//*[@id="' + listing_id + '"]//span[@class="listing-postal"]//text()') 
+            price_raw = tree.xpath('//*[@id="' + listing_id + '"]//span[@class="data-price"]//text()') 
+            beds_raw = tree.xpath('//*[@id="' + listing_id + '"]//span[@class="data-value meta-beds"]//text()') 
+            baths_raw = tree.xpath('//*[@id="' + listing_id + '"]//li[@data-label="property-meta-baths"]//span[@class="data-value"]//text()') 
+            homesize_raw = tree.xpath('//*[@id="' + listing_id + '"]//li[@data-label="property-meta-sqft"]//span[@class="data-value"]//text()')
+            lotsize_raw = tree.xpath('//*[@id="' + listing_id + '"]//li[@data-label="property-meta-lotsize"]//text()')
             latitude = tree.xpath('//*[@id="' + order + '"]/div[1]/span[2]/meta[1]//@content')
             longitude = tree.xpath('//*[@id="' + order + '"]/div[1]/span[2]/meta[2]//@content')
-               
-            # compile data for a single listing
-            data_listing = [order, address_raw, city, state, zip_code, price_raw,
-                            beds_raw, baths_raw, homesize_raw, lotsize_raw, lotunits_raw,
-                            latitude, longitude]
             
-            # compile listings across zipcode 
-            data_zipcode = 
-            
-                                
-            # clean raw data
-            address = address_clean(address_raw)
-            beds = beds_clean(beds_raw)
-            baths = baths_clean(baths_raw)
-            homesize = homesize_clean(homesize_raw)
-            lotsize = lotsize_clean(lotsize_raw, lotunits_raw)
-            price = price_clean(price_raw)
-            latitude, longitude = coords_clean(coords_raw)
-        
-        # count up lengths of arrays to be joined
-        len_address = 'Address', len(address)
-        len_city = 'City', len(city)
-        len_state = 'State', len(state)
-        len_zip = 'Zip', len(zip_code)
-        len_beds = 'Beds', len(beds)
-        len_baths = 'Baths', len(baths)
-        len_homesize = 'Homesize', len(homesize)
-        len_lotsize = 'Lot', len(lotsize)
-        len_price = 'Price', len(price)
-        len_latitude = 'Latitude', len(latitude)
-        len_longitude = 'Longitude', len(longitude)
-        
-        # check if any are not matching the others     
-        lengths = [len_address, len_city, len_state, len_zip, len_beds, len_baths, len_homesize, len_lotsize, len_price, len_latitude, len_longitude]
-        len_proper = max(set([item[1] for item in lengths]), key=[item[1] for item in lengths].count)
-        for counter, item in enumerate(lengths):
-            if item[1] != len_proper:
-                print('%s has improper length: %s, should be %s' % (lengths[counter][0], lengths[counter][1], len_proper))
-                pass
-#                return address, city, zip_code, beds, baths, homesize, lot, yearbuilt, garage, hometype, price, address_raw, beds_raw, baths_raw, lot_raw, yearbuilt_raw, garage_raw, hometype_raw, price_raw
-#                sys.exit()
+            # if lot units are acres, change to sqft
+            if len(lotsize_raw) == 2:
+                if lotsize_raw[1] == ' acres':
+                    lotsize = acretosqft(lotsize_raw[0])
+                else:
+                    lotsize = [lotsize_raw[0]]
             else:
-                pass
+                lotsize = lotsize_raw
+            
+            # create data frame from scraped data before cleaning
+#            try:
+            data_listing_temp = {'Address': flatten(address_raw), 'City': flatten(city),
+                                 'State': flatten(state), 'Zip': flatten(zip_code), 
+                                 'Price': flatten(price_raw), 
+                                 'Beds': flatten(beds_raw), 'Baths': flatten(baths_raw), 
+                                 'Home size': flatten(homesize_raw), 'Lot size': flatten(lotsize),  
+                                 'Latitude': flatten(latitude), 'Longitude': flatten(longitude)}
         
-        # create data frame from scraped, cleaned data
-        try:
-            data_temp = {'Address': address, 'City': city, 'State': state, 
-                         'Zip': zip_code, 'Beds': beds, 'Baths': baths, 
-                         'Home size': homesize, 'Lot size': lotsize, 'Price': price,
-                         'Latitude': latitude, 'Longitude': longitude}
+        # compile data across listings within single zipcode
+            df_data_listing_temp = pd.DataFrame(data_listing_temp, index = [order])
+            data_zipcode = data_zipcode.append(df_data_listing_temp)          
+         
+#            except:
+#                print('Zipcode %s was skipped' % zipcode)
+
+        # compile listings across zipcodes
+        data_all = data_all.append(data_zipcode)
         
-            dataframe_temp = pd.DataFrame(data_temp)
-            data_all = data_all.append(dataframe_temp)
-        except:
-            print('Zipcode %s was skipped' % zipcode)
-        
-        # wait, then scrape next zipcode
-        time.sleep(1)
-        
+        # every 10 zipcodes, save new copy of .csv file
+        if counter % 10 == 0:
+            csv_name = 'data_to_zipcode_' + str(counter) + '.csv'
+            data_all.to_csv(csv_name)
+        else:
+            pass
+                        
     return data_all
         
         

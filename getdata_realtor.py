@@ -9,11 +9,11 @@ filename = 'zipcodes.csv'
 zipcodes_all = csvread(filename)
 
 # select subset of zip codes
-zipcodes = zipcodes_all[0:9]
+zipcodes = zipcodes_all[0:5]
 
 # scrape MLS listings
 from scrapeweb_realtor import webscrape
-data_all = webscrape(zipcodes)
+data_raw = webscrape(zipcodes)
 ## find zip codes with no listings found
 
 #import numpy as np

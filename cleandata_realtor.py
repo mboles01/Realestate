@@ -1,86 +1,44 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue May 21 13:31:27 2019
+Created on Tue Jun 18 10:57:21 2019
 
 @author: BolesMi
 """
 
-# DEFINE DATA CLEANING FUNCTIONS 
-import re
+# import data cleaning functions
+from cleanfunctions_realtor import address_clean, beds_clean, baths_clean, 
+homesize_clean, lotsize_clean, price_clean, coords_clean, acretosqft, flatten
 
-# from full address, pull out street address, city, and zipcode 
-def address_clean(address_raw):
-    address_temp2 = []
-#    address = ['']
-    for line in address_raw:
-        address_temp1 = re.findall(r'\s+(.+),', line)
-        address_temp2.append(address_temp1)
-        address = [i[0] for i in address_temp2]
-#        try:
-#            address_temp1 = re.findall(r'\s+(.+),', line)
-#            address_temp2.append(address_temp1)
-#            address = [i[0] for i in address_temp2]
-#        except: 
-#            print('Failed to capture address of %s' % line)
-#            continue
-    return address
+# clean raw data
+address = address_clean(address_raw)
+beds = beds_clean(beds_raw)
+baths = baths_clean(baths_raw)
+homesize = homesize_clean(homesize_raw)
+lotsize = lotsize_clean(lotsize_raw, lotunits_raw)
+price = price_clean(price_raw)
+latitude, longitude = coords_clean(coords_raw)
 
+# count up lengths of arrays to be joined
+len_address = 'Address', len(address)
+len_city = 'City', len(city)
+len_state = 'State', len(state)
+len_zip = 'Zip', len(zip_code)
+len_beds = 'Beds', len(beds)
+len_baths = 'Baths', len(baths)
+len_homesize = 'Homesize', len(homesize)
+len_lotsize = 'Lot', len(lotsize)
+len_price = 'Price', len(price)
+len_latitude = 'Latitude', len(latitude)
+len_longitude = 'Longitude', len(longitude)
 
-# find beds, remove hyphens
-def beds_clean(beds_raw):
-    beds = [int(i) for i in beds_raw]
-    return beds
- 
-
-# need to remove whitespace, extra text, and convert slashes from baths
-def baths_clean(baths_raw):
-    baths = [float(i) for i in baths_raw]
-    return baths
-
-
-# pull out home size entries, replace hyphens
-def homesize_clean(homesize_raw):
-    homesize_temp = [re.sub(',','',i) for i in homesize_raw]
-    homesize = [int(i) for i in homesize_temp]
-    return homesize
-
-# define function to convert between sqft and acres
-def acretosqft(lotinsqft):
-    return round(lotinsqft*43560,3)
-
-# find lot size, convert sqft values to acres
-def lotsize_clean(lotsize_raw, lotunits_raw):
-    lotsize_temp1 = [re.sub(',','',i) for i in lotsize_raw]
-    lotsize_temp2 = [float(i) for i in lotsize_temp1]
-    lotunits_temp2 = []
-    lotsize = []
-    for line in lotunits_raw: 
-        lotunits_temp1 = re.findall(r'\s+(.+)\s+lot', line)
-        lotunits_temp2.append(lotunits_temp1)
-    lotunits = [i[0] for i in lotunits_temp2]
-    for counter, line in enumerate(lotsize_temp2):
-        if lotunits[counter] == 'acres':
-            lotsize_temp = acretosqft(line)
-        else:
-            lotsize_temp = line
-        lotsize.append(lotsize_temp)
-    return lotsize
-
-# remove dollar sign in price
-def price_clean(price_raw):
-    price = list(map(int, [re.sub('[$,]','',i) for i in price_raw]))
-    return price
-
-# get latitude, longitude coordinates
-def coords_clean(coords_raw):
-    latitude = []; longitude = []
-    for counter, line in enumerate(coords_raw):
-        if counter % 2 == 0:
-            latitude.append(float(line))
-        else:
-            longitude.append(float(line))
-    return latitude, longitude
-
-
-
-
+# check if any are not matching the others     
+lengths = [len_address, len_city, len_state, len_zip, len_beds, len_baths, len_homesize, len_lotsize, len_price, len_latitude, len_longitude]
+len_proper = max(set([item[1] for item in lengths]), key=[item[1] for item in lengths].count)
+for counter, item in enumerate(lengths):
+    if item[1] != len_proper:
+        print('%s has improper length: %s, should be %s' % (lengths[counter][0], lengths[counter][1], len_proper))
+        pass
+#                return address, city, zip_code, beds, baths, homesize, lot, yearbuilt, garage, hometype, price, address_raw, beds_raw, baths_raw, lot_raw, yearbuilt_raw, garage_raw, hometype_raw, price_raw
+#                sys.exit()
+    else:
+        pass
