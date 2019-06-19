@@ -6,9 +6,9 @@ Created on Tue May 21 13:45:56 2019
 """
 
 ## set up working directory
-import os
-#os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
-os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
+#import os
+##os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
+#os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
 
 # import modules
 from lxml import html
@@ -19,6 +19,8 @@ import time
 import re
 from collections import OrderedDict
 from cleanfunctions_realtor import flatten, acretosqft
+from getip import get_proxies
+from itertools import cycle
 
 # define webscraping function
 
@@ -31,16 +33,25 @@ def webscrape(zipcodes):
         
         # build in wait time
         time.sleep(1)
-        
-        # will need to randomize IP address
-        # https://pypi.org/project/http-request-randomizer/
-        
+
         # get homepage session
         url = 'https://www.realtor.com/realestateandhomes-search/' + zipcode + '/beds-1/baths-1/type-single-family-home'
         session = requests.Session()
         headers = {'User-Agent': generate_user_agent()}
-#        homepage = session.get(url, timeout = 5, headers = headers) # Mac
-        homepage = session.get(url, verify='Lam_certificate_Realtor_June2019.cer', timeout = 5, headers = headers) # PC
+        proxies = get_proxies()
+        proxy_pool = cycle(proxies)
+        proxy = next(proxy_pool)
+#        proxy = '103.60.181.210:31622'
+        try: 
+            homepage = session.get(url, timeout = 5, headers = headers, proxies={"http": proxy, "https": proxy}) # Mac
+            print(homepage)
+        except:
+                Most free proxies will often get connection errors. You will have retry the entire request using another proxy to work. 
+                We will just skip retries as its beyond the scope of this tutorial and we are only downloading a single url 
+            print("Skipping. Connection error")
+        
+#        homepage = session.get(url, timeout = 15, headers = headers, proxies={"http": proxy, "https": proxy}) # Mac
+#        homepage = session.get(url, verify='Lam_certificate_Realtor_June2019.cer', timeout = 5, headers = headers) # PC
         tree = html.fromstring(homepage.content)
 #        soup = BeautifulSoup(homepage.content, "html.parser")
         
@@ -51,7 +62,7 @@ def webscrape(zipcodes):
         resultcount_temp = tree.xpath('//span[@id="search-result-count"]//text()')
         if resultcount_temp:
             resultcount = int(re.findall(r'\s+(\d+)', resultcount_temp[0])[0])
-            print('%s results found for zipcode %s' % (resultcount, zipcode))
+            print('Getting %s results for zipcode %s' % (resultcount, zipcode))
         else:
             print('No results found for zipcode %s' % zipcode)
             continue

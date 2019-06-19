@@ -1,7 +1,7 @@
 # set up working directory
 import sys, os
-#os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
-os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
+os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
+#os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
 
 # import zipcodes
 from csvreader import csvread
@@ -9,7 +9,7 @@ filename = 'zipcodes.csv'
 zipcodes_all = csvread(filename)
 
 # select subset of zip codes
-zipcodes = zipcodes_all[0:5]
+zipcodes = zipcodes_all[241:301]
 
 # scrape MLS listings
 from scrapeweb_realtor import webscrape
