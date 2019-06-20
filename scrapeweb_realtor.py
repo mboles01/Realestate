@@ -15,6 +15,7 @@ from lxml import html
 import requests
 from user_agent import generate_user_agent
 import pandas as pd
+import numpy.random as npr
 import time
 import re
 from collections import OrderedDict
@@ -32,24 +33,26 @@ def webscrape(zipcodes):
     for counter, zipcode in enumerate(zipcodes,1):
         
         # build in wait time
-        time.sleep(1)
+        wait_time = npr.randint(1,6)
+        time.sleep(wait_time)
 
         # get homepage session
         url = 'https://www.realtor.com/realestateandhomes-search/' + zipcode + '/beds-1/baths-1/type-single-family-home'
         session = requests.Session()
         headers = {'User-Agent': generate_user_agent()}
-        proxies = get_proxies()
-        proxy_pool = cycle(proxies)
-        proxy = next(proxy_pool)
-#        proxy = '103.60.181.210:31622'
-        try: 
-            homepage = session.get(url, timeout = 5, headers = headers, proxies={"http": proxy, "https": proxy}) # Mac
-            print(homepage)
-        except:
-                Most free proxies will often get connection errors. You will have retry the entire request using another proxy to work. 
-                We will just skip retries as its beyond the scope of this tutorial and we are only downloading a single url 
-            print("Skipping. Connection error")
-        
+
+#        proxies = get_proxies()
+#        proxy_pool = cycle(proxies)
+#        proxy = next(proxy_pool)
+        proxy = '110.232.80.234:4145'
+#        try: 
+        homepage = session.get(url, timeout = 15, verify='Lam_certificate_Realtor_June2019_2.cer', headers = headers, proxies={"http": proxy, "https": proxy}) # Mac
+#            print(homepage)
+#        except:
+#                Most free proxies will often get connection errors. You will have retry the entire request using another proxy to work. 
+#                We will just skip retries as its beyond the scope of this tutorial and we are only downloading a single url 
+#            print("Skipping. Connection error")
+#        
 #        homepage = session.get(url, timeout = 15, headers = headers, proxies={"http": proxy, "https": proxy}) # Mac
 #        homepage = session.get(url, verify='Lam_certificate_Realtor_June2019.cer', timeout = 5, headers = headers) # PC
         tree = html.fromstring(homepage.content)
