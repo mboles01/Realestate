@@ -44,16 +44,16 @@ def webscrape(zipcodes):
 #        proxies = get_proxies()
 #        proxy_pool = cycle(proxies)
 #        proxy = next(proxy_pool)
-        proxy = '110.232.80.234:4145'
+#        proxy = '110.232.80.234:4145'
 #        try: 
-        homepage = session.get(url, timeout = 15, verify='Lam_certificate_Realtor_June2019_2.cer', headers = headers, proxies={"http": proxy, "https": proxy}) # Mac
+#        homepage = session.get(url, timeout = 15, verify='Lam_certificate_Realtor_June2019_2.cer', headers = headers, proxies={"http": proxy, "https": proxy}) # Mac
 #            print(homepage)
 #        except:
 #                Most free proxies will often get connection errors. You will have retry the entire request using another proxy to work. 
 #                We will just skip retries as its beyond the scope of this tutorial and we are only downloading a single url 
 #            print("Skipping. Connection error")
 #        
-#        homepage = session.get(url, timeout = 15, headers = headers, proxies={"http": proxy, "https": proxy}) # Mac
+        homepage = session.get(url, timeout = 15, headers = headers) #, proxies={"http": proxy, "https": proxy}) # Mac
 #        homepage = session.get(url, verify='Lam_certificate_Realtor_June2019.cer', timeout = 5, headers = headers) # PC
         tree = html.fromstring(homepage.content)
 #        soup = BeautifulSoup(homepage.content, "html.parser")
