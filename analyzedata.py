@@ -8,7 +8,8 @@ Created on Mon May 27 10:03:23 2019
 
 # set up working directory
 import os
-os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
+#os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
+os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
 
 # import master dataset    
 import pandas as pd

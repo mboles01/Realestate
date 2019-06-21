@@ -32,17 +32,25 @@ def beds_clean(beds_raw):
 
 # need to remove whitespace, extra text, and convert slashes from baths
 def baths_clean(baths_raw):
-    try:
-        baths = [float(i) for i in baths_raw]
-    except:
-        baths = re.findall(r'(.+)+', baths_raw)
+    baths = []
+    for row in baths_raw:
+        try:
+            baths_temp = float(row)
+#            baths = [float(i) for i in baths_raw]
+        except:
+            baths_temp = float(re.findall(r'(\d+\.\d+)+', row)[0])
+        baths.append(baths_temp)
     return baths
-
 
 # pull out home size entries, replace hyphens
 def homesize_clean(homesize_raw):
-    homesize_temp = [re.sub(',','',i) for i in homesize_raw]
-    homesize = [int(i) for i in homesize_temp]
+    homesize = []
+    for row in homesize_raw:
+        try:
+            homesize_temp = int(re.sub(',','',row))
+        except:
+            homesize_temp = row
+        homesize.append(homesize_temp)
     return homesize
 
 # define function to convert between sqft and acres
@@ -50,21 +58,21 @@ def acretosqft(lotinsqft):
     return round(lotinsqft*43560,3)
 
 # find lot size, convert sqft values to acres
-def lotsize_clean(lotsize_raw, lotunits_raw):
-    lotsize_temp1 = [re.sub(',','',i) for i in lotsize_raw]
-    lotsize_temp2 = [float(i) for i in lotsize_temp1]
-    lotunits_temp2 = []
+def lotsize_clean(lotsize_raw):
+    lotsize_temp2 = []
+    for row in lotsize_raw:
+        try:
+            lotsize_temp1 = int(re.sub(',','',row))
+        except:
+            lotsize_temp1 = row
+        lotsize_temp2.append(lotsize_temp1)
     lotsize = []
-    for line in lotunits_raw: 
-        lotunits_temp1 = re.findall(r'\s+(.+)\s+lot', line)
-        lotunits_temp2.append(lotunits_temp1)
-    lotunits = [i[0] for i in lotunits_temp2]
-    for counter, line in enumerate(lotsize_temp2):
-        if lotunits[counter] == 'acres':
-            lotsize_temp = acretosqft(line)
+    for row in lotsize_temp2:
+        if isinstance(row, str):
+            lotsize_temp3 = acretosqft(float(row))
         else:
-            lotsize_temp = line
-        lotsize.append(lotsize_temp)
+            lotsize_temp3 = row
+        lotsize.append(lotsize_temp3)
     return lotsize
 
 # remove dollar sign in price

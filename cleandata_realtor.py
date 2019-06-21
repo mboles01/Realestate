@@ -7,48 +7,39 @@ Created on Tue Jun 18 10:57:21 2019
 
 # set up working directory
 import os
-os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
-#os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
-
-# import data cleaning functions
-from cleanfunctions_realtor import address_clean, beds_clean, baths_clean, homesize_clean, lotsize_clean, price_clean, coords_clean, acretosqft, flatten
+#os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
+os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
 
 # import full (raw) data set
-from csvreader import csvread
 import pandas as pd
 filename = 'data_raw.csv'
 data_raw = pd.read_csv(filename)
 
+# get data not needing cleaning
+city = data_raw['City']
+state = data_raw['State']
+zipcode = data_raw['Zip']
+latitude = data_raw['Latitude']
+longitude = data_raw['Longitude']
+
 # clean raw data
+from cleanfunctions_realtor import address_clean, beds_clean, baths_clean, homesize_clean, lotsize_clean, price_clean
 address = address_clean(data_raw['Address'])
 beds = beds_clean(data_raw['Beds'])
 baths = baths_clean(data_raw['Baths'])
-homesize = homesize_clean(homesize_raw)
-lotsize = lotsize_clean(lotsize_raw, lotunits_raw)
-price = price_clean(price_raw)
-latitude, longitude = coords_clean(coords_raw)
+homesize = homesize_clean(data_raw['Home size'])
+lotsize = lotsize_clean(data_raw['Lot size'])
+price = price_clean(data_raw['Price'])
 
-# count up lengths of arrays to be joined
-len_address = 'Address', len(address)
-len_city = 'City', len(city)
-len_state = 'State', len(state)
-len_zip = 'Zip', len(zip_code)
-len_beds = 'Beds', len(beds)
-len_baths = 'Baths', len(baths)
-len_homesize = 'Homesize', len(homesize)
-len_lotsize = 'Lot', len(lotsize)
-len_price = 'Price', len(price)
-len_latitude = 'Latitude', len(latitude)
-len_longitude = 'Longitude', len(longitude)
+# rejoin with cleaned data
+data_clean_temp = {'Address': address, 'City': city, 'State': state, 'Zip': zipcode, 
+                     'Price': price, 'Beds': beds, 'Baths': baths, 
+                     'Home size': homesize, 'Lot size': lotsize,  
+                     'Latitude': latitude, 'Longitude': longitude}
 
-# check if any are not matching the others     
-lengths = [len_address, len_city, len_state, len_zip, len_beds, len_baths, len_homesize, len_lotsize, len_price, len_latitude, len_longitude]
-len_proper = max(set([item[1] for item in lengths]), key=[item[1] for item in lengths].count)
-for counter, item in enumerate(lengths):
-    if item[1] != len_proper:
-        print('%s has improper length: %s, should be %s' % (lengths[counter][0], lengths[counter][1], len_proper))
-        pass
-#                return address, city, zip_code, beds, baths, homesize, lot, yearbuilt, garage, hometype, price, address_raw, beds_raw, baths_raw, lot_raw, yearbuilt_raw, garage_raw, hometype_raw, price_raw
-#                sys.exit()
-    else:
-        pass
+data_clean = pd.DataFrame(data_clean_temp)#, index = [order])
+
+# save new csv
+data_clean.to_csv('data_clean.csv')
+
+
