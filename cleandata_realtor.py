@@ -5,9 +5,21 @@ Created on Tue Jun 18 10:57:21 2019
 @author: BolesMi
 """
 
+# set up working directory
+import sys, os
+#os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
+os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
+
 # import data cleaning functions
 from cleanfunctions_realtor import address_clean, beds_clean, baths_clean, 
 homesize_clean, lotsize_clean, price_clean, coords_clean, acretosqft, flatten
+
+# import full (raw) data set
+from csvreader import csvread
+filename = 'data_raw.csv'
+data_raw = csvread(filename)
+
+
 
 # clean raw data
 address = address_clean(address_raw)
