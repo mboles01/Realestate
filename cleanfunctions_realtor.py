@@ -7,22 +7,20 @@ Created on Tue May 21 13:31:27 2019
 
 # DEFINE DATA CLEANING FUNCTIONS 
 import re
+import math
 
 # from full address, pull out street address, city, and zipcode 
 def address_clean(address_raw):
     address_temp2 = []
 #    address = ['']
     for line in address_raw:
-        address_temp1 = re.findall(r'\s+(.+),', line)
+        try:
+            address_temp1 = re.findall(r'\s+(.+),', line)
+        except:
+            if math.isnan(line):
+                address_temp1 = ['']
         address_temp2.append(address_temp1)
-        address = [i[0] for i in address_temp2]
-#        try:
-#            address_temp1 = re.findall(r'\s+(.+),', line)
-#            address_temp2.append(address_temp1)
-#            address = [i[0] for i in address_temp2]
-#        except: 
-#            print('Failed to capture address of %s' % line)
-#            continue
+    address = [i[0] for i in address_temp2]
     return address
 
 
@@ -34,7 +32,10 @@ def beds_clean(beds_raw):
 
 # need to remove whitespace, extra text, and convert slashes from baths
 def baths_clean(baths_raw):
-    baths = [float(i) for i in baths_raw]
+    try:
+        baths = [float(i) for i in baths_raw]
+    except:
+        baths = re.findall(r'(.+)+', baths_raw)
     return baths
 
 

@@ -6,25 +6,23 @@ Created on Tue Jun 18 10:57:21 2019
 """
 
 # set up working directory
-import sys, os
-#os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
-os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
+import os
+os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
+#os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
 
 # import data cleaning functions
-from cleanfunctions_realtor import address_clean, beds_clean, baths_clean, 
-homesize_clean, lotsize_clean, price_clean, coords_clean, acretosqft, flatten
+from cleanfunctions_realtor import address_clean, beds_clean, baths_clean, homesize_clean, lotsize_clean, price_clean, coords_clean, acretosqft, flatten
 
 # import full (raw) data set
 from csvreader import csvread
+import pandas as pd
 filename = 'data_raw.csv'
-data_raw = csvread(filename)
-
-
+data_raw = pd.read_csv(filename)
 
 # clean raw data
-address = address_clean(address_raw)
-beds = beds_clean(beds_raw)
-baths = baths_clean(baths_raw)
+address = address_clean(data_raw['Address'])
+beds = beds_clean(data_raw['Beds'])
+baths = baths_clean(data_raw['Baths'])
 homesize = homesize_clean(homesize_raw)
 lotsize = lotsize_clean(lotsize_raw, lotunits_raw)
 price = price_clean(price_raw)
