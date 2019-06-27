@@ -75,6 +75,16 @@ def lotsize_clean(lotsize_raw):
         lotsize.append(lotsize_temp3)
     return lotsize
 
+def cleanlot(lot_raw):
+    lotsize = []
+    for row in lot_raw:
+        if row < 300:
+            lot_temp = acretosqft(float(row))
+        else:
+            lot_temp = row
+        lotsize.append(lot_temp)
+    return lotsize
+
 # remove dollar sign in price
 def price_clean(price_raw):
     price = list(map(int, [re.sub('[$,]','',i) for i in price_raw]))

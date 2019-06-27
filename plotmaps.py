@@ -2,7 +2,7 @@
 """
 Created on Fri Jun  7 16:36:29 2019
 
-@author: BolesMi
+@author: michaelboles
 """
 
 # set up working directory
