@@ -19,10 +19,6 @@ data_temp2 = data_all.dropna()
 data_temp3 = data_temp2[(data_temp2 != 0).all(1)]
 data_clean = data_temp3.drop('Unnamed: 0', axis = 1)
 
-# last minute correction: convert lots in acres to sqft
-from cleanfunctions_realtor import cleanlot
-data_clean['Lot size'] = cleanlot(data_clean['Lot size'])
-
 # get data summary
 description = data_clean.describe()
 

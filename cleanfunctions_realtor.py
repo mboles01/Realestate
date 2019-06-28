@@ -8,6 +8,7 @@ Created on Tue May 21 13:31:27 2019
 # DEFINE DATA CLEANING FUNCTIONS 
 import re
 import math
+import pandas as pd
 
 # from full address, pull out street address, city, and zipcode 
 def address_clean(address_raw):
@@ -78,11 +79,14 @@ def lotsize_clean(lotsize_raw):
 def cleanlot(lot_raw):
     lotsize = []
     for row in lot_raw:
-        if row < 300:
-            lot_temp = acretosqft(float(row))
+        if pd.isnull(row):
+            lotsize.append(float('nan'))
         else:
-            lot_temp = row
-        lotsize.append(lot_temp)
+            if row < 300:
+                lot_temp = acretosqft(float(row))
+            else:
+                lot_temp = row
+            lotsize.append(lot_temp)
     return lotsize
 
 # remove dollar sign in price

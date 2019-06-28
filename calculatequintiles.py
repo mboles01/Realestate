@@ -9,10 +9,10 @@ Created on Sun Jun  9 15:14:48 2019
 # calculate quintiles of price distribution
 import numpy as np
 def price_quintiles(data):
-    p20_price = np.percentile(data.loc[:,"Price"], 20) # return 20th percentile
-    p40_price = np.percentile(data.loc[:,"Price"], 40) # return 40th percentile
-    p60_price = np.percentile(data.loc[:,"Price"], 60) # return 60th percentile
-    p80_price = np.percentile(data.loc[:,"Price"], 80) # return 80th percentile
+    p20_price = int(round(np.percentile(data.loc[:,"Price"], 20), -3)) # return 20th percentile
+    p40_price = int(round(np.percentile(data.loc[:,"Price"], 40), -3)) # return 40th percentile
+    p60_price = int(round(np.percentile(data.loc[:,"Price"], 60), -3)) # return 60th percentile
+    p80_price = int(round(np.percentile(data.loc[:,"Price"], 80), -3)) # return 80th percentile
     pricequintiles = [p20_price, p40_price, p60_price, p80_price]
     return pricequintiles
 

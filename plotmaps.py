@@ -10,9 +10,57 @@ import os
 #os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
 os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
 
-# import data, create plots
+
+
+
+### Bay overview ###
+
+# import data
 import pandas as pd
-data = pd.read_csv('data_clean.csv')
+data_bay = pd.read_csv('data_bay.csv')
+
+# calculate quintiles
+from calculatequintiles import price_quintiles
+pricequintiles_bay = price_quintiles(data_bay)
+
+# plot data
+from cartoplotfunctions import cartoplot_bay_price
+mapsize = 30
+cartoplot_bay_price(data_bay, mapsize, pricequintiles_bay)
+
+
+
+
+### San Francisco ###
+
+# import data
+data_sf = pd.read_csv('data_sf.csv')
+
+# calculate quintiles
+pricequintiles_sf = price_quintiles(data_sf)
+
+# plot data
+from cartoplotfunctions import cartoplot_sf_price
+mapsize = 30
+cartoplot_sf_price(data_sf, mapsize, pricequintiles_sf)
+
+
+
+
+### East Bay ###
+
+# import data
+data_eastbay = pd.read_csv('data_eastbay.csv')
+
+# calculate quintiles
+pricequintiles_eastbay = price_quintiles(data_eastbay)
+
+# plot data
+from cartoplotfunctions import cartoplot_eastbay_price
+mapsize = 30
+cartoplot_eastbay_price(data_eastbay, mapsize, pricequintiles_eastbay)
+
+
 
 # calculate quintiles
 from calculatequintiles import price_quintiles, pricepersqft_quintiles, priceperlotsqft_quintiles
