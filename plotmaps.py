@@ -7,8 +7,8 @@ Created on Fri Jun  7 16:36:29 2019
 
 # set up working directory
 import os
-#os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
-os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
+os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
+#os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
 
 
 
@@ -41,7 +41,7 @@ pricequintiles_sf = price_quintiles(data_sf)
 
 # plot data
 from cartoplotfunctions import cartoplot_sf_price
-mapsize = 30
+mapsize = 10
 cartoplot_sf_price(data_sf, mapsize, pricequintiles_sf)
 
 

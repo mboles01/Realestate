@@ -31,11 +31,11 @@ def cartoplot_bay_price(data, mapsize, pricequintiles):
     q5 = data.loc[data["Price"] > pricequintiles[3]]
 
     # Plot scatter based on price quintiles
-    ax.scatter(q1["Longitude"], q1["Latitude"], s=15, c="darkred", transform=ccrs.PlateCarree())    
-    ax.scatter(q2["Longitude"], q2["Latitude"], s=15, c="salmon", transform=ccrs.PlateCarree())    
-    ax.scatter(q3["Longitude"], q3["Latitude"], s=15, c="grey", transform=ccrs.PlateCarree())
-    ax.scatter(q4["Longitude"], q4["Latitude"], s=15, c="cornflowerblue", transform=ccrs.PlateCarree())    
-    ax.scatter(q5["Longitude"], q5["Latitude"], s=15, c="darkblue", transform=ccrs.PlateCarree())    
+    ax.scatter(q1["Longitude"], q1["Latitude"], s=55, c="darkred", transform=ccrs.PlateCarree())    
+    ax.scatter(q2["Longitude"], q2["Latitude"], s=55, c="salmon", transform=ccrs.PlateCarree())    
+    ax.scatter(q3["Longitude"], q3["Latitude"], s=55, c="grey", transform=ccrs.PlateCarree())
+    ax.scatter(q4["Longitude"], q4["Latitude"], s=55, c="cornflowerblue", transform=ccrs.PlateCarree())    
+    ax.scatter(q5["Longitude"], q5["Latitude"], s=55, c="darkblue", transform=ccrs.PlateCarree())    
     plt.show()    
 
 # Scatter plot of color-coded prices across  sf
@@ -58,19 +58,21 @@ def cartoplot_sf_price(data, mapsize, pricequintiles):
     q5 = data.loc[data["Price"] > pricequintiles[3]]
 
     # Plot scatter based on price quintiles
-    ax.scatter(q1["Longitude"], q1["Latitude"], s=15, c="darkred", transform=ccrs.PlateCarree())    
-    ax.scatter(q2["Longitude"], q2["Latitude"], s=15, c="salmon", transform=ccrs.PlateCarree())    
-    ax.scatter(q3["Longitude"], q3["Latitude"], s=15, c="grey", transform=ccrs.PlateCarree())
-    ax.scatter(q4["Longitude"], q4["Latitude"], s=15, c="cornflowerblue", transform=ccrs.PlateCarree())    
-    ax.scatter(q5["Longitude"], q5["Latitude"], s=15, c="darkblue", transform=ccrs.PlateCarree())    
+    ax.scatter(q1["Longitude"], q1["Latitude"], s=55, c="darkred", transform=ccrs.PlateCarree())    
+    ax.scatter(q2["Longitude"], q2["Latitude"], s=55, c="salmon", transform=ccrs.PlateCarree())    
+    ax.scatter(q3["Longitude"], q3["Latitude"], s=55, c="grey", transform=ccrs.PlateCarree())
+    ax.scatter(q4["Longitude"], q4["Latitude"], s=55, c="cornflowerblue", transform=ccrs.PlateCarree())    
+    ax.scatter(q5["Longitude"], q5["Latitude"], s=55, c="darkblue", transform=ccrs.PlateCarree())    
     
     # Add text box to map
     ax.legend(('','',
                '< $%s M' % str(round(pricequintiles[0]/1000000, 2)),
-               '> $%s M, < $%s M' % (str(round(pricequintiles[0]/1000000, 2), str(round(pricequintiles[1]/1000000, 2))),
-    loc = 'upper left') 
+               '\$%s M to \$%s M' % (str(round(pricequintiles[0]/1000000, 2)), str(round(pricequintiles[1]/1000000, 2))),
+               '\$%s M to \$%s M' % (str(round(pricequintiles[1]/1000000, 2)), str(round(pricequintiles[2]/1000000, 2))),
+               '\$%s M to \$%s M' % (str(round(pricequintiles[2]/1000000, 2)), str(round(pricequintiles[3]/1000000, 2))),
+               '> $%s M' % str(round(pricequintiles[3]/1000000, 2))),loc = 2, prop = {'size': 25})
 
-#    plt.title('San Francisco')
+    plt.title('San Francisco')
     plt.show()
 
 
