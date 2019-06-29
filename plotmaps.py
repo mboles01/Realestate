@@ -7,11 +7,8 @@ Created on Fri Jun  7 16:36:29 2019
 
 # set up working directory
 import os
-os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
-#os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
-
-
-
+#os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
+os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
 
 ### Bay overview ###
 
@@ -29,8 +26,6 @@ mapsize = 30
 cartoplot_bay_price(data_bay, mapsize, pricequintiles_bay)
 
 
-
-
 ### San Francisco ###
 
 # import data
@@ -41,10 +36,8 @@ pricequintiles_sf = price_quintiles(data_sf)
 
 # plot data
 from cartoplotfunctions import cartoplot_sf_price
-mapsize = 10
+mapsize = 15
 cartoplot_sf_price(data_sf, mapsize, pricequintiles_sf)
-
-
 
 
 ### East Bay ###
@@ -57,8 +50,39 @@ pricequintiles_eastbay = price_quintiles(data_eastbay)
 
 # plot data
 from cartoplotfunctions import cartoplot_eastbay_price
-mapsize = 30
+mapsize = 15
 cartoplot_eastbay_price(data_eastbay, mapsize, pricequintiles_eastbay)
+
+### Peninsula ###
+
+# import data
+data_peninsula = pd.read_csv('data_peninsula.csv')
+
+# calculate quintiles
+pricequintiles_peninsula = price_quintiles(data_peninsula)
+
+# plot data
+from cartoplotfunctions import cartoplot_peninsula_price
+mapsize = 15
+cartoplot_peninsula_price(data_peninsula, mapsize, pricequintiles_peninsula)
+
+
+### South Bay ###
+
+# import data
+data_southbay = pd.read_csv('data_southbay.csv')
+
+# calculate quintiles
+pricequintiles_southbay = price_quintiles(data_southbay)
+
+# plot data
+from cartoplotfunctions import cartoplot_southbay_price
+mapsize = 15
+cartoplot_southbay_price(data_southbay, mapsize, pricequintiles_southbay)
+
+
+
+
 
 
 

@@ -36,11 +36,13 @@ data.columns
 # set latitude, longitude window for bay, sf, south bay, east bay
 data_bay = data.query('-122.7 < Longitude < -121.5 and 37.15 < Latitude < 38.15')
 data_sf = data.query('-122.55 < Longitude < -122.35 and 37.7 < Latitude < 37.825')
-data_eastbay = data.query('-122.35 < Longitude < -122.025 and 37.75 < Latitude < 37.925')
-data_southbay = data.query('-122.15 < Longitude < -121.75 and 37.2 < Latitude < 37.45')
+data_eastbay = data.query('-122.35 < Longitude < -122.025 and 37.725 < Latitude < 37.95')
+data_peninsula = data.query('-122.4 < Longitude < -122.1 and 37.4 < Latitude < 37.6')
+data_southbay = data.query('-122.15 < Longitude < -121.85 and 37.2 < Latitude < 37.4')
 
 # save data sets
 data_bay.to_csv('data_bay.csv')
 data_sf.to_csv('data_sf.csv')
 data_eastbay.to_csv('data_eastbay.csv')
+data_peninsula.to_csv('data_peninsula.csv')
 data_southbay.to_csv('data_southbay.csv')
