@@ -16,11 +16,11 @@ def cartoplot_bay_price(data, mapsize, pricequintiles):
     # Create a Stamen terrain background instance
     stamen_terrain = cimgt.Stamen('terrain-background')
     fig = plt.figure(figsize = (mapsize,mapsize))
-    ax = fig.add_subplot(1, 1, 1, projection=stamen_terrain.crs, label='_nolegend_')
+    ax = fig.add_subplot(1, 1, 1, projection=stamen_terrain.crs)
     
     # Set range of map, stipulate zoom level
     ax.set_extent([-122.7, -121.5, 37.15, 38.15], crs=ccrs.Geodetic())
-    ax.add_image(stamen_terrain, 12, label='_nolegend_')
+    ax.add_image(stamen_terrain, 12)
     
     # Determine plotting mode and subdivide data based on quintiles
     q1 = data.loc[data["Price"] < pricequintiles[0]]
@@ -61,11 +61,11 @@ def cartoplot_sf_price(data, mapsize, pricequintiles):
     # Create a Stamen terrain background instance
     stamen_terrain = cimgt.Stamen('terrain-background')
     fig = plt.figure(figsize = (mapsize,mapsize))
-    ax = fig.add_subplot(1, 1, 1, projection=stamen_terrain.crs, label='_nolegend_')
+    ax = fig.add_subplot(1, 1, 1, projection=stamen_terrain.crs)
     
     # Set range of map, stipulate zoom level
     ax.set_extent([-122.55, -122.35, 37.7, 37.835], crs=ccrs.Geodetic())
-    ax.add_image(stamen_terrain, 14, label='_nolegend_')
+    ax.add_image(stamen_terrain, 14)
     
     # Determine plotting mode and subdivide data based on quintiles
     q1 = data.loc[data["Price"] < pricequintiles[0]]
