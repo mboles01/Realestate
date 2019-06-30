@@ -7,7 +7,7 @@ Created on Tue May 28 17:38:38 2019
 # import functions
 import matplotlib.pyplot as plt
 import cartopy.crs as ccrs
-import cartopy.io.img_tiles as cimgt
+import cartopy.io.img_tiles as cimgt 
 
 
 # Scatter plot of color-coded prices across the bay
