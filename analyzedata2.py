@@ -29,24 +29,58 @@ city_counts_sorted = city_counts.sort_values('Count', ascending = False)
 # select cities of interest
 city_info = pd.DataFrame({'City': [], 'Count': [], 'Average Price': [], 'Stdev': []})
 
-cities_of_interest = ['San Jose', 'Oakland', 'San Francisco', 'Berkeley', 'San Leandro'
-                      'Los Gatos', 'San Mateo', 'Santa Clara', 'Redwood City',
-                      'Sunnyvale', 'Palo Alto', 'Menlo Park', 'Los Altos',
-                      'Vallejo', 'Hayward', 'Fremont', 'Richmond', 'Daly City',
-                      'Orinda', 'Pleasonton', 'San Ramon', 'Danville', 
-                      'Mill Valley', 'Tiburon', 'Woodside', 'Cupertino']
+cities_of_interest = ['San Francisco', 'San Jose', 'Oakland', 'Berkeley', 
+                      'San Leandro', 'Hayward', 'Fremont', 'Richmond',
+                      'Orinda', 'San Mateo', 'Redwood City', 'Palo Alto',
+                      'Daly City', 'Woodside', 'Menlo Park', 'Los Gatos',
+                      'Santa Clara', 'Cupertino', 'Los Altos', 'Sunnyvale',
+                      'Mill Valley', 'Tiburon', 'Hillsborough', 'Piedmont']
 
-data_sanjose = data_bay.loc[data_bay['City'] == 'San Jose']
+data_of_interest = data_bay[data_bay['City'].isin(cities_of_interest)]
 
+# Find the order
+#my_order = cities_of_interest.groupby(by=["species"])["sepal_length"].median().iloc[::-1].index
+city_order = data_of_interest.groupby('City').median().sort_values(by='Price',ascending=True).iloc[:,2].to_frame().reset_index()
 
+# try seaborn
+import seaborn as sns
+fig, ax = plt.subplots(1, 1, figsize = (20,20))
+ax = sns.boxplot(x = 'City', y = 'Price', data = data_of_interest,
+                 showfliers = False, order = list(city_order['City']))
+plt.xticks(rotation=45)
+ax.set_ylim(0,8000000)
 
-
-
-
-
-
-for row in cities_of_interest:
-    '%s' % cities_of_interest[0]
+## major cities
+#data_sanfrancisco = data_bay.loc[data_bay['City'] == 'San Francisco']
+#data_sanjose = data_bay.loc[data_bay['City'] == 'San Jose']
+#data_oakland = data_bay.loc[data_bay['City'] == 'Oakland']
+#
+## east bay
+#data_berkeley = data_bay.loc[data_bay['City'] == 'Berkeley']
+#data_sanleandro = data_bay.loc[data_bay['City'] == 'San Leandro']
+#data_hayward = data_bay.loc[data_bay['City'] == 'Hayward']
+#data_fremont = data_bay.loc[data_bay['City'] == 'Fremont']
+#data_richmond = data_bay.loc[data_bay['City'] == 'Richmond']
+#data_orinda = data_bay.loc[data_bay['City'] == 'Orinda']
+#
+## peninsula
+#data_sanmateo = data_bay.loc[data_bay['City'] == 'San Mateo']
+#data_redwoodcity = data_bay.loc[data_bay['City'] == 'Redwood City']
+#data_paloalto = data_bay.loc[data_bay['City'] == 'Palo Alto']
+#data_dalycity = data_bay.loc[data_bay['City'] == 'Daly City']
+#data_woodside = data_bay.loc[data_bay['City'] == 'Woodside']
+#data_menlopark = data_bay.loc[data_bay['City'] == 'Menlo Park']
+#
+## south bay
+#data_losgatos = data_bay.loc[data_bay['City'] == 'Los Gatos']
+#data_santaclara = data_bay.loc[data_bay['City'] == 'Santa Clara']
+#data_cupertino = data_bay.loc[data_bay['City'] == 'Cupertino']
+#data_losaltos = data_bay.loc[data_bay['City'] == 'Los Altos']
+#data_sunnyvale = data_bay.loc[data_bay['City'] == 'Sunnvyale']
+#
+## north bay
+#data_millvalley = data_bay.loc[data_bay['City'] == 'Mill Valley']
+#data_tiburon = data_bay.loc[data_bay['City'] == 'Tiburon']
 
 
 
@@ -63,9 +97,10 @@ for row in cities_of_interest:
 # create boxplots
 y = 1000000
 fig, ax = plt.subplots()
-ax.boxplot(data_sanjose['Price']/y, showfliers = False)
-plt.xticks([1, 2, 3], ['San Jose', 'tue', 'wed'])
+bp1 = ax.boxplot(data_sanfrancisco['Price']/y, positions = [1], showfliers = False)
+bp2 = ax.boxplot(data_sanjose['Price']/y, positions = [3], showfliers = False)
 
+plt.xticks(list(range(1,23)), cities_of_interest)
 
 
 
