@@ -29,78 +29,132 @@ city_counts_sorted = city_counts.sort_values('Count', ascending = False)
 # select cities of interest
 city_info = pd.DataFrame({'City': [], 'Count': [], 'Average Price': [], 'Stdev': []})
 
-cities_of_interest = ['San Francisco', 'San Jose', 'Oakland', 'Berkeley', 
-                      'San Leandro', 'Hayward', 'Fremont', 'Richmond',
-                      'Orinda', 'San Mateo', 'Redwood City', 'Palo Alto',
-                      'Daly City', 'Woodside', 'Menlo Park', 'Los Gatos',
-                      'Santa Clara', 'Cupertino', 'Los Altos', 'Sunnyvale',
-                      'Mill Valley', 'Tiburon', 'Hillsborough', 'Piedmont']
+cities_of_interest = ['San Francisco', 'San Jose', 'Oakland', 'Berkeley', 'San Leandro',
+                      'Hayward', 'Fremont', 'Richmond', 'Vallejo', 'Antioch', 'Walnut Creek',
+                      'Orinda', 'San Mateo', 'Redwood City', 'Palo Alto', 'Mountain View',
+                      'Daly City', 'Woodside', 'Menlo Park',
+                      'Santa Clara', 'Cupertino', 'Los Altos', 'Los Gatos', 'Sunnyvale',
+                      'Mill Valley', 'Tiburon', 'Sausalito', 'Hillsborough', 'Piedmont']
 
+
+# create dataframe with only cities of interest
 data_of_interest = data_bay[data_bay['City'].isin(cities_of_interest)]
 
-# Find the order
-#my_order = cities_of_interest.groupby(by=["species"])["sepal_length"].median().iloc[::-1].index
-city_order = data_of_interest.groupby('City').median().sort_values(by='Price',ascending=True).iloc[:,2].to_frame().reset_index()
+# add a column for price per lot sqft
+data_of_interest.insert(loc = 6, column = 'Price per lot sqft', value = data_of_interest['Price']/data_of_interest['Lot size'])
 
-# try seaborn
+# Determine order
+city_order_price = data_of_interest.groupby('City').median().sort_values(by='Price',ascending=True).iloc[:,2].to_frame().reset_index()
+city_order_pricesqft = data_of_interest.groupby('City').median().sort_values(by='Price per lot sqft',ascending=True).iloc[:,3].to_frame().reset_index()
+
+
+# create seaborn box + strip plot
 import seaborn as sns
-fig, ax = plt.subplots(1, 1, figsize = (20,20))
-ax = sns.boxplot(x = 'City', y = 'Price', data = data_of_interest,
-                 showfliers = False, order = list(city_order['City']))
-plt.xticks(rotation=45)
-ax.set_ylim(0,8000000)
+import matplotlib.ticker as ticker
 
-## major cities
-#data_sanfrancisco = data_bay.loc[data_bay['City'] == 'San Francisco']
-#data_sanjose = data_bay.loc[data_bay['City'] == 'San Jose']
-#data_oakland = data_bay.loc[data_bay['City'] == 'Oakland']
+fig, ax = plt.subplots(1, 1, figsize = (60,30))
+
+ax = sns.boxplot(x = 'City', y = 'Price', data = data_of_interest, 
+                 showfliers = False, order = list(city_order_price['City']), linewidth = 5)
+ax = sns.stripplot(x = 'City', y = 'Price', data = data_of_interest,
+                 order = list(city_order_price['City']), jitter = 0.25, size = 15,
+                 linewidth = 3, edgecolor = 'black', alpha = 0.5)
+
+# set axis properties
+plt.xticks(rotation=45, fontname = 'Helvetica', fontsize = 42, ha = 'right')
+plt.yticks(fontname = 'Helvetica', fontsize = 42)
+
+
+plt.xlabel('City or Town', fontsize = 55, fontname = 'Arial', fontweight = 'bold')
+plt.ylabel('Single Family Home Price ($M)', fontsize = 55, fontname = 'Arial', 
+           fontweight = 'bold')
+
+scale = 1000000; ax.set_ylim(0, 8000000); ax.yaxis.labelpad = 25
+ticks = ticker.FuncFormatter(lambda y, pos: '{0:g}'.format(y/scale))
+ax.xaxis.set_tick_params(width = 3, length = 15)
+ax.yaxis.set_tick_params(width = 3, length = 15)
+ax.yaxis.set_major_formatter(ticks)
+plt.setp(ax.spines.values(), linewidth = 3)
+
+
+# do the same for price per lot sqft
+fig, ax = plt.subplots(1, 1, figsize = (60,30))
+
+ax = sns.boxplot(x = 'City', y = 'Price per lot sqft', data = data_of_interest, 
+                 showfliers = False, order = list(city_order_pricesqft['City']), linewidth = 5)
+ax = sns.stripplot(x = 'City', y = 'Price per lot sqft', data = data_of_interest,
+                 order = list(city_order_pricesqft['City']), jitter = 0.25, size = 15,
+                 linewidth = 3, edgecolor = 'black', alpha = 0.5)
+
+# set axis properties
+plt.xticks(rotation=45, fontname = 'Helvetica', fontsize = 42, ha = 'right')
+plt.yticks(fontname = 'Helvetica', fontsize = 42)
+
+
+plt.xlabel('City or Town', fontsize = 55, fontname = 'Arial', fontweight = 'bold')
+plt.ylabel('Lot price per sqft ($)', fontsize = 55, fontname = 'Arial', 
+           fontweight = 'bold')
+
+ax.set_ylim(0, 2000); ax.yaxis.labelpad = 25
+ticks = ticker.FuncFormatter(lambda y, pos: '{0:g}'.format(y))
+ax.xaxis.set_tick_params(width = 3, length = 15)
+ax.yaxis.set_tick_params(width = 3, length = 15)
+ax.yaxis.set_major_formatter(ticks)
+plt.setp(ax.spines.values(), linewidth = 3)
+
+
+
+
+
+# other seaborn plot options
 #
-## east bay
-#data_berkeley = data_bay.loc[data_bay['City'] == 'Berkeley']
-#data_sanleandro = data_bay.loc[data_bay['City'] == 'San Leandro']
-#data_hayward = data_bay.loc[data_bay['City'] == 'Hayward']
-#data_fremont = data_bay.loc[data_bay['City'] == 'Fremont']
-#data_richmond = data_bay.loc[data_bay['City'] == 'Richmond']
-#data_orinda = data_bay.loc[data_bay['City'] == 'Orinda']
+## boxenplot
+#fig, ax = plt.subplots(1, 1, figsize = (20,10))
+#ax = sns.boxenplot(x = 'City', y = 'Price', data = data_of_interest,
+#                 outlier_prop = 0.01, order = list(city_order['City']))
+#plt.xticks(rotation=45)
+#plt.xlabel('City or Town', fontsize = 18, fontname = 'Arial', fontweight = 'bold')
+#plt.ylabel('Single Family Home Price ($M)', fontsize = 18, fontweight = 'bold')
+#ax.set_ylim(0,8000000)
+#ticks = ticker.FuncFormatter(lambda y, pos: '{0:g}'.format(y/scale))
+#ax.yaxis.set_major_formatter(ticks)
 #
-## peninsula
-#data_sanmateo = data_bay.loc[data_bay['City'] == 'San Mateo']
-#data_redwoodcity = data_bay.loc[data_bay['City'] == 'Redwood City']
-#data_paloalto = data_bay.loc[data_bay['City'] == 'Palo Alto']
-#data_dalycity = data_bay.loc[data_bay['City'] == 'Daly City']
-#data_woodside = data_bay.loc[data_bay['City'] == 'Woodside']
-#data_menlopark = data_bay.loc[data_bay['City'] == 'Menlo Park']
+## violinplot
+#fig, ax = plt.subplots(1, 1, figsize = (20,10))
+#ax = sns.violinplot(x = 'City', y = 'Price', data = data_of_interest,
+#                 outlier_prop = 0.01, order = list(city_order['City']))
+#plt.xticks(rotation=45)
+#plt.xlabel('City or Town', fontsize = 18, fontname = 'Arial', fontweight = 'bold')
+#plt.ylabel('Single Family Home Price ($M)', fontsize = 18, fontweight = 'bold')
+#ax.set_ylim(0,8000000)
+#ticks = ticker.FuncFormatter(lambda y, pos: '{0:g}'.format(y/scale))
+#ax.yaxis.set_major_formatter(ticks)
 #
-## south bay
-#data_losgatos = data_bay.loc[data_bay['City'] == 'Los Gatos']
-#data_santaclara = data_bay.loc[data_bay['City'] == 'Santa Clara']
-#data_cupertino = data_bay.loc[data_bay['City'] == 'Cupertino']
-#data_losaltos = data_bay.loc[data_bay['City'] == 'Los Altos']
-#data_sunnyvale = data_bay.loc[data_bay['City'] == 'Sunnvyale']
+## stripplot
+#fig, ax = plt.subplots(1, 1, figsize = (20,10))
+#ax = sns.stripplot(x = 'City', y = 'Price', data = data_of_interest,
+#                 order = list(city_order['City']))
+#plt.xticks(rotation=45)
+#plt.xlabel('City or Town', fontsize = 18, fontname = 'Arial', fontweight = 'bold')
+#plt.ylabel('Single Family Home Price ($M)', fontsize = 18, fontweight = 'bold')
+#ax.set_ylim(0,8000000)
+#ticks = ticker.FuncFormatter(lambda y, pos: '{0:g}'.format(y/scale))
+#ax.yaxis.set_major_formatter(ticks)
 #
-## north bay
-#data_millvalley = data_bay.loc[data_bay['City'] == 'Mill Valley']
-#data_tiburon = data_bay.loc[data_bay['City'] == 'Tiburon']
+## swarmplot
+#fig, ax = plt.subplots(1, 1, figsize = (20,10))
+#ax = sns.swarmplot(x = 'City', y = 'Price', data = data_of_interest,
+#                 order = list(city_order['City']))
+#plt.xticks(rotation=45)
+#plt.xlabel('City or Town', fontsize = 18, fontname = 'Arial', fontweight = 'bold')
+#plt.ylabel('Single Family Home Price ($M)', fontsize = 18, fontweight = 'bold')
+#ax.set_ylim(0,8000000)
+#ticks = ticker.FuncFormatter(lambda y, pos: '{0:g}'.format(y/scale))
+#ax.yaxis.set_major_formatter(ticks)
 
 
 
 
-
-## calculate mean and stdev for each city, across all fields 
-#city_means = data_bay.groupby('City').mean()
-#city_stdevs = data_bay.groupby('City').agg(np.std, ddof=0)
-#
-## pull out price from mean and stdev dataframes 
-#price_by_city_mean = city_means['Price']
-#price_by_city_stdev = city_stdevs['Price']
-
-# create boxplots
-y = 1000000
-fig, ax = plt.subplots()
-bp1 = ax.boxplot(data_sanfrancisco['Price']/y, positions = [1], showfliers = False)
-bp2 = ax.boxplot(data_sanjose['Price']/y, positions = [3], showfliers = False)
-
-plt.xticks(list(range(1,23)), cities_of_interest)
 
 
 
