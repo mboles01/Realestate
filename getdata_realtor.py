@@ -9,7 +9,7 @@ filename = 'zipcodes.csv'
 zipcodes_all = csvread(filename)
 
 # select subset of zip codes
-zipcodes = zipcodes_all[441:]
+zipcodes = ['94025', '94026', '94027', '94028']
 #zipcode = zipcodes[0]
 
 # scrape MLS listings
@@ -17,4 +17,4 @@ from scrapeweb_realtor import webscrape
 data_raw = webscrape(zipcodes)
 
 # write .csv file with data
-data_raw.to_csv('data_from_441.csv')
+data_raw.to_csv('./data/data_menlo.csv')

@@ -12,7 +12,7 @@ os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
 
 # import full (raw) data set
 import pandas as pd
-filename = 'data_raw.csv'
+filename = './data/data_menlo.csv'
 data_raw = pd.read_csv(filename)
 
 # get data not needing cleaning
@@ -40,6 +40,6 @@ data_clean_temp = {'Address': address, 'City': city, 'State': state, 'Zip': zipc
 data_clean = pd.DataFrame(data_clean_temp)#, index = [order])
 
 # save new csv
-data_clean.to_csv('data_clean.csv')
+data_clean.to_csv('data_menlo_clean.csv')
 
 

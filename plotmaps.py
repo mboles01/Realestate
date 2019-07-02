@@ -22,8 +22,9 @@ pricequintiles_bay = price_quintiles(data_bay)
 
 # plot data
 from cartoplotfunctions import cartoplot_bay_price
+shapefile = r'./shapefile/ba_cities.shp'
 mapsize = 30
-cartoplot_bay_price(data_bay, mapsize, pricequintiles_bay)
+cartoplot_bay_price(data_bay, mapsize, pricequintiles_bay, shapefile)
 
 
 ### San Francisco ###

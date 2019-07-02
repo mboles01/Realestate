@@ -8,10 +8,12 @@ Created on Tue May 28 17:38:38 2019
 import matplotlib.pyplot as plt
 import cartopy.crs as ccrs
 import cartopy.io.img_tiles as cimgt 
+from cartopy.io.shapereader import Reader
+from cartopy.feature import ShapelyFeature
 
 
 # Scatter plot of color-coded prices across the bay
-def cartoplot_bay_price(data, mapsize, pricequintiles):
+def cartoplot_bay_price(data, mapsize, pricequintiles, shapefile):
         
     # Create a Stamen terrain background instance
     stamen_terrain = cimgt.Stamen('terrain-background')
@@ -20,7 +22,13 @@ def cartoplot_bay_price(data, mapsize, pricequintiles):
     
     # Set range of map, stipulate zoom level
     ax.set_extent([-122.7, -121.5, 37.15, 38.15], crs=ccrs.Geodetic())
-    ax.add_image(stamen_terrain, 12)
+    ax.add_image(stamen_terrain, 12, zorder = 0)
+    
+    # Add city borders
+    shape_feature = ShapelyFeature(Reader(shapefile).geometries(), ccrs.epsg(26910), 
+                               linewidth = 2, facecolor = (1, 1, 1, 0), 
+                               edgecolor = (0.3, 0.3, 0.3, 1))
+    ax.add_feature(shape_feature, zorder = 1)
     
     # Determine plotting mode and subdivide data based on quintiles
     q1 = data.loc[data["Price"] < pricequintiles[0]]
@@ -37,14 +45,14 @@ def cartoplot_bay_price(data, mapsize, pricequintiles):
     l5 = '> $%s M' % str(round(pricequintiles[3]/1000000, 1))
 
     # Plot scatter based on price quintiles
-    ax.scatter(q1["Longitude"], q1["Latitude"], s=55, c="darkred", transform=ccrs.PlateCarree(), label = l1)    
-    ax.scatter(q2["Longitude"], q2["Latitude"], s=55, c="salmon", transform=ccrs.PlateCarree(), label = l2)    
-    ax.scatter(q3["Longitude"], q3["Latitude"], s=55, c="grey", transform=ccrs.PlateCarree(), label = l3)
-    ax.scatter(q4["Longitude"], q4["Latitude"], s=55, c="cornflowerblue", transform=ccrs.PlateCarree(), label = l4)    
-    ax.scatter(q5["Longitude"], q5["Latitude"], s=55, c="darkblue", transform=ccrs.PlateCarree(), label = l5)    
-    
+    ax.scatter(q1["Longitude"], q1["Latitude"], s=55, zorder = 2, c="darkred", transform=ccrs.PlateCarree(), label = l1)    
+    ax.scatter(q2["Longitude"], q2["Latitude"], s=55, zorder = 2, c="salmon", transform=ccrs.PlateCarree(), label = l2)    
+    ax.scatter(q3["Longitude"], q3["Latitude"], s=55, zorder = 2, c="grey", transform=ccrs.PlateCarree(), label = l3)
+    ax.scatter(q4["Longitude"], q4["Latitude"], s=55, zorder = 2, c="cornflowerblue", transform=ccrs.PlateCarree(), label = l4)    
+    ax.scatter(q5["Longitude"], q5["Latitude"], s=55, zorder = 2, c="darkblue", transform=ccrs.PlateCarree(), label = l5)    
+        
     # Add text box to map
-    lgnd = ax.legend(loc = 3, prop = {'size': 30}, title = r"$\bf{Bay\/Area\/Home\/Prices}$", title_fontsize=33)
+    lgnd = ax.legend(loc = 3, prop = {'family':'Helvetica', 'size': 30}, title = r"$\bf{Bay\/Area\/Home\/Prices}$", title_fontsize=33)
     
     #change the marker size manually for both lines
     lgnd.legendHandles[0]._sizes = [150]

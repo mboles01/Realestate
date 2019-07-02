@@ -13,7 +13,7 @@ os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
 
 # import data
 import pandas as pd
-data = pd.read_csv('data_clean.csv')
+data = pd.read_csv('./data/data_clean.csv')
 
 # remind myself what the column names are
 data.columns

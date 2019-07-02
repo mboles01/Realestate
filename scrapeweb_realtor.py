@@ -20,8 +20,8 @@ import time
 import re
 from collections import OrderedDict
 from cleanfunctions_realtor import flatten, acretosqft
-from getip import get_proxies
-from itertools import cycle
+#from getip import get_proxies
+#from itertools import cycle
 
 # define webscraping function
 
@@ -71,10 +71,10 @@ def webscrape(zipcodes):
             continue
 
         # get listing and order of appearance ids
-        listing_ids = list(OrderedDict.fromkeys(tree.xpath('//li[@class="component_property-card js-component_property-card js-quick-view"]//@data-propertyid')))
+        listing_ids = list(OrderedDict.fromkeys(tree.xpath('//li[@class="component_property-card js-component_property-card js-quick-view "]//@data-propertyid')))
         order_ids = list(OrderedDict.fromkeys(tree.xpath('//div[@class="data-wrap"]//@id')))
         listing_order = dict(zip(listing_ids, order_ids))
-        
+                
         # create empty dataframe to catch listings within a zipcode
         data_zipcode = pd.DataFrame()
         
