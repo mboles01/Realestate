@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin/>
+        <origin/>
+        <origin/>
+        <origin/>
+        <pubdate>20110501</pubdate>
+        <title>Cities: San Francisco Bay Area, California, 2010</title>
+        <geoform>vector digital data</geoform>
+        <pubinfo>
+          <pubplace/>
+          <publish>Bay Area Open Space Council</publish>
+        </pubinfo>
+        <onlink>http://purl.stanford.edu/vj593xs7263</onlink>
+        <lworkcit>
+          <citeinfo>
+            <pubdate>20110101</pubdate>
+            <title>The Conservation Lands Network regional biodiversity GIS database</title>
+          </citeinfo>
+        </lworkcit>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>This polygon shapefile depicts cities in the nine county San Francisco Bay Area Region, California. This data was compiled by the GreenInfo Network from different County and City agencies. Data was merged together into one file. Coast line is clipped out. The coverage displays city and county attributes, notes and source information in the database. Solano cities and San Francisco city boundaries are pulled from the United States Census Bureau Topologically Integrated Geographic Encoding and Referencing GIS database called TIGER/Line. Solano county does not have city data in GIS.</abstract>
+      <purpose>This dataset was developed/compiled for use in the San Francisco Bay Area Upland Habitat Goals Project, a Project used to identify a Conservation Lands Network (CLN) for biodiversity preservation to inform conservation investments and lasting cooperative conservation partnerships. The Conservation Lands Network GIS Database is the primary output of the Project. The data depicts the spatially explicit CLN that is recommended for the nine county San Francisco Bay Area Region, California.</purpose>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <sngdate>
+          <caldate>20100101</caldate>
+        </sngdate>
+      </timeinfo>
+      <current>ground condition</current>
+    </timeperd>
+    <status>
+      <progress>Complete</progress>
+      <update>As needed</update>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc>-123.035136</westbc>
+        <eastbc>-121.481527</eastbc>
+        <northbc>38.819502</northbc>
+        <southbc>36.971518</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>lcsh</themekt>
+        <themekey>Administrative and political divisions</themekey>
+        <themekey>Cities and towns</themekey>
+        <themekey>Metropolitan areas</themekey>
+      </theme>
+      <theme>
+        <themekt>ISO 19115 Topic Categories</themekt>
+        <themekey>boundaries</themekey>
+      </theme>
+      <place>
+        <placekt>geonames</placekt>
+        <placekey>San Francisco Bay Area (Calif.)</placekey>
+        <placekey>Alameda County (Calif.)</placekey>
+        <placekey>Contra Costa County (Calif.)</placekey>
+        <placekey>Marin County (Calif.)</placekey>
+        <placekey>Napa County (Calif.)</placekey>
+        <placekey>San Francisco County (Calif.)</placekey>
+        <placekey>San Mateo County (Calif.)</placekey>
+        <placekey>Santa Clara County (Calif.)</placekey>
+        <placekey>Solano County (Calif.)</placekey>
+        <placekey>Sonoma County (Calif.)</placekey>
+      </place>
+    </keywords>
+    <accconst>These data are distributed under a GNU General Public License (GPL)</accconst>
+    <useconst>None</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>Bay Area Open Space Council</cntorg>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <address>2150 Allston Wy., Ste. 320</address>
+          <city>Berkeley</city>
+          <state>California</state>
+          <postal>94704</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>510-809-8009</cntvoice>
+        <cntemail>info@openspacecouncil.org</cntemail>
+      </cntinfo>
+    </ptcontac>
+    <datacred>Bay Area Open Space Council, GreenInfo Network, Conservation Lands Network, and San Francisco Bay Area Upland Habitat Goals Project. (2011). Cities: San Francisco Bay Area, California, 2010. Bay Area Open Space Council. Available at http://purl.stanford.edu/vj593xs7263.</datacred>
+    <native>Microsoft Windows 7 Version 6.1 (Build 7601) Service Pack 1; Esri ArcGIS 10.3.1.4959</native>
+  </idinfo>
+  <dataqual>
+    <complete>Complete</complete>
+  </dataqual>
+  <spdoinfo>
+    <direct>Vector</direct>
+    <ptvctinf>
+      <sdtsterm>
+        <sdtstype>GT-polygon composed of chains</sdtstype>
+        <ptvctcnt>101</ptvctcnt>
+      </sdtsterm>
+    </ptvctinf>
+  </spdoinfo>
+  <eainfo>
+    <detailed>
+      <enttyp>
+        <enttypl>ba_cities</enttypl>
+      </enttyp>
+      <attr>
+        <attrlabl>FID</attrlabl>
+        <attrdef>Internal feature number.</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Sequential unique whole numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape</attrlabl>
+        <attrdef>Feature geometry.</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Coordinates defining the features.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CITY</attrlabl>
+      </attr>
+      <attr>
+        <attrlabl>COUNTY</attrlabl>
+      </attr>
+      <attr>
+        <attrlabl>SOURCE</attrlabl>
+      </attr>
+      <attr>
+        <attrlabl>UGB</attrlabl>
+      </attr>
+      <attr>
+        <attrlabl>ACRES</attrlabl>
+        <attrdef>GIS Acres of each hexagon</attrdef>
+      </attr>
+    </detailed>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>Stanford Geospatial Center</cntorg>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <address>Branner Earth Sciences Library</address>
+          <address>Mitchell Building, 2nd Floor</address>
+          <address>397 Panama Mall</address>
+          <city>Stanford</city>
+          <state>California</state>
+          <postal>94305</postal>
+        </cntaddr>
+        <cntvoice>650-723-2746</cntvoice>
+        <cntemail>brannerlibrary@stanford.edu</cntemail>
+      </cntinfo>
+    </distrib>
+    <distliab>See access and use constraints information.</distliab>
+  </distinfo>
+  <metainfo>
+    <metd>20160225</metd>
+    <metc>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>Stanford Geospatial Center</cntorg>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>397 Panama Mall</address>
+          <address>Mitchell Bldg. 2nd floor</address>
+          <address>397 Panama Mall</address>
+          <city>Stanford</city>
+          <state>California</state>
+          <postal>94305</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>650-723-2746</cntvoice>
+        <cntemail>brannerlibrary@stanford.edu</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+    <mettc>local time</mettc>
+  </metainfo>
+</metadata>

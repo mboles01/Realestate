@@ -45,11 +45,11 @@ def cartoplot_bay_price(data, mapsize, pricequintiles, shapefile):
     l5 = '> $%s M' % str(round(pricequintiles[3]/1000000, 1))
 
     # Plot scatter based on price quintiles
-    ax.scatter(q1["Longitude"], q1["Latitude"], s=55, zorder = 2, c="darkred", transform=ccrs.PlateCarree(), label = l1)    
-    ax.scatter(q2["Longitude"], q2["Latitude"], s=55, zorder = 2, c="salmon", transform=ccrs.PlateCarree(), label = l2)    
-    ax.scatter(q3["Longitude"], q3["Latitude"], s=55, zorder = 2, c="grey", transform=ccrs.PlateCarree(), label = l3)
-    ax.scatter(q4["Longitude"], q4["Latitude"], s=55, zorder = 2, c="cornflowerblue", transform=ccrs.PlateCarree(), label = l4)    
-    ax.scatter(q5["Longitude"], q5["Latitude"], s=55, zorder = 2, c="darkblue", transform=ccrs.PlateCarree(), label = l5)    
+    ax.scatter(q1["Longitude"], q1["Latitude"], s=55, zorder = 2, c="darkred", edgecolors = 'black', transform=ccrs.PlateCarree(), label = l1)    
+    ax.scatter(q2["Longitude"], q2["Latitude"], s=55, zorder = 2, c="salmon", edgecolors = 'black', transform=ccrs.PlateCarree(), label = l2)    
+    ax.scatter(q3["Longitude"], q3["Latitude"], s=55, zorder = 2, c="grey", edgecolors = 'black', transform=ccrs.PlateCarree(), label = l3)
+    ax.scatter(q4["Longitude"], q4["Latitude"], s=55, zorder = 2, c="cornflowerblue", edgecolors = 'black', transform=ccrs.PlateCarree(), label = l4)    
+    ax.scatter(q5["Longitude"], q5["Latitude"], s=55, zorder = 2, c="darkblue", edgecolors = 'black', transform=ccrs.PlateCarree(), label = l5)    
         
     # Add text box to map
     lgnd = ax.legend(loc = 3, prop = {'family':'Helvetica', 'size': 30}, title = r"$\bf{Bay\/Area\/Home\/Prices}$", title_fontsize=33)
@@ -64,7 +64,7 @@ def cartoplot_bay_price(data, mapsize, pricequintiles, shapefile):
     plt.show()
 
 # Scatter plot of color-coded prices across sf
-def cartoplot_sf_price(data, mapsize, pricequintiles):
+def cartoplot_sf_price(data, mapsize, pricequintiles, shapefile):
         
     # Create a Stamen terrain background instance
     stamen_terrain = cimgt.Stamen('terrain-background')
@@ -74,6 +74,12 @@ def cartoplot_sf_price(data, mapsize, pricequintiles):
     # Set range of map, stipulate zoom level
     ax.set_extent([-122.55, -122.35, 37.7, 37.835], crs=ccrs.Geodetic())
     ax.add_image(stamen_terrain, 14)
+    
+    # Add city borders
+    shape_feature = ShapelyFeature(Reader(shapefile).geometries(), ccrs.Geodetic(), 
+                                   linewidth = 1, facecolor = (1, 1, 1, 0), 
+                                   edgecolor = (0.3, 0.3, 0.3, 1))
+    ax.add_feature(shape_feature, zorder = 1)
     
     # Determine plotting mode and subdivide data based on quintiles
     q1 = data.loc[data["Price"] < pricequintiles[0]]
@@ -90,11 +96,11 @@ def cartoplot_sf_price(data, mapsize, pricequintiles):
     l5 = '> $%s M' % str(round(pricequintiles[3]/1000000, 2))
 
     # Plot scatter based on price quintiles
-    ax.scatter(q1["Longitude"], q1["Latitude"], s=75, c="darkred", transform=ccrs.PlateCarree(), label = l1)    
-    ax.scatter(q2["Longitude"], q2["Latitude"], s=75, c="salmon", transform=ccrs.PlateCarree(), label = l2)    
-    ax.scatter(q3["Longitude"], q3["Latitude"], s=75, c="grey", transform=ccrs.PlateCarree(), label = l3)
-    ax.scatter(q4["Longitude"], q4["Latitude"], s=75, c="cornflowerblue", transform=ccrs.PlateCarree(), label = l4)    
-    ax.scatter(q5["Longitude"], q5["Latitude"], s=75, c="darkblue", transform=ccrs.PlateCarree(), label = l5)    
+    ax.scatter(q1["Longitude"], q1["Latitude"], s=75, zorder = 2, c="darkred", edgecolors = 'black', transform=ccrs.PlateCarree(), label = l1)    
+    ax.scatter(q2["Longitude"], q2["Latitude"], s=75, zorder = 2, c="salmon", edgecolors = 'black', transform=ccrs.PlateCarree(), label = l2)    
+    ax.scatter(q3["Longitude"], q3["Latitude"], s=75, zorder = 2, c="grey", edgecolors = 'black', transform=ccrs.PlateCarree(), label = l3)
+    ax.scatter(q4["Longitude"], q4["Latitude"], s=75, zorder = 2, c="cornflowerblue", edgecolors = 'black', transform=ccrs.PlateCarree(), label = l4)    
+    ax.scatter(q5["Longitude"], q5["Latitude"], s=75, zorder = 2, c="darkblue", edgecolors = 'black', transform=ccrs.PlateCarree(), label = l5)    
 
     # Add text box to map
     lgnd = ax.legend(loc = 2, prop = {'size': 25}, title = r"$\bf{San\/Francisco\/\/}$", title_fontsize=30)
@@ -110,7 +116,7 @@ def cartoplot_sf_price(data, mapsize, pricequintiles):
 
 
 # Scatter plot of color-coded prices across east bay
-def cartoplot_eastbay_price(data, mapsize, pricequintiles):
+def cartoplot_eastbay_price(data, mapsize, pricequintiles, shapefile):
         
     # Create a Stamen terrain background instance
     stamen_terrain = cimgt.Stamen('terrain-background')
@@ -120,6 +126,12 @@ def cartoplot_eastbay_price(data, mapsize, pricequintiles):
     # Set range of map, stipulate zoom level
     ax.set_extent([-122.35, -122.025, 37.725, 37.945], crs=ccrs.Geodetic())
     ax.add_image(stamen_terrain, 13)
+    
+    # Add city borders
+    shape_feature = ShapelyFeature(Reader(shapefile).geometries(), ccrs.epsg(26910), 
+                               linewidth = 1, facecolor = (1, 1, 1, 0), 
+                               edgecolor = (0.3, 0.3, 0.3, 1))
+    ax.add_feature(shape_feature, zorder = 1)
     
     # Determine plotting mode and subdivide data based on quintiles
     q1 = data.loc[data["Price"] < pricequintiles[0]]
@@ -136,11 +148,11 @@ def cartoplot_eastbay_price(data, mapsize, pricequintiles):
     l5 = '> $%s M' % str(round(pricequintiles[3]/1000000, 1))
 
     # Plot scatter based on price quintiles
-    ax.scatter(q1["Longitude"], q1["Latitude"], s=75, c="darkred", transform=ccrs.PlateCarree(), label = l1)    
-    ax.scatter(q2["Longitude"], q2["Latitude"], s=75, c="salmon", transform=ccrs.PlateCarree(), label = l2)    
-    ax.scatter(q3["Longitude"], q3["Latitude"], s=75, c="grey", transform=ccrs.PlateCarree(), label = l3)
-    ax.scatter(q4["Longitude"], q4["Latitude"], s=75, c="cornflowerblue", transform=ccrs.PlateCarree(), label = l4)    
-    ax.scatter(q5["Longitude"], q5["Latitude"], s=75, c="darkblue", transform=ccrs.PlateCarree(), label = l5)    
+    ax.scatter(q1["Longitude"], q1["Latitude"], s=75, zorder = 2, c="darkred", edgecolors = 'black', transform=ccrs.PlateCarree(), label = l1)    
+    ax.scatter(q2["Longitude"], q2["Latitude"], s=75, zorder = 2, c="salmon", edgecolors = 'black', transform=ccrs.PlateCarree(), label = l2)    
+    ax.scatter(q3["Longitude"], q3["Latitude"], s=75, zorder = 2, c="grey", edgecolors = 'black', transform=ccrs.PlateCarree(), label = l3)
+    ax.scatter(q4["Longitude"], q4["Latitude"], s=75, zorder = 2, c="cornflowerblue", edgecolors = 'black', transform=ccrs.PlateCarree(), label = l4)    
+    ax.scatter(q5["Longitude"], q5["Latitude"], s=75, zorder = 2, c="darkblue", edgecolors = 'black', transform=ccrs.PlateCarree(), label = l5)    
 
     # Add text box to map
     lgnd = ax.legend(loc = 4, prop = {'size': 25}, title = r"$\bf{East\/Bay\/\/}$", title_fontsize=30)
@@ -155,7 +167,7 @@ def cartoplot_eastbay_price(data, mapsize, pricequintiles):
     plt.show()
 
 # Scatter plot of color-coded prices across peninsula
-def cartoplot_peninsula_price(data, mapsize, pricequintiles):
+def cartoplot_peninsula_price(data, mapsize, pricequintiles, shapefile):
         
     # Create a Stamen terrain background instance
     stamen_terrain = cimgt.Stamen('terrain-background')
@@ -165,6 +177,12 @@ def cartoplot_peninsula_price(data, mapsize, pricequintiles):
     # Set range of map, stipulate zoom level
     ax.set_extent([-122.4, -122.1, 37.4, 37.6], crs=ccrs.Geodetic())
     ax.add_image(stamen_terrain, 13)
+    
+    # Add city borders
+    shape_feature = ShapelyFeature(Reader(shapefile).geometries(), ccrs.epsg(26910), 
+                               linewidth = 1, facecolor = (1, 1, 1, 0), 
+                               edgecolor = (0.3, 0.3, 0.3, 1))
+    ax.add_feature(shape_feature, zorder = 1)
     
     # Determine plotting mode and subdivide data based on quintiles
     q1 = data.loc[data["Price"] < pricequintiles[0]]
@@ -181,11 +199,11 @@ def cartoplot_peninsula_price(data, mapsize, pricequintiles):
     l5 = '> $%s M' % str(round(pricequintiles[3]/1000000, 1))
 
     # Plot scatter based on price quintiles
-    ax.scatter(q1["Longitude"], q1["Latitude"], s=75, c="darkred", transform=ccrs.PlateCarree(), label = l1)    
-    ax.scatter(q2["Longitude"], q2["Latitude"], s=75, c="salmon", transform=ccrs.PlateCarree(), label = l2)    
-    ax.scatter(q3["Longitude"], q3["Latitude"], s=75, c="grey", transform=ccrs.PlateCarree(), label = l3)
-    ax.scatter(q4["Longitude"], q4["Latitude"], s=75, c="cornflowerblue", transform=ccrs.PlateCarree(), label = l4)    
-    ax.scatter(q5["Longitude"], q5["Latitude"], s=75, c="darkblue", transform=ccrs.PlateCarree(), label = l5)    
+    ax.scatter(q1["Longitude"], q1["Latitude"], s=75, zorder = 2, c="darkred", edgecolors = 'black', transform=ccrs.PlateCarree(), label = l1)    
+    ax.scatter(q2["Longitude"], q2["Latitude"], s=75, zorder = 2, c="salmon", edgecolors = 'black', transform=ccrs.PlateCarree(), label = l2)    
+    ax.scatter(q3["Longitude"], q3["Latitude"], s=75, zorder = 2, c="grey", edgecolors = 'black', transform=ccrs.PlateCarree(), label = l3)
+    ax.scatter(q4["Longitude"], q4["Latitude"], s=75, zorder = 2, c="cornflowerblue", edgecolors = 'black', transform=ccrs.PlateCarree(), label = l4)    
+    ax.scatter(q5["Longitude"], q5["Latitude"], s=75, zorder = 2, c="darkblue", edgecolors = 'black', transform=ccrs.PlateCarree(), label = l5)    
 
     # Add text box to map
     lgnd = ax.legend(loc = 3, prop = {'size': 25}, title = r"$\bf{Peninsula\/\/}$", title_fontsize=30)
@@ -200,7 +218,7 @@ def cartoplot_peninsula_price(data, mapsize, pricequintiles):
     plt.show()
 
 # Scatter plot of color-coded prices across south bay
-def cartoplot_southbay_price(data, mapsize, pricequintiles):
+def cartoplot_southbay_price(data, mapsize, pricequintiles, shapefile):
         
     # Create a Stamen terrain background instance
     stamen_terrain = cimgt.Stamen('terrain-background')
@@ -210,6 +228,12 @@ def cartoplot_southbay_price(data, mapsize, pricequintiles):
     # Set range of map, stipulate zoom level
     ax.set_extent([-122.15, -121.85, 37.2, 37.4], crs=ccrs.Geodetic())
     ax.add_image(stamen_terrain, 13)
+    
+    # Add city borders
+    shape_feature = ShapelyFeature(Reader(shapefile).geometries(), ccrs.epsg(26910), 
+                               linewidth = 1, facecolor = (1, 1, 1, 0), 
+                               edgecolor = (0.3, 0.3, 0.3, 1))
+    ax.add_feature(shape_feature, zorder = 1)
     
     # Determine plotting mode and subdivide data based on quintiles
     q1 = data.loc[data["Price"] < pricequintiles[0]]
@@ -226,11 +250,11 @@ def cartoplot_southbay_price(data, mapsize, pricequintiles):
     l5 = '> $%s M' % str(round(pricequintiles[3]/1000000, 1))
 
     # Plot scatter based on price quintiles
-    ax.scatter(q1["Longitude"], q1["Latitude"], s=75, c="darkred", transform=ccrs.PlateCarree(), label = l1)    
-    ax.scatter(q2["Longitude"], q2["Latitude"], s=75, c="salmon", transform=ccrs.PlateCarree(), label = l2)    
-    ax.scatter(q3["Longitude"], q3["Latitude"], s=75, c="grey", transform=ccrs.PlateCarree(), label = l3)
-    ax.scatter(q4["Longitude"], q4["Latitude"], s=75, c="cornflowerblue", transform=ccrs.PlateCarree(), label = l4)    
-    ax.scatter(q5["Longitude"], q5["Latitude"], s=75, c="darkblue", transform=ccrs.PlateCarree(), label = l5)    
+    ax.scatter(q1["Longitude"], q1["Latitude"], s=75, zorder = 2, c="darkred", edgecolors = 'black', transform=ccrs.PlateCarree(), label = l1)    
+    ax.scatter(q2["Longitude"], q2["Latitude"], s=75, zorder = 2, c="salmon", edgecolors = 'black', transform=ccrs.PlateCarree(), label = l2)    
+    ax.scatter(q3["Longitude"], q3["Latitude"], s=75, zorder = 2, c="grey", edgecolors = 'black', transform=ccrs.PlateCarree(), label = l3)
+    ax.scatter(q4["Longitude"], q4["Latitude"], s=75, zorder = 2, c="cornflowerblue", edgecolors = 'black', transform=ccrs.PlateCarree(), label = l4)    
+    ax.scatter(q5["Longitude"], q5["Latitude"], s=75, zorder = 2, c="darkblue", edgecolors = 'black', transform=ccrs.PlateCarree(), label = l5)    
 
     # Add text box to map
     lgnd = ax.legend(loc = 3, prop = {'size': 25}, title = r"$\bf{South\/Bay\/\/}$", title_fontsize=30)
