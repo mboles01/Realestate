@@ -15,6 +15,7 @@ os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
 # import data
 import pandas as pd
 data_bay = pd.read_csv('./data/data_bay.csv')
+shapefile = r'./shapefiles/Bay cities/ba_cities.shp'
 
 # calculate quintiles
 from calculatequintiles import price_quintiles
@@ -22,7 +23,6 @@ pricequintiles_bay = price_quintiles(data_bay)
 
 # plot data
 from cartoplotfunctions import cartoplot_bay_price
-shapefile = r'./shapefiles/Bay cities/ba_cities.shp'
 mapsize = 30
 cartoplot_bay_price(data_bay, mapsize, pricequintiles_bay, shapefile)
 
