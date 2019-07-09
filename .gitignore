@@ -1,3 +1,6 @@
+# API keys
+api.txt
+
 # Py cache 
 __pycache__/
 *.pyc
