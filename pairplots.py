@@ -36,9 +36,24 @@ data_to_fit.iloc[4422]
 
 data_no_outliers = data_to_fit[(z < 3).all(axis=1)]
 
-# try same for only one zipcode
+# create overall pairplot
+import seaborn as sns
+sns.pairplot(data_no_outliers, diag_kind='kde', kind = 'reg',
+             plot_kws=dict(scatter_kws=dict(facecolor = 'b', edgecolor = 'w')))
+
+# create pairplot with only price as y-axis
+sns.set(style="ticks", color_codes=True)
+sns.pairplot(data_no_outliers, 
+             plot_kws=dict(scatter_kws=dict(facecolor = 'b', edgecolor = 'w')),
+             x_vars = ['Beds', 'Baths', 'Home size', 'Lot size'], 
+             y_vars = 'Price', kind = 'reg')
+
+
+# not seeing strong correlations -- try same for only one zipcode
 data_subset = data_clean.loc[data_clean['Zip'] == 95129]
 data_subset_fit = data_subset[['Beds', 'Baths', 'Home size', 'Lot size', 'Price']]
+sns.pairplot(data_subset, plot_kws=dict(scatter_kws=dict(facecolor = 'b', edgecolor = 'w')),
+             x_vars = ['Beds', 'Baths', 'Home size', 'Lot size'], y_vars = 'Price', kind = 'reg')
 
 # count number of unique zipcodes
 data_bay['Zip'].nunique() 
