@@ -10,6 +10,8 @@ import os
 os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
 #os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
 
+### PRICE PLOTS ###
+
 ### Bay overview ###
 
 # import data
@@ -81,4 +83,16 @@ pricequintiles_southbay = price_quintiles(data_southbay)
 from cartoplotfunctions import cartoplot_southbay_price
 mapsize = 15
 cartoplot_southbay_price(data_southbay, mapsize, pricequintiles_southbay, shapefile)
+
+
+### COMMUTE PLOTS ###
+
+# import data
+data_bay_withtimes = pd.read_csv('./data/data_bay_withtimes.csv')
+
+# plot data
+from cartoplotfunctions import cartoplot_commute
+shapefile = r'./shapefiles/Bay zips/bayarea_zipcodes.shp'
+mapsize = 15
+cartoplot_commute(data_bay_withtimes, mapsize, shapefile)
 

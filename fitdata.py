@@ -7,19 +7,81 @@ Created on Mon Jun 24 16:31:23 2019
 
 # set up working directory
 import os
-#os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
-os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
+os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
+#os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
+
+# import packages
+import pandas as pd
+from scipy import stats
+import numpy as np
+import statsmodels.formula.api as smf
+import seaborn as sns
 
 # import master dataset    
-import pandas as pd
-data_all = pd.read_csv('./data/data_clean.csv')
+data_bay_withtimes = pd.read_csv('./data/data_bay_withtimes.csv')
+
+# add shorter commute time column
+data_bay_withtimes['Min commute'] = data_bay_withtimes[['SF time', 'PA time']].min(axis=1)
+
+# format/clean -- remove spaces, drop rows with zeros, NaNs
+data_to_fit = data_bay_withtimes[['Beds', 'Baths', 'Home size', 'Lot size', 'SF time', 'PA time', 'Min commute', 'Price']]
+data_to_fit.columns = data_to_fit.columns.str.replace(' ', '_')
+data_temp1 = data_to_fit.dropna()
+data_temp2 = data_temp1[(data_temp1 != 0).all(1)]
+data_temp3 = data_temp2[data_temp2['Lot_size'] < 100000]
+
+# create overall pairplot
+sns.pairplot(data_temp3, diag_kind='kde', kind = 'reg',
+             plot_kws=dict(scatter_kws=dict(edgecolor = 'w')))
+
+
+# count number, frequency of unique zipcodes
+numzips = data_bay_withtimes['Zip'].nunique()
+topzips = data_bay_withtimes['Zip'].value_counts()
+
+# option to select subset of zipcodes
+data_temp4 = data_bay_withtimes[data_bay_withtimes['Zip'] > 95125 & data_bay_withtimes['Zip'] < 95150]
+#data_temp4 = data_temp3[data_temp3['Zip'].isin([94553, 94565])]
+#data_temp4 = data_temp3
+
+# option to remove outliers
+z = np.abs(stats.zscore(data_temp3[['Beds', 'Baths', 'Home_size', 'Lot_size', 
+                                  'SF_time', 'PA_time', 'Min_commute', 'Price']]))
+data_to_fit = data_temp3[(z < 3).all(axis=1)]
+#data_to_fit = data_temp3
+
+# create subset pairplot
+sns.pairplot(data_to_fit, diag_kind='kde', kind = 'reg',
+             plot_kws=dict(scatter_kws=dict(edgecolor = 'w')))
+
+
+# query count, mean, stdev etc. of selected data
+data_to_fit.describe()
+
+
+### BUILD MODEL ###
+
+
+
+# build model from data
+formula = 'Price ~ Home_size + Lot_size + Beds + Baths + Min_commute + SF_time + PA_time'
+regressor = smf.ols(formula, data = data_temp3).fit()
+
+
+
+
+
+
+
+
+# count number, frequency of unique zipcodes
+data_bay['Zip'].nunique() 
+data_bay['Zip'].value_counts()
 
 # remove zeros, NaNs, index column
 data_temp2 = data_all.dropna()
 data_clean = data_temp2[(data_temp2 != 0).all(1)]
 
-# select only Bay Area
-data_bay = data_clean.query('-122.7 < Longitude < -121.5 and 37.15 < Latitude < 38.15')
 
 # select only columns for fitting
 data_to_fit = data_bay[['Beds', 'Baths', 'Home size', 'Lot size', 'Price']]
@@ -28,8 +90,6 @@ data_to_fit = data_bay[['Beds', 'Baths', 'Home size', 'Lot size', 'Price']]
 data_to_fit.describe()
 
 # find and remove outliers
-from scipy import stats
-import numpy as np
 z = np.abs(stats.zscore(data_to_fit[['Beds', 'Baths', 'Home size', 'Lot size', 'Price']]))
 np.where(z > 3)
 data_to_fit.iloc[4422]
@@ -40,12 +100,6 @@ data_no_outliers = data_to_fit[(z < 3).all(axis=1)]
 data_subset = data_clean.loc[data_clean['Zip'] == 95129]
 data_subset_fit = data_subset[['Beds', 'Baths', 'Home size', 'Lot size', 'Price']]
 
-# count number of unique zipcodes
-data_bay['Zip'].nunique() 
-# 214 zips - would be painful to manually enter drive/train times to SF, PA for each
-
-# count frequency of each zipcode
-data_bay['Zip'].value_counts()
 
 ### FITTING ###
 
@@ -55,6 +109,35 @@ y = data_no_outliers['Price'].values
 
 # add column of ones to x
 x = np.append(arr = np.ones((x.shape[0], 1)).astype(int), values = x, axis = 1)
+
+
+### insert additional features ###
+data_bay_withtimes = pd.read_csv('./data/data_bay_withtimes.csv')
+data_bay_withtimes.columns = data_bay_withtimes.columns.str.replace(' ', '_')
+data_temp1 = data_bay_withtimes.dropna()
+data_temp2 = data_temp1
+#data_temp2 = data_temp1[data_temp1['Zip'].isin([94618])]
+data_temp3 = data_temp2[(data_temp2 != 0).all(1)]
+data_temp3['Min_commute'] = data_temp3[['SF_time','PA_time']].min(axis=1)
+
+z = np.abs(stats.zscore(data_temp3[['Beds', 'Baths', 'Home_size', 'Lot_size', 
+                                  'Price', 'SF_time', 'PA_time', 'Min_commute']]))
+data_to_fit = data_temp3[(z < 3).all(axis=1)]
+data_to_fit.describe()
+data_temp3.describe()
+
+# build model from data
+import statsmodels.formula.api as smf
+
+formula = ='Price ~ Home_size + Lot_size + Beds + Baths + Min_commute + SF_time + PA_time'
+regressor = smf.ols(formula, data = data_temp3).fit()
+
+
+
+regressor.summary()
+
+
+
 
 ## split data into test and training sets
 #from sklearn.model_selection import train_test_split
