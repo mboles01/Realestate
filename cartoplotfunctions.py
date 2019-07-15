@@ -284,7 +284,7 @@ def cartoplot_commute(data, mapsize, shapefile):
     ax.add_image(stamen_terrain, 8, zorder = 0)
     
     # Add city borders
-    shape_feature = ShapelyFeature(Reader(shapefile).geometries(), ccrs.epsg(102009), 
+    shape_feature = ShapelyFeature(Reader(shapefile).geometries(), ccrs.Geodetic(), 
                     linewidth = 2, facecolor = (1, 1, 1, 0), 
                     edgecolor = (0.3, 0.3, 0.3, 1))
     ax.add_feature(shape_feature, zorder = 1)

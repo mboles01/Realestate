@@ -23,36 +23,45 @@ data_bay_withtimes = pd.read_csv('./data/data_bay_withtimes.csv')
 # add shorter commute time column
 data_bay_withtimes['Min commute'] = data_bay_withtimes[['SF time', 'PA time']].min(axis=1)
 
+# remove spaces in column names - necessary for OLS?
+data_bay_withtimes.columns = data_bay_withtimes.columns.str.replace(' ', '_')
+
 # format/clean -- remove spaces, drop rows with zeros, NaNs
-data_to_fit = data_bay_withtimes[['Beds', 'Baths', 'Home size', 'Lot size', 'SF time', 'PA time', 'Min commute', 'Price']]
-data_to_fit.columns = data_to_fit.columns.str.replace(' ', '_')
+data_to_fit = data_bay_withtimes[['Zip', 'Beds', 'Baths', 'Home_size', 'Lot_size', 'SF_time', 'PA_time', 'Min_commute', 'Price']]
 data_temp1 = data_to_fit.dropna()
 data_temp2 = data_temp1[(data_temp1 != 0).all(1)]
 data_temp3 = data_temp2[data_temp2['Lot_size'] < 100000]
 
 # create overall pairplot
-sns.pairplot(data_temp3, diag_kind='kde', kind = 'reg',
-             plot_kws=dict(scatter_kws=dict(edgecolor = 'w')))
-
+sns.pairplot(data_temp3, diag_kind = 'kde', kind = 'reg',
+             plot_kws = dict(scatter_kws = dict(edgecolor = 'w')))
 
 # count number, frequency of unique zipcodes
 numzips = data_bay_withtimes['Zip'].nunique()
 topzips = data_bay_withtimes['Zip'].value_counts()
 
 # option to select subset of zipcodes
-data_temp4 = data_bay_withtimes[data_bay_withtimes['Zip'] > 95125 & data_bay_withtimes['Zip'] < 95150]
-#data_temp4 = data_temp3[data_temp3['Zip'].isin([94553, 94565])]
+lozip = 95029; hizip = 95031
+data_temp4 = data_temp3[(data_temp3['Zip'] > lozip) & (data_temp3['Zip'] < hizip)]
 #data_temp4 = data_temp3
 
 # option to remove outliers
-z = np.abs(stats.zscore(data_temp3[['Beds', 'Baths', 'Home_size', 'Lot_size', 
+z = np.abs(stats.zscore(data_temp4[['Beds', 'Baths', 'Home_size', 'Lot_size', 
                                   'SF_time', 'PA_time', 'Min_commute', 'Price']]))
-data_to_fit = data_temp3[(z < 3).all(axis=1)]
-#data_to_fit = data_temp3
+data_to_fit = data_temp4[(z < 3).all(axis=1)]
+#data_to_fit = data_temp4
 
 # create subset pairplot
-sns.pairplot(data_to_fit, diag_kind='kde', kind = 'reg',
-             plot_kws=dict(scatter_kws=dict(edgecolor = 'w')))
+sns.pairplot(data_to_fit.drop('Zip', axis = 1), diag_kind = 'kde', kind = 'reg',
+             plot_kws = dict(scatter_kws = dict(edgecolor = 'w')))
+
+# create pairplot with only price as y-axis
+sns.set(style="ticks", color_codes=True)
+sns.pairplot(data_to_fit, 
+             plot_kws=dict(scatter_kws=dict(edgecolor = 'w')),
+             x_vars = ['Beds', 'Baths', 'Home_size', 'Lot_size', 
+                       'SF_time', 'PA_time', 'Min_commute'], 
+             y_vars = 'Price', kind = 'reg')
 
 
 # query count, mean, stdev etc. of selected data
