@@ -20,21 +20,40 @@ import seaborn as sns
 # import master dataset    
 data_bay_withtimes = pd.read_csv('./data/data_bay_withtimes.csv')
 
+# import ancillary dataset
+data_schools = pd.read_csv('./School data/school_quality_bay.csv')
+
+# merge school quality with master dataset
+data_all_temp1 = data_bay_withtimes.merge(data_schools, on='Zip', how='left')
+
 # add shorter commute time column
-data_bay_withtimes['Min commute'] = data_bay_withtimes[['SF time', 'PA time']].min(axis=1)
+data_all_temp1['Min commute'] = data_all_temp1[['SF time', 'PA time']].min(axis=1)
 
 # remove spaces in column names - necessary for OLS?
-data_bay_withtimes.columns = data_bay_withtimes.columns.str.replace(' ', '_')
+data_all_temp1.columns = data_all_temp1.columns.str.replace(' ', '_')
 
-# format/clean -- remove spaces, drop rows with zeros, NaNs
-data_to_fit = data_bay_withtimes[['Zip', 'Beds', 'Baths', 'Home_size', 'Lot_size', 'SF_time', 'PA_time', 'Min_commute', 'Price']]
-data_temp1 = data_to_fit.dropna()
-data_temp2 = data_temp1[(data_temp1 != 0).all(1)]
-data_temp3 = data_temp2[data_temp2['Lot_size'] < 100000]
+# format/clean -- select columns of interest, drop rows with zeros, NaNs
+data_all_temp2 = data_all_temp1[['Zip', 'Beds', 'Baths', 'Home_size', 'Lot_size', 'SF_time', 'PA_time', 'Min_commute', 'School_score', 'Price']]
+data_all_temp3 = data_all_temp2.dropna()
+data_all_temp4 = data_all_temp3[(data_all_temp3 != 0).all(1)]
+
+# get rid of lot size outliers
+data_all = data_all_temp4[data_all_temp4['Lot_size'] < 100000]
+
+# create pairplot with only price as y-axis
+sns.set(style="ticks", color_codes=True)
+g = sns.pairplot(data_all, 
+             plot_kws=dict(scatter_kws=dict(edgecolor = 'w')),
+             x_vars = ['Beds', 'Baths', 'Home_size', 'Lot_size', 
+                       'SF_time', 'PA_time', 'Min_commute', 'School_score'], 
+             y_vars = 'Price', kind = 'reg')
+g.axes[0,1].set_xlim((0,6))
+
 
 # create overall pairplot
 sns.pairplot(data_temp3, diag_kind = 'kde', kind = 'reg',
              plot_kws = dict(scatter_kws = dict(edgecolor = 'w')))
+
 
 # count number, frequency of unique zipcodes
 numzips = data_bay_withtimes['Zip'].nunique()
