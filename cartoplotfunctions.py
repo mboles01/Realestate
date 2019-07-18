@@ -281,10 +281,10 @@ def cartoplot_commute(data, mapsize, shapefile):
     
     # Set range of map, stipulate zoom level
     ax.set_extent([-122.7, -121.5, 37.15, 38.15], crs=ccrs.Geodetic())
-    ax.add_image(stamen_terrain, 8, zorder = 0)
+    ax.add_image(stamen_terrain, 9, zorder = 0)
     
     # Add city borders
-    shape_feature = ShapelyFeature(Reader(shapefile).geometries(), ccrs.Geodetic(), 
+    shape_feature = ShapelyFeature(Reader(shapefile).geometries(), ccrs.epsg(26910), 
                     linewidth = 2, facecolor = (1, 1, 1, 0), 
                     edgecolor = (0.3, 0.3, 0.3, 1))
     ax.add_feature(shape_feature, zorder = 1)

@@ -7,8 +7,8 @@ Created on Mon Jun 24 16:31:23 2019
 
 # set up working directory
 import os
-os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
-#os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
+#os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
+os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
 
 # import packages
 import pandas as pd
@@ -20,49 +20,78 @@ import seaborn as sns
 # import master dataset    
 data_bay_withtimes = pd.read_csv('./data/data_bay_withtimes.csv')
 
+# import ancillary dataset
+data_schools = pd.read_csv('./School data/school_quality_bay.csv')
+
+# merge school quality with master dataset
+data_all_temp1 = data_bay_withtimes.merge(data_schools, on='Zip', how='left')
+
 # add shorter commute time column
-data_bay_withtimes['Min commute'] = data_bay_withtimes[['SF time', 'PA time']].min(axis=1)
+data_all_temp1['Min commute'] = data_all_temp1[['SF time', 'PA time']].min(axis=1)
 
 # remove spaces in column names - necessary for OLS?
-data_bay_withtimes.columns = data_bay_withtimes.columns.str.replace(' ', '_')
+data_all_temp1.columns = data_all_temp1.columns.str.replace(' ', '_')
 
-# format/clean -- remove spaces, drop rows with zeros, NaNs
-data_to_fit = data_bay_withtimes[['Zip', 'Beds', 'Baths', 'Home_size', 'Lot_size', 'SF_time', 'PA_time', 'Min_commute', 'Price']]
-data_temp1 = data_to_fit.dropna()
-data_temp2 = data_temp1[(data_temp1 != 0).all(1)]
-data_temp3 = data_temp2[data_temp2['Lot_size'] < 100000]
+# format/clean -- select columns of interest, drop rows with zeros, NaNs
+data_all_temp2 = data_all_temp1[['Zip', 'Beds', 'Baths', 'Home_size', 'Lot_size', 'Min_commute', 'School_score', 'Price']] #'SF_time', 'PA_time'
+data_all_temp3 = data_all_temp2.dropna()
+data_all_temp4 = data_all_temp3[(data_all_temp3 != 0).all(1)]
+
+# get rid of some outliers
+data_all_temp5 = data_all_temp4[data_all_temp4['Home_size'] < 10000]
+data_all_temp6 = data_all_temp5[data_all_temp5['Lot_size'] < 100000]
+data_all_temp7 = data_all_temp6[data_all_temp6['Price'] < 10000000]
+data_all = data_all_temp7
+
+# create pairplot with only price as y-axis
+sns.set(style="ticks", color_codes=True)
+g = sns.pairplot(data_all, 
+             plot_kws=dict(line_kws=dict(color = '#3148a3'), scatter_kws=dict(facecolor = '#5797ff', edgecolor = 'w', linewidth = 0.33)),
+             x_vars = ['Beds', 'Baths', 'Home_size', 'Lot_size'], 
+                       #'Min_commute', 'School_score'], #'SF_time', 'PA_time', 
+             y_vars = 'Price', kind = 'reg')
+g.savefig('pairplot_price_all.jpg', dpi=500)
 
 # create overall pairplot
 sns.pairplot(data_temp3, diag_kind = 'kde', kind = 'reg',
              plot_kws = dict(scatter_kws = dict(edgecolor = 'w')))
 
+
 # count number, frequency of unique zipcodes
+cityzips_temp = data_bay_withtimes[['City','Zip']]
 numzips = data_bay_withtimes['Zip'].nunique()
-topzips = data_bay_withtimes['Zip'].value_counts()
+topzips = data_bay_withtimes['Zip'].value_counts().to_frame()
+topzips['Count'] = topzips['Zip']
+topzips['Zip'] = topzips.index
+topzips_city = topzips.merge(cityzips, on='Zip', how='inner')
 
-# option to select subset of zipcodes
-lozip = 95029; hizip = 95031
-data_temp4 = data_temp3[(data_temp3['Zip'] > lozip) & (data_temp3['Zip'] < hizip)]
-#data_temp4 = data_temp3
+# option to select one zipcode
+zipcode = 94401
+data_subset = data_all[data_all['Zip'] == zipcode]
 
-# option to remove outliers
-z = np.abs(stats.zscore(data_temp4[['Beds', 'Baths', 'Home_size', 'Lot_size', 
-                                  'SF_time', 'PA_time', 'Min_commute', 'Price']]))
-data_to_fit = data_temp4[(z < 3).all(axis=1)]
-#data_to_fit = data_temp4
+## or zipcode range
+#lozip = 95029; hizip = 95031
+#data_subset_temp1 = data_temp3[(data_temp3['Zip'] > lozip) & (data_temp3['Zip'] < hizip)]
+
+## option to remove outliers
+#z = np.abs(stats.zscore(data_temp4[['Beds', 'Baths', 'Home_size', 'Lot_size', 
+#                                  'SF_time', 'PA_time', 'Min_commute', 'Price']]))
+#data_to_fit = data_temp4[(z < 3).all(axis=1)]
+##data_to_fit = data_temp4
 
 # create subset pairplot
-sns.pairplot(data_to_fit.drop('Zip', axis = 1), diag_kind = 'kde', kind = 'reg',
+sns.set(style="ticks", color_codes=True)
+sns.pairplot(data_subset.drop('Zip', axis = 1), diag_kind = 'kde', kind = 'reg',
              plot_kws = dict(scatter_kws = dict(edgecolor = 'w')))
 
 # create pairplot with only price as y-axis
 sns.set(style="ticks", color_codes=True)
-sns.pairplot(data_to_fit, 
-             plot_kws=dict(scatter_kws=dict(edgecolor = 'w')),
-             x_vars = ['Beds', 'Baths', 'Home_size', 'Lot_size', 
-                       'SF_time', 'PA_time', 'Min_commute'], 
+g = sns.pairplot(data_subset, 
+             plot_kws=dict(line_kws=dict(color = '#3148a3'), scatter_kws=dict(facecolor = '#5797ff', edgecolor = 'w', linewidth = 0.33)),
+             x_vars = ['Beds', 'Baths', 'Home_size', 'Lot_size'], 
+                       #'Min_commute', 'School_score'], #'SF_time', 'PA_time', 
              y_vars = 'Price', kind = 'reg')
-
+g.savefig('pairplot_price_subset_' + str(zipcode) + '.jpg', dpi=500)
 
 # query count, mean, stdev etc. of selected data
 data_to_fit.describe()
