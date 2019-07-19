@@ -315,3 +315,42 @@ def cartoplot_commute(data, mapsize, shapefile):
     
     plt.show()
 
+
+
+
+shapefile_name= "./shapefiles/Bay zips/bayarea_zipcodes.shp"
+mapwidth, mapheight = 8, 8
+pad = 0.25
+
+stamen_terrain = cimgt.Stamen('terrain-background')
+stm_crs = stamen_terrain.crs
+
+fig = plt.figure(figsize = (mapwidth, mapheight))
+ax = fig.add_subplot(1, 1, 1, projection=stm_crs)  #world mercator
+
+# Set extent of map
+ax.set_extent([-123.3-pad, -121.5+pad, 37.05-pad, 38.75+pad], crs=ccrs.Geodetic())
+# Plot base map
+ax.add_image(stamen_terrain, 8, zorder=0)
+
+# Add polygons from shapefile
+# Note: the use of `ccrs.epsg(26910)`
+shape_feature = ShapelyFeature(Reader(shapefile_name).geometries(), ccrs.epsg(26910))
+
+# You can choose one of the 2 possible methods to plot
+# ... the geometries from shapefile
+# Styling is done here.
+method = 2
+if method==1:
+    # iteration is hidden
+    ax.add_feature(shape_feature, facecolor='b', edgecolor='red', 
+                   alpha=0.4, zorder = 15)
+if method==2:
+    # iterate and use `.add_geometries()`
+    # more flexible to manipulate particular items
+    for geom in shape_feature.geometries():
+        ax.add_geometries([geom], crs=shape_feature.crs, facecolor='b', 
+                          edgecolor='red', alpha=0.4)
+
+plt.show()
+
