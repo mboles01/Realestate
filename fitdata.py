@@ -38,18 +38,29 @@ data_all_temp3 = data_all_temp2.dropna()
 data_all_temp4 = data_all_temp3[(data_all_temp3 != 0).all(1)]
 
 # get rid of some outliers
-data_all_temp5 = data_all_temp4[data_all_temp4['Home_size'] < 10000]
-data_all_temp6 = data_all_temp5[data_all_temp5['Lot_size'] < 100000]
-data_all_temp7 = data_all_temp6[data_all_temp6['Price'] < 10000000]
-data_all = data_all_temp7
+data_all_temp5 = data_all_temp4[data_all_temp4['Home_size'] < 5000]
+data_all_temp6 = data_all_temp5[data_all_temp5['Lot_size'] < 20000]
+data_all_temp7 = data_all_temp6[data_all_temp6['Price'] < 5000000]
+data_all_temp8 = data_all_temp7[data_all_temp7['Beds'] < 6]
+data_all_temp9 = data_all_temp8[data_all_temp8['Baths'] < 6]
+
+# rescale for pairplot
+data_all_temp9['Price'] = data_all_temp9['Price']/1000000
+
+# rename series for pairplot
+data_all = data_all_temp9.rename(columns = {'Home_size': 'Home size (sqft)', 
+                                            'Lot_size': 'Lot size (sqft)',
+                                            'Price': 'Price ($M)'})
 
 # create pairplot with only price as y-axis
 sns.set(style="ticks", color_codes=True)
 g = sns.pairplot(data_all, 
-             plot_kws=dict(line_kws=dict(color = '#3148a3'), scatter_kws=dict(facecolor = '#5797ff', edgecolor = 'w', linewidth = 0.33)),
-             x_vars = ['Beds', 'Baths', 'Home_size', 'Lot_size'], 
+             plot_kws=dict(line_kws=dict(color = '#3148a3'), 
+                           scatter_kws=dict(facecolor = '#5797ff', edgecolor = '#3148a3', linewidth = 0.33, alpha = 0.05)),
+             x_vars = ['Beds', 'Baths', 'Home size (sqft)', 'Lot size (sqft)'], 
                        #'Min_commute', 'School_score'], #'SF_time', 'PA_time', 
-             y_vars = 'Price', kind = 'reg')
+             y_vars = 'Price ($M)', kind = 'reg')
+
 g.savefig('pairplot_price_all.jpg', dpi=500)
 
 # create overall pairplot
