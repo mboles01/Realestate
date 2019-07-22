@@ -7,8 +7,8 @@ Created on Fri Jun  7 16:36:29 2019
 
 # set up working directory
 import os
-#os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
-os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
+os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
+#os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
 
 ### PRICE PLOTS ###
 
@@ -89,10 +89,11 @@ cartoplot_southbay_price(data_southbay, mapsize, pricequintiles_southbay, shapef
 
 # import data
 data_bay_withtimes = pd.read_csv('./data/data_bay_withtimes.csv')
+data_bay_withtimes['Min commute'] = data_bay_withtimes[['SF time', 'PA time']].min(axis=1)
 
 # plot data
 from cartoplotfunctions import cartoplot_commute
-shapefile = r'./shapefiles/Bay zips/bayarea_zipcodes.shp'
+shapefile = r'./shapefiles/Bay Zips/ZIPCODE.shp' 
 mapsize = 15
 cartoplot_commute(data_bay_withtimes, mapsize, shapefile)
 
