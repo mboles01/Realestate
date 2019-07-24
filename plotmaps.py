@@ -92,8 +92,11 @@ data_bay_withtimes = pd.read_csv('./data/data_bay_withtimes.csv')
 data_bay_withtimes['Min commute'] = data_bay_withtimes[['SF time', 'PA time']].min(axis=1)
 
 # plot data
+import matplotlib.pyplot as plt
 from cartoplotfunctions import cartoplot_commute
-shapefile = r'./shapefiles/Bay Zips/ZIPCODE.shp' 
+shapefile = r'./shapefiles/Bay Zips/ZIPCODE.shp'
+commute_time = r'./data/data by zipcode/commute_time.csv'
 mapsize = 15
-cartoplot_commute(data_bay_withtimes, mapsize, shapefile)
+cartoplot_commute(data_bay_withtimes, mapsize, shapefile, commute_time)
+
 

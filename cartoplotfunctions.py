@@ -5,6 +5,7 @@ Created on Tue May 28 17:38:38 2019
 @author: BolesMi
 """
 # import functions
+import pandas as pd
 import matplotlib.pyplot as plt
 import cartopy.crs as ccrs
 import cartopy.io.img_tiles as cimgt 
@@ -272,7 +273,7 @@ def cartoplot_southbay_price(data, mapsize, pricequintiles, shapefile):
     
     
 # Scatter plot of color-coded prices across the bay
-def cartoplot_commute(data, mapsize, shapefile):
+def cartoplot_commute(data, mapsize, shapefile, commute):
         
     # Create a Stamen terrain background instance
     stamen_terrain = cimgt.Stamen('terrain-background')
@@ -281,25 +282,29 @@ def cartoplot_commute(data, mapsize, shapefile):
     
     # Set range of map, stipulate zoom level
     ax.set_extent([-122.7, -121.5, 37.15, 38.15], crs=ccrs.Geodetic())
-    ax.add_image(stamen_terrain, 9, zorder = 0)
+    ax.add_image(stamen_terrain, 10, zorder = 0)
+    
+    # get commute time
+    commute_time = pd.read_csv(commute)
+    
+    # get shapefile data
+    shapefile_data = pd.read_csv('./data/data by zipcode/shapefile_data.csv')
     
     # color zipcodes by commute time
     from matplotlib import cm
     import matplotlib.colors
     cmap = cm.get_cmap('seismic', 25)
-    norm = matplotlib.colors.Normalize(vmin = min(shapefile_commute['Min commute']), 
-                                       vmax = max(shapefile_commute['Min commute']))
-    color = cmap(norm(shapefile_commute['Min commute'].values))
+    norm = matplotlib.colors.Normalize(vmin = min(commute_time['Min commute']), 
+                                       vmax = max(commute_time['Min commute']))
+    color = cmap(norm(commute_time['Min commute'].values))
     
     # add shapefile features
     shape_feature = ShapelyFeature(Reader(shapefile).geometries(), ccrs.epsg(26910), linewidth = 2)
     
-    # Add zip code borders
+    # Add commute data by zip code
     for counter, geom in enumerate(shape_feature.geometries()):
+        if shapefile_data['']
             ax.add_geometries([geom], crs=shape_feature.crs, facecolor=color[counter], edgecolor='k', alpha=0.8)
-    
-    
-    
     
     color_producer = matplotlib.cm.ScalarMappable(norm=norm, cmap=cmap)
     
