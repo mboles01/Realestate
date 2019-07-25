@@ -88,7 +88,7 @@ cartoplot_southbay_price(data_southbay, mapsize, pricequintiles_southbay, shapef
 ### COMMUTE PLOTS ###
 
 # import data
-data_bay_withtimes = pd.read_csv('./data/data_bay_withtimes.csv')
+data_bay_withtimes = pd.read_csv('./data/listings/data_bay_withtimes.csv')
 data_bay_withtimes['Min commute'] = data_bay_withtimes[['SF time', 'PA time']].min(axis=1)
 
 # plot data

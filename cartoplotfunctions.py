@@ -303,11 +303,20 @@ def cartoplot_commute(data, mapsize, shapefile, commute):
     
     # Add commute data by zip code
     for counter, geom in enumerate(shape_feature.geometries()):
-        if shapefile_data['']
-            ax.add_geometries([geom], crs=shape_feature.crs, facecolor=color[counter], edgecolor='k', alpha=0.8)
+        if shapefile_data['AREA'][counter] < 50:
+            if shapefile_data['POPULATION'][counter] > 500:
+                ax.add_geometries([geom], crs=shape_feature.crs, 
+                              facecolor=color[counter], edgecolor='k', alpha=0.8)
+        else:
+            continue
     
-    color_producer = matplotlib.cm.ScalarMappable(norm=norm, cmap=cmap)
-    
+#    ax=plt.gca() #get the current axes
+#    PCM=ax.get_children()[-8] #get the mappable, the 1st and the 2nd are the x and y axes
+#    plt.colorbar(PCM,ax=ax)
+
+    plt.colorbar(norm)     
+        
+#    plt.colorbar()
     plt.show()
 
 
