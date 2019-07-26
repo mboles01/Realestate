@@ -85,16 +85,29 @@ mapsize = 15
 cartoplot_southbay_price(data_southbay, mapsize, pricequintiles_southbay, shapefile)
 
 
-### COMMUTE PLOTS ###
+### COMMUTE PLOT ###
 
 # import data
 data_bay_withtimes = pd.read_csv('./data/listings/data_bay_withtimes.csv')
 data_bay_withtimes['Min commute'] = data_bay_withtimes[['SF time', 'PA time']].min(axis=1)
+commute_time = r'./data/data by zipcode/commute_time.csv'
 
 # plot data
 import matplotlib.pyplot as plt
 from cartoplotfunctions import cartoplot_commute
 shapefile = r'./shapefiles/Bay Zips/ZIPCODE.shp'
+data_zipcodes = r'./data/data by zipcode/data_zipcodes.csv'
+mapsize = 15
+cartoplot_commute(data_bay_withtimes, mapsize, shapefile, commute_time)
+
+
+### SCHOOL PLOT ###
+
+# import data
+data_schools = pd.read_csv('./School data/school_quality_bay.csv')
+
+
+# plot data
 commute_time = r'./data/data by zipcode/commute_time.csv'
 mapsize = 15
 cartoplot_commute(data_bay_withtimes, mapsize, shapefile, commute_time)

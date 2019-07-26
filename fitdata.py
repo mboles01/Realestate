@@ -7,8 +7,8 @@ Created on Mon Jun 24 16:31:23 2019
 
 # set up working directory
 import os
-#os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
-os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
+os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
+#os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
 
 # import packages
 import pandas as pd
@@ -17,7 +17,7 @@ import numpy as np
 import statsmodels.formula.api as smf
 
 # import master dataset    
-data_bay_withtimes = pd.read_csv('./data/data_bay_withtimes.csv')
+data_bay_withtimes = pd.read_csv('./data/listings/data_bay_withtimes.csv')
 
 # count number, frequency of unique zipcodes
 cityzips = data_bay_withtimes[['City','Zip']]
@@ -27,14 +27,18 @@ topzips['Count'] = topzips['Zip']
 topzips['Zip'] = topzips.index
 topzips_city = topzips.merge(cityzips, on='Zip', how='inner')
 
-# import ancillary dataset
-data_schools = pd.read_csv('./School data/school_quality_bay.csv')
+# import schools dataset, round scores
+data_schools_temp = pd.read_csv('./School data/school_quality_bay.csv')
+data_schools = data_schools_temp.round({'School score': 1})
 
 # merge school quality with master dataset
 data_all_temp1 = data_bay_withtimes.merge(data_schools, on='Zip', how='left')
 
 # add shorter commute time column
 data_all_temp1['Min commute'] = data_all_temp1[['SF time', 'PA time']].min(axis=1)
+
+# save full data set
+data_all_temp1.to_csv('data_all.csv')
 
 # remove spaces in column names - necessary for OLS?
 data_all_temp1.columns = data_all_temp1.columns.str.replace(' ', '_')
