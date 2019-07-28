@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+s# -*- coding: utf-8 -*-
 """
 Created on Fri Jun  7 16:36:29 2019
 
@@ -88,28 +88,23 @@ cartoplot_southbay_price(data_southbay, mapsize, pricequintiles_southbay, shapef
 ### COMMUTE PLOT ###
 
 # import data
-data_bay_withtimes = pd.read_csv('./data/listings/data_bay_withtimes.csv')
-data_bay_withtimes['Min commute'] = data_bay_withtimes[['SF time', 'PA time']].min(axis=1)
-commute_time = r'./data/data by zipcode/commute_time.csv'
+#data_bay_withtimes = pd.read_csv('./data/listings/data_bay_withtimes.csv')
+#data_bay_withtimes['Min commute'] = data_bay_withtimes[['SF time', 'PA time']].min(axis=1)
+
+# get shapefile, file containing commute, school data by zipcode
+shapefile = r'./shapefiles/Bay Zips/ZIPCODE.shp'
+data_zipcodes = pd.read_csv('./data/data by zipcode/data_zipcodes.csv')
 
 # plot data
-import matplotlib.pyplot as plt
 from cartoplotfunctions import cartoplot_commute
-shapefile = r'./shapefiles/Bay Zips/ZIPCODE.shp'
-data_zipcodes = r'./data/data by zipcode/data_zipcodes.csv'
 mapsize = 15
-cartoplot_commute(data_bay_withtimes, mapsize, shapefile, commute_time)
+cartoplot_commute(mapsize, shapefile, data_zipcodes)
 
 
 ### SCHOOL PLOT ###
 
-# import data
-data_schools = pd.read_csv('./School data/school_quality_bay.csv')
-
-
 # plot data
-commute_time = r'./data/data by zipcode/commute_time.csv'
-mapsize = 15
-cartoplot_commute(data_bay_withtimes, mapsize, shapefile, commute_time)
+from cartoplotfunctions import cartoplot_schools
+cartoplot_schools(mapsize, shapefile, data_zipcodes)
 
 

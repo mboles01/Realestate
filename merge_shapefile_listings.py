@@ -25,7 +25,10 @@ shapefile_zips = pd.DataFrame(shapefile_selected[['Zip', 'Population', 'Area']])
 
 # get zip codes, commute time from full data set
 data_selected_temp1 = data_all[['Zip','Min commute','School score']]
-data_selected = data_selected_temp1.groupby('Zip', as_index = False).mean()#.drop(columns = 'Grade') 
+data_selected_temp2 = data_selected_temp1.groupby('Zip', as_index = False).mean()#.drop(columns = 'Grade') 
+
+# round school score column
+data_selected = data_selected_temp2.round({'School score': 1})
 
 # get zip codes that are present in both shape file and main data set
 data_zipcodes = shapefile_zips.merge(data_selected, on='Zip', how='left')
