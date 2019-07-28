@@ -281,7 +281,7 @@ def cartoplot_commute(mapsize, shapefile, data):
     
     # Set range of map, stipulate zoom level
     ax.set_extent([-122.7, -121.5, 37.15, 38.15], crs=ccrs.Geodetic())
-    ax.add_image(stamen_terrain, 10, zorder = 0)
+    ax.add_image(stamen_terrain, 12, zorder = 0)
         
     # color zipcodes by commute time
     from matplotlib import cm
@@ -290,6 +290,22 @@ def cartoplot_commute(mapsize, shapefile, data):
     norm = matplotlib.colors.Normalize(vmin = min(data['Min commute']), 
                                        vmax = max(data['Min commute']))
     color = cmap(norm(data['Min commute'].values))
+    
+    # add colorbar    
+    n_cmap = cm.ScalarMappable(norm=norm, cmap='seismic')
+    n_cmap.set_array([])
+    cax = fig.add_axes([0.2, 0.15, 0.02, 0.25])
+    cbar = ax.get_figure().colorbar(n_cmap, cax)
+    
+    # set colorbar label, properties
+    cbar.set_label('Commute\ntime\n(minutes)', rotation = 0, labelpad = 15, y = 0.615, ha = 'left')    
+    cbar.ax.tick_params(labelsize = 16)
+    cax.yaxis.set_ticks_position('left')
+    text = cax.yaxis.label
+    font = matplotlib.font_manager.FontProperties(family = 'Helvetica', size = 20)
+    text.set_font_properties(font)
+    for tick in cbar.ax.yaxis.get_ticklabels():
+        tick.set_family('Helvetica')    
     
     # add shapefile features
     shape_feature = ShapelyFeature(Reader(shapefile).geometries(), ccrs.epsg(26910), linewidth = 2)
@@ -302,14 +318,9 @@ def cartoplot_commute(mapsize, shapefile, data):
                               facecolor=color[counter], edgecolor='k', alpha=0.8)
         else:
             continue
-    
-#    ax=plt.gca() #get the current axes
-#    PCM=ax.get_children()[-8] #get the mappable, the 1st and the 2nd are the x and y axes
-#    plt.colorbar(PCM,ax=ax)
-
-#    plt.colorbar(norm)     
-        
-#    plt.colorbar()
+    # save figure, show figure
+    fig = plt.gcf()
+    plt.savefig('commute_plot.jpg', bbox_inches = 'tight', dpi = 600)
     plt.show()
 
 
@@ -337,10 +348,18 @@ def cartoplot_schools(mapsize, shapefile, data):
     # add colorbar    
     n_cmap = cm.ScalarMappable(norm=norm, cmap='seismic_r')
     n_cmap.set_array([])
-    cax = fig.add_axes([0.20, 0.15, 0.02, 0.25])
+    cax = fig.add_axes([0.185, 0.15, 0.02, 0.25])
     cbar = ax.get_figure().colorbar(n_cmap, cax)
-    cbar.set_label('School score\n(% proficient)', rotation = 0, labelpad = 0, y = 1.15)    
+    
+    # set colorbar label, properties
+    cbar.set_label('School score\n(% proficient)', rotation = 0, labelpad = 15, y = 0.55, ha = 'left')    
+    cbar.ax.tick_params(labelsize = 16)
     cax.yaxis.set_ticks_position('left')
+    text = cax.yaxis.label
+    font = matplotlib.font_manager.FontProperties(family = 'Helvetica', size = 20)
+    text.set_font_properties(font)
+    for tick in cbar.ax.yaxis.get_ticklabels():
+        tick.set_family('Helvetica')    
 
     # add shapefile features
     shape_feature = ShapelyFeature(Reader(shapefile).geometries(), ccrs.epsg(26910), linewidth = 2)
@@ -354,4 +373,7 @@ def cartoplot_schools(mapsize, shapefile, data):
         else:
             continue
     
+    # save figure, show figure
+    fig = plt.gcf()
+    plt.savefig('schools_plot.jpg', bbox_inches = 'tight', dpi = 600)
     plt.show()

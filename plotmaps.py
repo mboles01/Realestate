@@ -7,6 +7,7 @@ Created on Fri Jun  7 16:36:29 2019
 
 # set up working directory
 import os
+import pandas as pd
 os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
 #os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
 
@@ -15,7 +16,6 @@ os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
 ### Bay overview ###
 
 # import data
-import pandas as pd
 data_bay = pd.read_csv('./data/data_bay.csv')
 shapefile = r'./shapefiles/Bay cities/ba_cities.shp'
 
@@ -106,5 +106,3 @@ cartoplot_commute(mapsize, shapefile, data_zipcodes)
 # plot data
 from cartoplotfunctions import cartoplot_schools
 cartoplot_schools(mapsize, shapefile, data_zipcodes)
-
-
