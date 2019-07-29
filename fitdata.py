@@ -94,13 +94,13 @@ regressor.summary()
 summary = regressor.summary()
 summary_text = summary.as_text()
 
-# try same for only one zipcode
-data_subset = data_all.loc[data_all['Zip'] == 95126]
-formula_subset_1 = 'Price ~ Home_size + Lot_size + Beds + Baths + Commute_time + School_score'
-formula_subset_2 = 'Price ~ Home_size + Lot_size + Baths'
-regressor = smf.ols(formula_subset_2, data = data_subset).fit()
-summary_subset = regressor.summary()
-summary_subset_text = summary_subset.as_text()
+## try same for only one zipcode
+#data_subset = data_all.loc[data_all['Zip'] == 95126]
+#formula_subset_1 = 'Price ~ Home_size + Lot_size + Beds + Baths + Commute_time + School_score'
+#formula_subset_2 = 'Price ~ Home_size + Lot_size + Baths'
+#regressor = smf.ols(formula_subset_2, data = data_subset).fit()
+#summary_subset = regressor.summary()
+#summary_subset_text = summary_subset.as_text()
 
 # get variance inflation factor
 from statsmodels.stats.outliers_influence import variance_inflation_factor
@@ -115,47 +115,39 @@ vif = [variance_inflation_factor(variables, i) for i in range(variables.shape[1]
 x = data_all[['Home_size', 'Lot_size', 'Commute_time', 'School_score']]
 y = data_all['Price']
 
-# before commute, school quality data
-x = data_all[['Home_size', 'Lot_size', 'Beds', 'Baths']]
+## before commute, school quality data
+#x = data_all[['Home_size', 'Lot_size', 'Beds', 'Baths']]
+#
+## fit data
+#from sklearn.linear_model import LinearRegression
+#regressor = LinearRegression()
+#regressor.fit(x, y)
+#regressor.intercept_, regressor.coef_
+#
+## predict values based on model
+#y_pred = regressor.predict(x)
+#
+## calculate difference between predicted and actual prices
+#diff = round((y - y_pred), 6)
+#
+## add difference to full data set
+#data_all['Price difference'] = diff
+#data_all.to_csv('data_all_price_predictions.csv')
 
-# fit data
-from sklearn.linear_model import LinearRegression
-regressor = LinearRegression()
-regressor.fit(x, y)
-regressor.intercept_, regressor.coef_
+# import fitted data
+data_all = pd.read_csv('./data/listings/data_all_price_predictions.csv')
 
-# predict values based on model
-y_pred = regressor.predict(x)
-
-# calculate difference between predicted and actual prices
-diff = (y - y_pred)/1000000
-
-# add difference to full data set
-data_all['Price difference'] = diff
+# set up histogram text box
 description = data_all['Price difference'].describe()
-prices_textbox = 'Median = -$%.2f M \nStdev = $%.2f M' % (round(-description['50%'],3), round(description['std'],3))
-
+prices_textbox = 'Median = -$%.2f M \nStdev = $%.2f M' % (round(-description['50%']/100000,4), round(description['std']/1000000,4))
 
 # plot price difference
 from plotfunctions import plothist
-figure_name = 'price_diff_no_loc_data.jpg'
-plothist(data_all['Price difference'], 0.1, prices_textbox, -1, 1, 
-               'Actual - predicted price ($M)', 'Counts', figure_name)
+figure_name = 'price_diff_loc_data.jpg'
+binwidth = 100
+data = data_all['Price difference']/1000000
+plothist(data, 0.1, prices_textbox, -1, 1, 'Actual - predicted price ($M)', 'Counts', figure_name)
 
-
-
-# split data into test and training sets
-from sklearn.model_selection import train_test_split
-
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.2, random_state = 1)
-
-# fit data with multiple linear regression
-from sklearn.linear_model import LinearRegression
-regressor = LinearRegression()
-regressor.fit(x_train, y_train)
-
-# predict test set
-y_pred = regressor.predict(x_test)
 
 
 

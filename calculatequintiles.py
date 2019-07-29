@@ -33,3 +33,11 @@ def priceperlotsqft_quintiles(data):
     p80_priceperlotsqft = np.percentile(data.loc[:,"Price per lot sqft"], 80) # return 80th percentile
     priceperlotsqftquintiles = [p20_priceperlotsqft, p40_priceperlotsqft, p60_priceperlotsqft, p80_priceperlotsqft]
     return priceperlotsqftquintiles
+
+def price_diff_quintiles(data):
+    p20_price = int(round(np.percentile(data.loc[:,"Price difference"], 20), -3)) # return 20th percentile
+    p40_price = int(round(np.percentile(data.loc[:,"Price difference"], 40), -3)) # return 40th percentile
+    p60_price = int(round(np.percentile(data.loc[:,"Price difference"], 60), -3)) # return 60th percentile
+    p80_price = int(round(np.percentile(data.loc[:,"Price difference"], 80), -3)) # return 80th percentile
+    pricequintiles = [p20_price, p40_price, p60_price, p80_price]
+    return pricequintiles

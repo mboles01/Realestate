@@ -377,3 +377,55 @@ def cartoplot_schools(mapsize, shapefile, data):
     fig = plt.gcf()
     plt.savefig('schools_plot.jpg', bbox_inches = 'tight', dpi = 600)
     plt.show()
+
+
+# Scatter plot of color-coded prices across the bay
+def cartoplot_bay_price_predictions(data, mapsize, pricequintiles, shapefile):
+        
+    # Create a Stamen terrain background instance
+    stamen_terrain = cimgt.Stamen('terrain-background')
+    fig = plt.figure(figsize = (mapsize,mapsize))
+    ax = fig.add_subplot(1, 1, 1, projection=stamen_terrain.crs)
+    
+    # Set range of map, stipulate zoom level
+    ax.set_extent([-122.7, -121.5, 37.15, 38.15], crs=ccrs.Geodetic())
+    ax.add_image(stamen_terrain, 12, zorder = 0)
+    
+    # Add city borders
+    shape_feature = ShapelyFeature(Reader(shapefile).geometries(), ccrs.epsg(26910), 
+                               linewidth = 2, facecolor = (1, 1, 1, 0), 
+                               edgecolor = (0.3, 0.3, 0.3, 1))
+    ax.add_feature(shape_feature, zorder = 1)
+    
+    # Determine plotting mode and subdivide data based on quintiles
+    q1 = data.loc[data['Price difference'] < pricequintiles[0]]
+    q2 = data.loc[(data['Price difference'] > pricequintiles[0]) & (data['Price difference'] < pricequintiles[1])]
+    q3 = data.loc[(data['Price difference'] > pricequintiles[1]) & (data['Price difference'] < pricequintiles[2])]
+    q4 = data.loc[(data['Price difference'] > pricequintiles[2]) & (data['Price difference'] < pricequintiles[3])]
+    q5 = data.loc[data['Price difference'] > pricequintiles[3]]
+
+    # Create legend labels
+    l1 = '< -$%s K' % str(int(round(-pricequintiles[0]/1000, 3)))
+    l2 = '-\$%s K to -$%s K' % (int(round(-pricequintiles[0]/1000, 2)), int(round(-pricequintiles[1]/1000, 3)))
+    l3 = '-\$%s K to $%s K' % (int(round(-pricequintiles[1]/1000, 3)), int(round(pricequintiles[2]/1000, 3)))
+    l4 = '\$%s K to $%s K' % (int(round(pricequintiles[2]/1000, 3)), int(round(pricequintiles[3]/1000, 3)))
+    l5 = '> $%s K' % str(int(round(pricequintiles[3]/1000, 3)))
+
+    # Plot scatter based on price quintiles
+    ax.scatter(q1['Longitude'], q1['Latitude'], s=55, zorder = 2, c='darkred', edgecolors = 'black', transform=ccrs.PlateCarree(), label = l1)    
+    ax.scatter(q2['Longitude'], q2['Latitude'], s=55, zorder = 2, c='salmon', edgecolors = 'black', transform=ccrs.PlateCarree(), label = l2)    
+    ax.scatter(q3['Longitude'], q3['Latitude'], s=55, zorder = 2, c='grey', edgecolors = 'black', transform=ccrs.PlateCarree(), label = l3)
+    ax.scatter(q4['Longitude'], q4['Latitude'], s=55, zorder = 2, c='cornflowerblue', edgecolors = 'black', transform=ccrs.PlateCarree(), label = l4)    
+    ax.scatter(q5['Longitude'], q5['Latitude'], s=55, zorder = 2, c='darkblue', edgecolors = 'black', transform=ccrs.PlateCarree(), label = l5)    
+        
+    # Add text box to map
+    lgnd = ax.legend(loc = 3, prop = {'family':'Helvetica', 'size': 30}, title = r'$\bf{Actual\/-\/predicted\/price}$', title_fontsize=33)
+    
+    #change the marker size manually for both lines
+    lgnd.legendHandles[0]._sizes = [150]
+    lgnd.legendHandles[1]._sizes = [150]
+    lgnd.legendHandles[2]._sizes = [150]
+    lgnd.legendHandles[3]._sizes = [150]
+    lgnd.legendHandles[4]._sizes = [150]
+    
+    plt.show()

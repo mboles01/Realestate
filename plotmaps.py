@@ -106,3 +106,20 @@ cartoplot_commute(mapsize, shapefile, data_zipcodes)
 # plot data
 from cartoplotfunctions import cartoplot_schools
 cartoplot_schools(mapsize, shapefile, data_zipcodes)
+
+
+### PRICE DIFFERENCE PLOT ###
+
+# import data
+shapefile = r'./shapefiles/Bay cities/ba_cities.shp'
+data_all_price_predictions = pd.read_csv('./data/listings/data_all_price_predictions.csv')
+
+# calculate quintiles
+from calculatequintiles import price_diff_quintiles
+price_diff_quintiles = price_diff_quintiles(data_all_price_predictions)
+
+# plot data
+from cartoplotfunctions import cartoplot_bay_price_predictions
+mapsize = 30
+cartoplot_bay_price_predictions(data_all_price_predictions, mapsize, price_diff_quintiles, shapefile)
+
