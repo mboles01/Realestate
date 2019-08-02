@@ -115,24 +115,25 @@ vif = [variance_inflation_factor(variables, i) for i in range(variables.shape[1]
 x = data_all[['Home_size', 'Lot_size', 'Commute_time', 'School_score']]
 y = data_all['Price']
 
-## before commute, school quality data
-#x = data_all[['Home_size', 'Lot_size', 'Beds', 'Baths']]
-#
-## fit data
-#from sklearn.linear_model import LinearRegression
-#regressor = LinearRegression()
-#regressor.fit(x, y)
+# before commute, school quality data
+x2 = data_all[['Home_size', 'Lot_size', 'Beds', 'Baths']]
+
+# fit data
+from sklearn.linear_model import LinearRegression
+regressor = LinearRegression()
+regressor.fit(x2, y)
 #regressor.intercept_, regressor.coef_
-#
-## predict values based on model
-#y_pred = regressor.predict(x)
-#
-## calculate difference between predicted and actual prices
-#diff = round((y - y_pred), 6)
-#
-## add difference to full data set
-#data_all['Price difference'] = diff
-#data_all.to_csv('data_all_price_predictions.csv')
+
+# predict values based on model
+y_pred = regressor.predict(x) # listing + surroundings data
+y_pred2 = regressor.predict(x2) # listing data only
+
+# calculate difference between predicted and actual prices
+diff = round((y - y_pred2), 6)
+
+# add difference to full data set
+data_all['Price difference 2'] = diff
+data_all.to_csv('data_all_price_predictions.csv')
 
 # import fitted data
 data_all = pd.read_csv('./data/listings/data_all_price_predictions.csv')
@@ -142,11 +143,12 @@ description = data_all['Price difference'].describe()
 prices_textbox = 'Median = -$%.2f M \nStdev = $%.2f M' % (round(-description['50%']/100000,4), round(description['std']/1000000,4))
 
 # plot price difference
-from plotfunctions import plothist
+from plotfunctions import plothist2
 figure_name = 'price_diff_loc_data.jpg'
 binwidth = 100
-data = data_all['Price difference']/1000000
-plothist(data, 0.1, prices_textbox, -1, 1, 'Actual - predicted price ($M)', 'Counts', figure_name)
+data1 = data_all['Price difference']/1000000
+data2 = data_all['Price difference 2']/1000000
+plothist2(data1, data2, 0.1, prices_textbox, -1, 1, 'Actual - predicted price ($M)', 'Counts', figure_name)
 
 
 

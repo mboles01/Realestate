@@ -33,6 +33,31 @@ def plothist(data, binwidth, textbox, xmin, xmax, xlabel, ylabel, figure_name):
     plt.grid(); ax.set_axisbelow(True)
     plt.savefig(figure_name, dpi = 600)
     plt.show()
+    
+    
+def plothist2(data1, data2, binwidth, textbox, xmin, xmax, xlabel, ylabel, figure_name):
+    fig, ax = plt.subplots(1,1,figsize=(7,7))
+    bins = np.arange(round(min(data1),1), max(data1) + binwidth, binwidth)
+    props = dict(facecolor='white', alpha=1.0)
+
+    ax.hist(data1, bins, edgecolor = 'black', facecolor = 'blue')
+    ax.hist(data2, bins, edgecolor = 'black', facecolor = 'gray', alpha = 0.33)
+        
+    plt.xlim(xmin, xmax); plt.xlabel(xlabel, fontsize = 18, fontname = 'Helvetica')
+    plt.ylabel(ylabel, fontsize = 18)
+    ax.tick_params(axis = 'x', labelsize = 14); ax.tick_params(axis = 'y', labelsize = 14)
+#    ax.text(0.575, 0.97, textbox, transform = ax.transAxes, fontsize = 18, fontname = 'Helvetica', verticalalignment = 'top', bbox = props)
+    
+    for tick in ax.get_xticklabels():
+        tick.set_fontname('Helvetica')
+    for tick in ax.get_yticklabels():
+        tick.set_fontname('Helvetica')
+    
+    plt.rcParams['axes.unicode_minus'] = False
+    ax.rcParams['axes.grid'] = False
+    plt.grid(); ax.set_axisbelow(True)
+    plt.savefig(figure_name, dpi = 600)
+    plt.show()
 
 
 #def plothist2(data, binwidth, xmin, xmax, xlabel, ylabel):
