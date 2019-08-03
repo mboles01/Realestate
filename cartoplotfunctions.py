@@ -380,6 +380,27 @@ def cartoplot_schools(mapsize, shapefile, data):
 
 
 # Scatter plot of color-coded prices across the bay
+def cartoplot_trees(mapsize, shapefile, data):
+        
+    # Create a Stamen terrain background instance
+    stamen_terrain = cimgt.Stamen('terrain-background')
+    fig = plt.figure(figsize = (mapsize,mapsize))
+    ax = fig.add_subplot(1, 1, 1, projection=stamen_terrain.crs)
+    
+    # Set range of map, stipulate zoom level
+    ax.set_extent([-125, -117, 30,45], crs=ccrs.Geodetic())
+    ax.add_image(stamen_terrain, 6, zorder = 0)
+        
+    # add shapefile features
+    shape_feature = ShapelyFeature(Reader(shapefile).geometries(), ccrs.epsg(26910), 
+                               linewidth = 1, facecolor = (1, 1, 1, 0), 
+                               edgecolor = (0.3, 0.3, 0.3, 1))
+    ax.add_feature(shape_feature, zorder = 1)
+
+    plt.show()
+
+
+# Scatter plot of color-coded prices across the bay
 def cartoplot_bay_price_predictions(data, mapsize, pricequintiles, shapefile):
         
     # Create a Stamen terrain background instance
