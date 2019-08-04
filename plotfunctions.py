@@ -39,9 +39,9 @@ def plothist2(data1, data2, binwidth, textbox, xmin, xmax, xlabel, ylabel, figur
     fig, ax = plt.subplots(1,1,figsize=(7,7))
     bins = np.arange(round(min(data1),1), max(data1) + binwidth, binwidth)
     props = dict(facecolor='white', alpha=1.0)
-
-    ax.hist(data1, bins, edgecolor = 'black', facecolor = 'blue')
-    ax.hist(data2, bins, edgecolor = 'black', facecolor = 'gray', alpha = 0.33)
+    
+    ax.hist(data2, bins, edgecolor = 'black', facecolor = 'gray', alpha = 0.5)
+    ax.hist(data1, bins, edgecolor = 'black', facecolor = 'blue', alpha = 0.5)
         
     plt.xlim(xmin, xmax); plt.xlabel(xlabel, fontsize = 18, fontname = 'Helvetica')
     plt.ylabel(ylabel, fontsize = 18)
