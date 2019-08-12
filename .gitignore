@@ -10,3 +10,6 @@ __pycache__/
 
 # Certificates
 *.cer
+
+# Old
+Old/
