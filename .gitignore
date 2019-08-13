@@ -1,6 +1,3 @@
-# gitignore
-.gitignore
-
 # API keys
 api.txt
 
@@ -18,7 +15,4 @@ __pycache__/
 Old/
 
 # Realtor
-getdata_realtor.py
-scrapeweb_realtor.py
-cleandata_realtor.py
-cleanfunctions_realtor.py
+Realtor/
