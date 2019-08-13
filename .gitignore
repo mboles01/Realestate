@@ -13,3 +13,9 @@ __pycache__/
 
 # Old
 Old/
+
+# Realtor
+getdata_realtor.py
+scrapeweb_realtor.py
+cleandata_realtor.py
+cleanfunctions_realtor.py
