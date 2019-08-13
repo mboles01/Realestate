@@ -1,16 +1,20 @@
+###Real Estate
 This repository contains a set of Python scripts that scrape a real estate webpage, clean and analyze the data, plot visualizations, and perform a multiple linear regression fit. Scripts are described below.
-See also the associated report contained in the ìTextî directory (https://github.com/mboles01/Realestate/blob/master/Text/Bay%20Area%20Housing%20-%20Michael%20Boles%20-%20August%202019.pdf).
+See also the associated report contained in the ‚ÄúText‚Äù directory (https://github.com/mboles01/Realestate/blob/master/Text/Bay%20Area%20Housing%20-%20Michael%20Boles%20-%20August%202019.pdf).
 
 Web scraping
-ìscrapeweb.pyî: uses Requests to connect to mlslistings, BeautifulSoup to pull verification token, Html to get web content by xpath, Re to clean the results, and Pandas to store scraped content as a dataframe.
-ìgetdata.pyî: pulls zipcodes from .csv file, uses webscrape function defined in ìscrapeweb.pyî to scrape content from the webpage and store it in Pandas dataframe, and writes a .csv file with the scraped content.
+‚Äúscrapeweb.py‚Äù: uses Requests to connect to mlslistings, BeautifulSoup to pull verification token, Html to get web content by xpath, Re to clean the results, and Pandas to store scraped content as a dataframe.
+‚Äúgetdata.py‚Äù: pulls zipcodes from .csv file, uses webscrape function defined in ‚Äúscrapeweb.py‚Äù to scrape content from the webpage and store it in Pandas dataframe, and writes a .csv file with the scraped content.
+
 Map plotting
-ìplotmaps.pyî: pulls .csv file with listing information, uses price_quintiles function in ìcalculatequintiles.pyî to place listings into five bins by price, uses cartoplot_x_price (x = bay, sf, eastbay, peninsula, southbay) functions defined in ìcartoplotfunctions.pyî to plot data points on a map of the respective region. Also contains scripts to plot commute and school quality data using zip code shapefiles. 
-ìcartoplotfunctions.pyî: pulls data from .csv file and city or zipcode borders from shapefile, uses Matplotlib.pyplot and Cartopy to plot maps with terrain background and bounded by given set of latitude, longitude coordinates for full Bay Area as well as sub-regions. 
+‚Äúplotmaps.py‚Äù: pulls .csv file with listing information, uses price_quintiles function in ‚Äúcalculatequintiles.py‚Äù to place listings into five bins by price, uses cartoplot_x_price (x = bay, sf, eastbay, peninsula, southbay) functions defined in ‚Äúcartoplotfunctions.py‚Äù to plot data points on a map of the respective region. Also contains scripts to plot commute and school quality data using zip code shapefiles. 
+‚Äúcartoplotfunctions.py‚Äù: pulls data from .csv file and city or zipcode borders from shapefile, uses Matplotlib.pyplot and Cartopy to plot maps with terrain background and bounded by given set of latitude, longitude coordinates for full Bay Area as well as sub-regions. 
+
 Boxplot plotting
-ìplotboxplots.pyî: pulls data from .csv file and selects cities of interest to plot price information with using Seaborn box + strip plots.
+‚Äúplotboxplots.py‚Äù: pulls data from .csv file and selects cities of interest to plot price information with using Seaborn box + strip plots.
+
 Data fitting 
-ìfitdata.pyî: pulls data from .csv file, filters outliers, uses Statsmodels.formula.api to perform ordinary least squares fit and summarize the result, uses sklearn.linear_model to create price predictions using the fitted coefficients, and uses functions defined in ìplotfunctions.pyî to plot a histogram of the residuals.
+‚Äúfitdata.py‚Äù: pulls data from .csv file, filters outliers, uses Statsmodels.formula.api to perform ordinary least squares fit and summarize the result, uses sklearn.linear_model to create price predictions using the fitted coefficients, and uses functions defined in ‚Äúplotfunctions.py‚Äù to plot a histogram of the residuals.
 
 Libraries:
 Requests (https://2.python-requests.org/en/master/)
