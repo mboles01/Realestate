@@ -2,7 +2,7 @@
 This repository contains a set of Python scripts that scrape a real estate webpage, clean and analyze the data, plot visualizations, and perform a multiple linear regression fit. Scripts are described below.
 See also the associated report contained in the “Text” directory (https://github.com/mboles01/Realestate/blob/master/Text/Bay%20Area%20Housing%20-%20Michael%20Boles%20-%20August%202019.pdf).
 
-Web scraping
+**Web scraping**
 “scrapeweb.py”: uses Requests to connect to mlslistings, BeautifulSoup to pull verification token, Html to get web content by xpath, Re to clean the results, and Pandas to store scraped content as a dataframe.
 “getdata.py”: pulls zipcodes from .csv file, uses webscrape function defined in “scrapeweb.py” to scrape content from the webpage and store it in Pandas dataframe, and writes a .csv file with the scraped content.
 
