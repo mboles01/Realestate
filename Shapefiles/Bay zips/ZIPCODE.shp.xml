@@ -1,0 +1,1469 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata xml:lang="en">
+	<Esri>
+		<CreaDate>20150612</CreaDate>
+		<CreaTime>08292000</CreaTime>
+		<ArcGISFormat>1.0</ArcGISFormat>
+		<ArcGISstyle>ISO 19139 Metadata Implementation Specification</ArcGISstyle>
+		<SyncOnce>FALSE</SyncOnce>
+		<scaleRange>
+			<minScale>150000000</minScale>
+			<maxScale>5000</maxScale>
+		</scaleRange>
+		<DataProperties>
+			<itemProps>
+				<imsContentType export="False"/>
+				<itemLocation>
+					<linkage Sync="TRUE">file://\\SUL-GISLAB\gis_shared\GIS_Lab\DATA\BayArea_MTC\zipcode90\ZIPCODE.shp</linkage>
+					<protocol Sync="TRUE">Local Area Network</protocol>
+				</itemLocation>
+				<itemName Sync="TRUE">ZIPCODE</itemName>
+				<nativeExtBox>
+					<westBL Sync="TRUE">453747.251340</westBL>
+					<eastBL Sync="TRUE">644030.840530</eastBL>
+					<southBL Sync="TRUE">4084085.304281</southBL>
+					<northBL Sync="TRUE">4301897.570897</northBL>
+					<exTypeCode Sync="TRUE">1</exTypeCode>
+				</nativeExtBox>
+				<itemSize Sync="TRUE">0.250</itemSize>
+			</itemProps>
+			<copyHistory>
+				<copy date="20150612" dest="\\SUL-GISLAB\GIS_Shared\GIS_Lab\DATA\BayArea_MTC\france" source="Q:\France_SubnationalBoundaries_2010_CarticqueFrance\Carticque_Election_France_2010_SHP_L93m\france" time="08292000"/>
+			</copyHistory>
+			<coordRef>
+				<type Sync="TRUE">Projected</type>
+				<geogcsn Sync="TRUE">GCS_North_American_1983</geogcsn>
+				<csUnits Sync="TRUE">Linear Unit: Meter (1.000000)</csUnits>
+				<projcsn Sync="TRUE">NAD_1983_UTM_Zone_10N</projcsn>
+				<peXml Sync="TRUE">&lt;ProjectedCoordinateSystem xsi:type='typens:ProjectedCoordinateSystem' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xs='http://www.w3.org/2001/XMLSchema' xmlns:typens='http://www.esri.com/schemas/ArcGIS/10.3'&gt;&lt;WKT&gt;PROJCS[&amp;quot;NAD_1983_UTM_Zone_10N&amp;quot;,GEOGCS[&amp;quot;GCS_North_American_1983&amp;quot;,DATUM[&amp;quot;D_North_American_1983&amp;quot;,SPHEROID[&amp;quot;GRS_1980&amp;quot;,6378137.0,298.257222101]],PRIMEM[&amp;quot;Greenwich&amp;quot;,0.0],UNIT[&amp;quot;Degree&amp;quot;,0.0174532925199433]],PROJECTION[&amp;quot;Transverse_Mercator&amp;quot;],PARAMETER[&amp;quot;False_Easting&amp;quot;,500000.0],PARAMETER[&amp;quot;False_Northing&amp;quot;,0.0],PARAMETER[&amp;quot;Central_Meridian&amp;quot;,-123.0],PARAMETER[&amp;quot;Scale_Factor&amp;quot;,0.9996],PARAMETER[&amp;quot;Latitude_Of_Origin&amp;quot;,0.0],UNIT[&amp;quot;Meter&amp;quot;,1.0],AUTHORITY[&amp;quot;EPSG&amp;quot;,26910]]&lt;/WKT&gt;&lt;XOrigin&gt;-5120900&lt;/XOrigin&gt;&lt;YOrigin&gt;-9998100&lt;/YOrigin&gt;&lt;XYScale&gt;450445547.3910538&lt;/XYScale&gt;&lt;ZOrigin&gt;-100000&lt;/ZOrigin&gt;&lt;ZScale&gt;10000&lt;/ZScale&gt;&lt;MOrigin&gt;-100000&lt;/MOrigin&gt;&lt;MScale&gt;10000&lt;/MScale&gt;&lt;XYTolerance&gt;0.001&lt;/XYTolerance&gt;&lt;ZTolerance&gt;0.001&lt;/ZTolerance&gt;&lt;MTolerance&gt;0.001&lt;/MTolerance&gt;&lt;HighPrecision&gt;true&lt;/HighPrecision&gt;&lt;WKID&gt;26910&lt;/WKID&gt;&lt;LatestWKID&gt;26910&lt;/LatestWKID&gt;&lt;/ProjectedCoordinateSystem&gt;</peXml>
+			</coordRef>
+		</DataProperties>
+		<ArcGISProfile>ISO19139</ArcGISProfile>
+		<ModDate>20151005</ModDate>
+		<ModTime>15423300</ModTime>
+		<SyncDate>20151005</SyncDate>
+		<SyncTime>15423300</SyncTime>
+	</Esri>
+	<dataIdInfo>
+		<idCredit>California, Metropolitan Transportation Commission. (2002). Census Zip Code Tabulation Areas, 2000 - San Francisco Bay Area, California. MTC. Available at: http://purl.stanford.edu/df986nv4623.</idCredit>
+		<themeKeys>
+			<thesaName>
+				<resTitle>lcsh</resTitle>
+				<date>
+					<reviseDate>2011-04-26T00:00:00</reviseDate>
+				</date>
+				<citId>
+					<identCode>http://id.loc.gov/authorities/subjects.html</identCode>
+				</citId>
+			</thesaName>
+			<keyword>Census</keyword>
+			<keyword>Zip codes</keyword>
+		</themeKeys>
+		<placeKeys>
+			<thesaName>
+				<resTitle>geonames</resTitle>
+				<date>
+					<reviseDate>2012-11-01T00:00:00</reviseDate>
+				</date>
+				<resEd>3.1</resEd>
+				<citId>
+					<identCode>http://www.geonames.org/ontology#</identCode>
+				</citId>
+			</thesaName>
+			<keyword>San Francisco Bay Area (Calif.)</keyword>
+			<keyword>San Francisco (Calif.)</keyword>
+			<keyword>Contra Costa County (Calif.)</keyword>
+			<keyword>Napa County (Calif.)</keyword>
+			<keyword>San Mateo County (Calif.)</keyword>
+			<keyword>San Mateo County (Calif.)</keyword>
+			<keyword>Solano County (Calif.)</keyword>
+			<keyword>Sonoma County (Calif.)</keyword>
+			<keyword>Marin County (Calif.)</keyword>
+			<keyword>Alameda County (Calif.)</keyword>
+		</placeKeys>
+		<idCitation>
+			<citId>
+				<identCode>http://purl.stanford.edu/df986nv4623</identCode>
+			</citId>
+			<collTitle>California Metropolitan Transportation Comission GIS Data</collTitle>
+			<date>
+				<pubDate>2002-05-28T00:00:00</pubDate>
+			</date>
+			<citRespParty>
+				<rpOrgName>California. Metropolitan Transportation Commission</rpOrgName>
+				<role>
+					<RoleCd value="006"/>
+				</role>
+			</citRespParty>
+			<citRespParty>
+				<rpOrgName>California. Metropolitan Transportation Commission</rpOrgName>
+				<role>
+					<RoleCd value="010"/>
+				</role>
+				<rpCntInfo>
+					<cntAddress addressType="">
+						<city>Oakland</city>
+						<country>US</country>
+						<adminArea>California</adminArea>
+					</cntAddress>
+				</rpCntInfo>
+			</citRespParty>
+			<resTitle Sync="FALSE">Census Zip Code Tabulation Areas, 2000 - San Francisco Bay Area, California</resTitle>
+			<presForm>
+				<PresFormCd Sync="TRUE" value="005"/>
+			</presForm>
+		</idCitation>
+		<dataExt>
+			<exDesc>ground condition</exDesc>
+			<tempEle>
+				<TempExtent>
+					<exTemp>
+						<TM_Period>
+							<tmBegin>2000-01-01T00:00:00</tmBegin>
+							<tmEnd>2000-12-31T00:00:00</tmEnd>
+						</TM_Period>
+					</exTemp>
+				</TempExtent>
+			</tempEle>
+		</dataExt>
+		<dataLang>
+			<languageCode value="eng"/>
+			<countryCode Sync="TRUE" value="USA"/>
+		</dataLang>
+		<dataChar>
+			<CharSetCd value="004"/>
+		</dataChar>
+		<aggrInfo>
+			<assocType>
+				<AscTypeCd value="002"/>
+			</assocType>
+			<initType>
+				<InitTypCd value="002"/>
+			</initType>
+			<aggrDSName>
+				<resTitle>California Metropolitan Transportation Comission GIS Data</resTitle>
+				<citId>
+					<identCode>http://www.purl.stanford.edu/bq589tv8583</identCode>
+				</citId>
+				<date>
+					<pubDate>2010-01-01T00:00:00</pubDate>
+				</date>
+				<citRespParty>
+					<rpOrgName>California. Metropolitan Transportation Commission</rpOrgName>
+					<role>
+						<RoleCd value="010"/>
+					</role>
+					<displayName>California. Metropolitan Transportation Commission</displayName>
+					<rpCntInfo>
+						<cntAddress addressType="">
+							<delPoint>101 Eighth Street</delPoint>
+							<city>Oakland</city>
+							<adminArea>California</adminArea>
+							<eMailAdd>info@mtc.ca.gov</eMailAdd>
+							<country>US</country>
+						</cntAddress>
+						<cntPhone>
+							<voiceNum tddtty="">510.817.5700</voiceNum>
+						</cntPhone>
+					</rpCntInfo>
+					<displayName>California. Metropolitan Transportation Commission</displayName>
+				</citRespParty>
+				<citRespParty>
+					<rpOrgName>California. Metropolitan Transportation Commission</rpOrgName>
+					<role>
+						<RoleCd value="006"/>
+					</role>
+					<displayName>California. Metropolitan Transportation Commission</displayName>
+				</citRespParty>
+			</aggrDSName>
+		</aggrInfo>
+		<idPurp>This dataset is intended for researchers, students, and policy makers for reference and mapping purposes, and may be used for basic applications such as viewing, querying, and map output production, or to provide a basemap to support graphical overlays and analysis with other spatial data.</idPurp>
+		<idAbs>&lt;DIV STYLE="text-align:Left;"&gt;&lt;DIV&gt;&lt;DIV&gt;&lt;P&gt;&lt;SPAN&gt;This polygon shapefile represents ZIP Code Tabulation Areas (ZCTAs) for the entire state. ZCTAs are a new statistical entity developed by the U.S. Census Bureau for tabulating summary statistics from Census 2000. This new entity was developed to overcome the difficulties in precisely defining the land area covered by each ZIP Code. Defining the extent of an area is necessary in order to accurately tabulate census data for that area. ZCTAs are generalized area representations of U.S. Postal Service (USPS) ZIP Code service areas. Simply put, each one is built by aggregating the Census 2000 blocks, whose addresses use a given ZIP Code, into a ZCTA which gets that ZIP Code assigned as its ZCTA code. They represent the majority USPS five-digit ZIP Code found in a given area. For those areas where it is difficult to determine the prevailing five-digit ZIP Code, the higher-level three-digit ZIP Code is used for the ZCTA code. ZCTAs are created based on the following criteria: - ZCTAs follow census block boundaries. The ZCTA code for each census block generally represents the majority ZIP Code of the addresses within that census block. - ZCTAs are not exact representations of the USPS's ZIP Code delivery areas. - ZCTA codes cover all land and water areas. - ZCTAs include some dedicated post office box ZIP Codes in areas served only by post office boxes. - ZCTAs representing post office box ZIP Codes generally have more than 10 addresses. - ZCTAs exclude unique, single delivery point ZIP Codes, such as those for firms and organizations. - ZCTAs are distinct from other Census Bureau statistical areas, such as census tracts, because they are not stable over time and are computer-delineated based on the location of addresses at the time of Census 2000 rather than manually delineated by local program participants or Census Bureau staff before the census. - ZCTAs are distinct from other representations of ZIP Codes because they are based on address information and ZIP Codes collected or verified during Census 2000 operations. - ZCTAs frequently cross county and place boundaries and may occasionally cross from one state into another. ZCTAs are approximate area representations of United States Postal Service (USPS) ZIP Code service areas that the U.S. Census Bureau is creating for statistical purposes for Census 2000. Data users should not use ZCTAs to identify the official USPS ZIP Code for mail delivery. Each Census 2000 tabulation block will have a single ZCTA code that will reflect the majority ZIP Code for addresses within that tabulation block. A ZCTA may not exist for every USPS ZIP Code. For instance, a special purpose ZIP Code may represent a point location that does not characterize the majority of the addresses for a Census 2000 tabulation block. Under these circumstances the special purpose ZIP Code will not appear as a ZCTA. The U.S. Census Bureau will be identifying ZCTAs by using a five-character alpha-numeric code. The first three characters will represent the 3-digit ZIP Code and may contain leading zeros. For ZCTAs defined only by a 3-digit ZIP Code the last two characters of the ZCTA code will be "XX." For example, ZCTA code "290XX" will represent the generic 3-digit ZIP Code290 where no 5-digit ZIP Code was available. For ZCTA codes that will reflect the 5-digit ZIP Code, the last two characters of the ZCTA code will be numeric. For example, the ZCTA code "00601" will represent the 5-digit ZIP Code 00601. The ZCTA delineation process will not recognize ZCTA codes ending in "00", such as "29000", as valid 5-digit ZCTA codes. Some water features will have a 3-digit ZCTA code followed by "HH", for example "290HH". These codes will apply only to water features and usually will belong to water features located along the edges of 5-digit ZCTAs. The codes will indicate that the water feature does not clearly fall within one 5-digit ZCTA and is distinct from the 3-digit ZCTA code that will be assigned to land areas. In effect, these codes will identify unassigned water areas. The ZCTA delineation process will attempt to assign a 5-digit ZCTA code to areas with no ZIP Code or address data. Where reliable data are unavailable for extensive areas, the ZCTA code may represent the more general 3-digit ZIP Code. This layer is part of the Bay Area Metropolitan Transportation Commission (MTC) GIS Maps and Data collection.&lt;/SPAN&gt;&lt;/P&gt;&lt;/DIV&gt;&lt;/DIV&gt;&lt;/DIV&gt;</idAbs>
+		<tempKeys>
+			<keyword>2000</keyword>
+		</tempKeys>
+		<idStatus>
+			<ProgCd value="001"/>
+		</idStatus>
+		<resMaint>
+			<maintFreq>
+				<MaintFreqCd value="009"/>
+			</maintFreq>
+		</resMaint>
+		<idPoC>
+			<rpOrgName>California. Metropolitan Transportation Commission</rpOrgName>
+			<role>
+				<RoleCd value="007"/>
+			</role>
+			<displayName>California. Metropolitan Transportation Commission</displayName>
+			<rpCntInfo>
+				<cntAddress addressType="">
+					<delPoint>101 Eighth Street</delPoint>
+					<city>Oakland</city>
+					<adminArea>California</adminArea>
+					<eMailAdd>info@mtc.ca.gov</eMailAdd>
+					<country>US</country>
+				</cntAddress>
+				<cntPhone>
+					<voiceNum tddtty="">510.817.5700</voiceNum>
+				</cntPhone>
+			</rpCntInfo>
+		</idPoC>
+		<envirDesc Sync="TRUE">Microsoft Windows 7 Version 6.1 (Build 7601) Service Pack 1; Esri ArcGIS 10.3.1.4959</envirDesc>
+		<spatRpType>
+			<SpatRepTypCd Sync="TRUE" value="001"/>
+		</spatRpType>
+		<dataExt>
+			<geoEle>
+				<GeoBndBox esriExtentType="search">
+					<exTypeCode Sync="TRUE">1</exTypeCode>
+					<westBL Sync="TRUE">-123.533132</westBL>
+					<eastBL Sync="TRUE">-121.340121</eastBL>
+					<northBL Sync="TRUE">38.865918</northBL>
+					<southBL Sync="TRUE">36.891764</southBL>
+				</GeoBndBox>
+			</geoEle>
+		</dataExt>
+		<resConst>
+			<LegConsts>
+				<useConsts>
+					<RestrictCd value="008"/>
+				</useConsts>
+				<othConsts>No restrictions on access or use.</othConsts>
+			</LegConsts>
+		</resConst>
+		<tpCat>
+			<TopicCatCd value="003"/>
+		</tpCat>
+		<tpCat>
+			<TopicCatCd value="013"/>
+		</tpCat>
+	</dataIdInfo>
+	<mdHrLv>
+		<ScopeCd value="005"/>
+	</mdHrLv>
+	<mdFileID>edu.stanford.purl:df986nv4623</mdFileID>
+	<mdParentID>http://www.purl.stanford.edu/bq589tv8583.mods</mdParentID>
+	<mdLang>
+		<languageCode value="eng"/>
+		<countryCode Sync="TRUE" value="USA"/>
+	</mdLang>
+	<mdChar>
+		<CharSetCd value="004"/>
+	</mdChar>
+	<dataSetURI>http://purl.stanford.edu/df986nv4623</dataSetURI>
+	<mdContact>
+		<rpOrgName>Stanford Geospatial Center</rpOrgName>
+		<rpCntInfo>
+			<cntAddress addressType="physical">
+				<delPoint>Branner Earth Sciences Library</delPoint>
+				<city>Stanford</city>
+				<adminArea>California</adminArea>
+				<postCode>94305</postCode>
+				<eMailAdd>brannerlibrary@stanford.edu</eMailAdd>
+				<delPoint>Mitchell Building, 2nd Floor</delPoint>
+				<delPoint>397 Panama Mall</delPoint>
+			</cntAddress>
+			<cntPhone>
+				<voiceNum tddtty="">650-723-2746</voiceNum>
+			</cntPhone>
+		</rpCntInfo>
+		<displayName>Stanford Geospatial Center</displayName>
+		<displayName>Stanford Geospatial Center</displayName>
+		<role>
+			<RoleCd value="007"/>
+		</role>
+	</mdContact>
+	<contInfo>
+		<FetCatDesc>
+			<compCode>False</compCode>
+			<catLang>
+				<languageCode value="eng"/>
+			</catLang>
+			<incWithDS>True</incWithDS>
+			<catCitation>
+				<resTitle>Feature catalog for Census Zip Code Tabulation Areas, 2000 - San Francisco Bay Area, California</resTitle>
+				<citId>
+					<identCode>a20d24aa-f659-4e4d-b0de-d5709adad1e7</identCode>
+				</citId>
+				<date>
+					<pubDate>2010-01-01T00:00:00</pubDate>
+				</date>
+			</catCitation>
+		</FetCatDesc>
+	</contInfo>
+	<distInfo>
+		<distTranOps>
+			<onLineSrc>
+				<linkage>http://purl.stanford.edu/df986nv4623</linkage>
+				<protocol>http</protocol>
+				<orFunct>
+					<OnFunctCd value="001"/>
+				</orFunct>
+				<orName>ZIPCODE.shp</orName>
+			</onLineSrc>
+			<transSize Sync="TRUE">0.250</transSize>
+		</distTranOps>
+		<distributor>
+			<distorCont>
+				<rpOrgName>Stanford Geospatial Center</rpOrgName>
+				<rpCntInfo>
+					<cntAddress addressType="physical">
+						<delPoint>Branner Earth Sciences Library</delPoint>
+						<city>Stanford</city>
+						<adminArea>California</adminArea>
+						<postCode>94305</postCode>
+						<eMailAdd>brannerlibrary@stanford.edu</eMailAdd>
+						<delPoint>Mitchell Building, 2nd Floor</delPoint>
+						<delPoint>397 Panama Mall</delPoint>
+					</cntAddress>
+					<cntPhone>
+						<voiceNum tddtty="">650-723-2746</voiceNum>
+					</cntPhone>
+				</rpCntInfo>
+				<displayName>Stanford Geospatial Center</displayName>
+				<displayName>Stanford Geospatial Center</displayName>
+				<role>
+					<RoleCd value="005"/>
+				</role>
+				<displayName>Stanford Geospatial Center</displayName>
+			</distorCont>
+		</distributor>
+		<distFormat>
+			<formatName Sync="TRUE">Shapefile</formatName>
+		</distFormat>
+	</distInfo>
+	<dqInfo>
+		<dqScope>
+			<scpLvl>
+				<ScopeCd value="005"/>
+			</scpLvl>
+		</dqScope>
+	</dqInfo>
+	<mdHrLvName Sync="TRUE">dataset</mdHrLvName>
+	<refSysInfo>
+		<RefSystem>
+			<refSysID>
+				<identCode Sync="TRUE" code="26910"/>
+				<idCodeSpace Sync="TRUE">EPSG</idCodeSpace>
+				<idVersion Sync="TRUE">8.6.2</idVersion>
+			</refSysID>
+		</RefSystem>
+	</refSysInfo>
+	<spatRepInfo>
+		<VectSpatRep><geometObjs Name="ZIPCODE"><geoObjTyp><GeoObjTypCd value="002" Sync="TRUE"></GeoObjTypCd></geoObjTyp><geoObjCnt Sync="TRUE">266</geoObjCnt></geometObjs><topLvl><TopoLevCd value="001" Sync="TRUE"></TopoLevCd></topLvl></VectSpatRep></spatRepInfo>
+	<spdoinfo>
+		<ptvctinf><esriterm Name="ZIPCODE"><efeatyp Sync="TRUE">Simple</efeatyp><efeageom code="4" Sync="TRUE"></efeageom><esritopo Sync="TRUE">FALSE</esritopo><efeacnt Sync="TRUE">266</efeacnt><spindex Sync="TRUE">TRUE</spindex><linrefer Sync="TRUE">FALSE</linrefer></esriterm></ptvctinf></spdoinfo>
+	<eainfo>
+		<detailed Name="ZIPCODE">
+			<enttyp>
+				<enttypl Sync="TRUE">ZIPCODE</enttypl>
+				<enttypt Sync="TRUE">Feature Class</enttypt>
+				<enttypc Sync="TRUE">266</enttypc>
+			</enttyp>
+			<attr>
+				<attrlabl Sync="TRUE">FID</attrlabl>
+				<attalias Sync="TRUE">FID</attalias>
+				<attrtype Sync="TRUE">OID</attrtype>
+				<attwidth Sync="TRUE">4</attwidth>
+				<atprecis Sync="TRUE">0</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+				<attrdef Sync="TRUE">Internal feature number.</attrdef>
+				<attrdefs Sync="TRUE">Esri</attrdefs>
+				<attrdomv>
+					<udom Sync="TRUE">Sequential unique whole numbers that are automatically generated.</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">Shape</attrlabl>
+				<attalias Sync="TRUE">Shape</attalias>
+				<attrtype Sync="TRUE">Geometry</attrtype>
+				<attwidth Sync="TRUE">0</attwidth>
+				<atprecis Sync="TRUE">0</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+				<attrdef Sync="TRUE">Feature geometry.</attrdef>
+				<attrdefs Sync="TRUE">Esri</attrdefs>
+				<attrdomv>
+					<udom Sync="TRUE">Coordinates defining the features.</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">ZIPCODE_ID</attrlabl>
+				<attalias Sync="TRUE">ZIPCODE_ID</attalias>
+				<attrtype Sync="TRUE">Double</attrtype>
+				<attwidth Sync="TRUE">11</attwidth>
+				<atprecis Sync="TRUE">11</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">ZIP_CODE_5</attrlabl>
+				<attalias Sync="TRUE">ZIP_CODE_5</attalias>
+				<attrtype Sync="TRUE">String</attrtype>
+				<attwidth Sync="TRUE">5</attwidth>
+				<atprecis Sync="TRUE">0</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">AREA</attrlabl>
+				<attalias Sync="TRUE">AREA</attalias>
+				<attrtype Sync="TRUE">Double</attrtype>
+				<attwidth Sync="TRUE">19</attwidth>
+				<atprecis Sync="TRUE">18</atprecis>
+				<attscale Sync="TRUE">6</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">POPULATION</attrlabl>
+				<attalias Sync="TRUE">POPULATION</attalias>
+				<attrtype Sync="TRUE">Double</attrtype>
+				<attwidth Sync="TRUE">11</attwidth>
+				<atprecis Sync="TRUE">11</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">FAMILIES</attrlabl>
+				<attalias Sync="TRUE">FAMILIES</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">HOUSEHOLDS</attrlabl>
+				<attalias Sync="TRUE">HOUSEHOLDS</attalias>
+				<attrtype Sync="TRUE">Double</attrtype>
+				<attwidth Sync="TRUE">11</attwidth>
+				<atprecis Sync="TRUE">11</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">MALE</attrlabl>
+				<attalias Sync="TRUE">MALE</attalias>
+				<attrtype Sync="TRUE">Double</attrtype>
+				<attwidth Sync="TRUE">11</attwidth>
+				<atprecis Sync="TRUE">11</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">FEMALE</attrlabl>
+				<attalias Sync="TRUE">FEMALE</attalias>
+				<attrtype Sync="TRUE">Double</attrtype>
+				<attwidth Sync="TRUE">11</attwidth>
+				<atprecis Sync="TRUE">11</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">WHITE</attrlabl>
+				<attalias Sync="TRUE">WHITE</attalias>
+				<attrtype Sync="TRUE">Double</attrtype>
+				<attwidth Sync="TRUE">11</attwidth>
+				<atprecis Sync="TRUE">11</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">BLACK</attrlabl>
+				<attalias Sync="TRUE">BLACK</attalias>
+				<attrtype Sync="TRUE">Double</attrtype>
+				<attwidth Sync="TRUE">11</attwidth>
+				<atprecis Sync="TRUE">11</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">AM_INDIAN_</attrlabl>
+				<attalias Sync="TRUE">AM_INDIAN_</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">ASIAN_PACI</attrlabl>
+				<attalias Sync="TRUE">ASIAN_PACI</attalias>
+				<attrtype Sync="TRUE">Double</attrtype>
+				<attwidth Sync="TRUE">11</attwidth>
+				<atprecis Sync="TRUE">11</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">OTHER_RACE</attrlabl>
+				<attalias Sync="TRUE">OTHER_RACE</attalias>
+				<attrtype Sync="TRUE">Double</attrtype>
+				<attwidth Sync="TRUE">11</attwidth>
+				<atprecis Sync="TRUE">11</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">WHITE_SPEC</attrlabl>
+				<attalias Sync="TRUE">WHITE_SPEC</attalias>
+				<attrtype Sync="TRUE">Double</attrtype>
+				<attwidth Sync="TRUE">11</attwidth>
+				<atprecis Sync="TRUE">11</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">BLACK_SPEC</attrlabl>
+				<attalias Sync="TRUE">BLACK_SPEC</attalias>
+				<attrtype Sync="TRUE">Double</attrtype>
+				<attwidth Sync="TRUE">11</attwidth>
+				<atprecis Sync="TRUE">11</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">AMERICAN_I</attrlabl>
+				<attalias Sync="TRUE">AMERICAN_I</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">ESKIMO</attrlabl>
+				<attalias Sync="TRUE">ESKIMO</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">ALEUT</attrlabl>
+				<attalias Sync="TRUE">ALEUT</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">CHINESE</attrlabl>
+				<attalias Sync="TRUE">CHINESE</attalias>
+				<attrtype Sync="TRUE">Double</attrtype>
+				<attwidth Sync="TRUE">11</attwidth>
+				<atprecis Sync="TRUE">11</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">FILIPINO</attrlabl>
+				<attalias Sync="TRUE">FILIPINO</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">JAPANESE</attrlabl>
+				<attalias Sync="TRUE">JAPANESE</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">ASIAN_INDI</attrlabl>
+				<attalias Sync="TRUE">ASIAN_INDI</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">KOREAN</attrlabl>
+				<attalias Sync="TRUE">KOREAN</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">VIETNAMESE</attrlabl>
+				<attalias Sync="TRUE">VIETNAMESE</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">CAMBODIAN</attrlabl>
+				<attalias Sync="TRUE">CAMBODIAN</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">HMONG</attrlabl>
+				<attalias Sync="TRUE">HMONG</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">LAOTIAN</attrlabl>
+				<attalias Sync="TRUE">LAOTIAN</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">THAI</attrlabl>
+				<attalias Sync="TRUE">THAI</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">OTHER_ASIA</attrlabl>
+				<attalias Sync="TRUE">OTHER_ASIA</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">HAWAIIAN</attrlabl>
+				<attalias Sync="TRUE">HAWAIIAN</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">SAMOAN</attrlabl>
+				<attalias Sync="TRUE">SAMOAN</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">TONGAN</attrlabl>
+				<attalias Sync="TRUE">TONGAN</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">OTHER_POLY</attrlabl>
+				<attalias Sync="TRUE">OTHER_POLY</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">GUAMARIAN</attrlabl>
+				<attalias Sync="TRUE">GUAMARIAN</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">OTHER_MICR</attrlabl>
+				<attalias Sync="TRUE">OTHER_MICR</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">MELANESIAN</attrlabl>
+				<attalias Sync="TRUE">MELANESIAN</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">OTHER_PACI</attrlabl>
+				<attalias Sync="TRUE">OTHER_PACI</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">ITEM001</attrlabl>
+				<attalias Sync="TRUE">ITEM001</attalias>
+				<attrtype Sync="TRUE">Double</attrtype>
+				<attwidth Sync="TRUE">11</attwidth>
+				<atprecis Sync="TRUE">11</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">HISPANIC_O</attrlabl>
+				<attalias Sync="TRUE">HISPANIC_O</attalias>
+				<attrtype Sync="TRUE">Double</attrtype>
+				<attwidth Sync="TRUE">11</attwidth>
+				<atprecis Sync="TRUE">11</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">NOT_HISP</attrlabl>
+				<attalias Sync="TRUE">NOT_HISP</attalias>
+				<attrtype Sync="TRUE">Double</attrtype>
+				<attwidth Sync="TRUE">11</attwidth>
+				<atprecis Sync="TRUE">11</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">MEXICAN</attrlabl>
+				<attalias Sync="TRUE">MEXICAN</attalias>
+				<attrtype Sync="TRUE">Double</attrtype>
+				<attwidth Sync="TRUE">11</attwidth>
+				<atprecis Sync="TRUE">11</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">PUERTORICA</attrlabl>
+				<attalias Sync="TRUE">PUERTORICA</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">CUBAN</attrlabl>
+				<attalias Sync="TRUE">CUBAN</attalias>
+				<attrtype Sync="TRUE">Double</attrtype>
+				<attwidth Sync="TRUE">11</attwidth>
+				<atprecis Sync="TRUE">11</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">DOMINCAN</attrlabl>
+				<attalias Sync="TRUE">DOMINCAN</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">GUATEMALAN</attrlabl>
+				<attalias Sync="TRUE">GUATEMALAN</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">HONDURAN</attrlabl>
+				<attalias Sync="TRUE">HONDURAN</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">NICARAGUAN</attrlabl>
+				<attalias Sync="TRUE">NICARAGUAN</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">PANAMANIAN</attrlabl>
+				<attalias Sync="TRUE">PANAMANIAN</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">SALVADORAN</attrlabl>
+				<attalias Sync="TRUE">SALVADORAN</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">OTHER_CENT</attrlabl>
+				<attalias Sync="TRUE">OTHER_CENT</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">COLOMBIAN</attrlabl>
+				<attalias Sync="TRUE">COLOMBIAN</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">ECUADORIAN</attrlabl>
+				<attalias Sync="TRUE">ECUADORIAN</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">PERUVIAN</attrlabl>
+				<attalias Sync="TRUE">PERUVIAN</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">OTHER_S_AM</attrlabl>
+				<attalias Sync="TRUE">OTHER_S_AM</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">OTHER_HISP</attrlabl>
+				<attalias Sync="TRUE">OTHER_HISP</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">AGE_1</attrlabl>
+				<attalias Sync="TRUE">AGE_1</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">AGE_1_2</attrlabl>
+				<attalias Sync="TRUE">AGE_1_2</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">AGE_3_4</attrlabl>
+				<attalias Sync="TRUE">AGE_3_4</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">AGE_5</attrlabl>
+				<attalias Sync="TRUE">AGE_5</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">AGE_6</attrlabl>
+				<attalias Sync="TRUE">AGE_6</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">AGE_7_9</attrlabl>
+				<attalias Sync="TRUE">AGE_7_9</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">AGE_10_11</attrlabl>
+				<attalias Sync="TRUE">AGE_10_11</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">AGE_12_13</attrlabl>
+				<attalias Sync="TRUE">AGE_12_13</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">AGE_14</attrlabl>
+				<attalias Sync="TRUE">AGE_14</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">AGE_15</attrlabl>
+				<attalias Sync="TRUE">AGE_15</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">AGE_16</attrlabl>
+				<attalias Sync="TRUE">AGE_16</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">AGE_17</attrlabl>
+				<attalias Sync="TRUE">AGE_17</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">AGE_18</attrlabl>
+				<attalias Sync="TRUE">AGE_18</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">AGE_19</attrlabl>
+				<attalias Sync="TRUE">AGE_19</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">AGE_20</attrlabl>
+				<attalias Sync="TRUE">AGE_20</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">AGE_21</attrlabl>
+				<attalias Sync="TRUE">AGE_21</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">AGE_22_24</attrlabl>
+				<attalias Sync="TRUE">AGE_22_24</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">AGE_25_29</attrlabl>
+				<attalias Sync="TRUE">AGE_25_29</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">AGE_30_34</attrlabl>
+				<attalias Sync="TRUE">AGE_30_34</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">AGE_35_39</attrlabl>
+				<attalias Sync="TRUE">AGE_35_39</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">AGE_40_44</attrlabl>
+				<attalias Sync="TRUE">AGE_40_44</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">AGE_45_49</attrlabl>
+				<attalias Sync="TRUE">AGE_45_49</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">AGE_50_54</attrlabl>
+				<attalias Sync="TRUE">AGE_50_54</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">AGE_55_59</attrlabl>
+				<attalias Sync="TRUE">AGE_55_59</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">AGE_60_61</attrlabl>
+				<attalias Sync="TRUE">AGE_60_61</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">AGE_62_64</attrlabl>
+				<attalias Sync="TRUE">AGE_62_64</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">AGE_65_69</attrlabl>
+				<attalias Sync="TRUE">AGE_65_69</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">AGE_70_74</attrlabl>
+				<attalias Sync="TRUE">AGE_70_74</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">AGE_75_79</attrlabl>
+				<attalias Sync="TRUE">AGE_75_79</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">AGE_80_84</attrlabl>
+				<attalias Sync="TRUE">AGE_80_84</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">AGE_85</attrlabl>
+				<attalias Sync="TRUE">AGE_85</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">X1_PERSON_</attrlabl>
+				<attalias Sync="TRUE">X1_PERSON_</attalias>
+				<attrtype Sync="TRUE">Double</attrtype>
+				<attwidth Sync="TRUE">11</attwidth>
+				<atprecis Sync="TRUE">11</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">X2_PERSON_</attrlabl>
+				<attalias Sync="TRUE">X2_PERSON_</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">X3_PERSON_</attrlabl>
+				<attalias Sync="TRUE">X3_PERSON_</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">X4_PERSON_</attrlabl>
+				<attalias Sync="TRUE">X4_PERSON_</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">X5_PERSON_</attrlabl>
+				<attalias Sync="TRUE">X5_PERSON_</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">X6_PERSON_</attrlabl>
+				<attalias Sync="TRUE">X6_PERSON_</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">X7_PERSON_</attrlabl>
+				<attalias Sync="TRUE">X7_PERSON_</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">HH_MARR_W_</attrlabl>
+				<attalias Sync="TRUE">HH_MARR_W_</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">ITEM002</attrlabl>
+				<attalias Sync="TRUE">ITEM002</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">HH_M_W_CH_</attrlabl>
+				<attalias Sync="TRUE">HH_M_W_CH_</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">HH_M_W_O_C</attrlabl>
+				<attalias Sync="TRUE">HH_M_W_O_C</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">HH_F_W_CH_</attrlabl>
+				<attalias Sync="TRUE">HH_F_W_CH_</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">HH_F_W_O_C</attrlabl>
+				<attalias Sync="TRUE">HH_F_W_O_C</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">HH_NONFAMI</attrlabl>
+				<attalias Sync="TRUE">HH_NONFAMI</attalias>
+				<attrtype Sync="TRUE">Double</attrtype>
+				<attwidth Sync="TRUE">11</attwidth>
+				<atprecis Sync="TRUE">11</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">FAM_MARR_W</attrlabl>
+				<attalias Sync="TRUE">FAM_MARR_W</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">ITEM003</attrlabl>
+				<attalias Sync="TRUE">ITEM003</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">FAM_M_W_CH</attrlabl>
+				<attalias Sync="TRUE">FAM_M_W_CH</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">FAM_M_W_O_</attrlabl>
+				<attalias Sync="TRUE">FAM_M_W_O_</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">FAM_F_W_CH</attrlabl>
+				<attalias Sync="TRUE">FAM_F_W_CH</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">FAM_F_W_O_</attrlabl>
+				<attalias Sync="TRUE">FAM_F_W_O_</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">MALE_SINGL</attrlabl>
+				<attalias Sync="TRUE">MALE_SINGL</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">MALE_MARRI</attrlabl>
+				<attalias Sync="TRUE">MALE_MARRI</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">MALE_SEPAR</attrlabl>
+				<attalias Sync="TRUE">MALE_SEPAR</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">MALE_OTHER</attrlabl>
+				<attalias Sync="TRUE">MALE_OTHER</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">MALE_WIDOW</attrlabl>
+				<attalias Sync="TRUE">MALE_WIDOW</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">MALE_DIVOR</attrlabl>
+				<attalias Sync="TRUE">MALE_DIVOR</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">FEMALE_SIN</attrlabl>
+				<attalias Sync="TRUE">FEMALE_SIN</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">FEMALE_MAR</attrlabl>
+				<attalias Sync="TRUE">FEMALE_MAR</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">FEMALE_SEP</attrlabl>
+				<attalias Sync="TRUE">FEMALE_SEP</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">FEMALE_OTH</attrlabl>
+				<attalias Sync="TRUE">FEMALE_OTH</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">FEMALE_WID</attrlabl>
+				<attalias Sync="TRUE">FEMALE_WID</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">FEMALE_DIV</attrlabl>
+				<attalias Sync="TRUE">FEMALE_DIV</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">LANG_ENGLI</attrlabl>
+				<attalias Sync="TRUE">LANG_ENGLI</attalias>
+				<attrtype Sync="TRUE">Double</attrtype>
+				<attwidth Sync="TRUE">11</attwidth>
+				<atprecis Sync="TRUE">11</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">LANG_GERMA</attrlabl>
+				<attalias Sync="TRUE">LANG_GERMA</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">LANG_YIDDI</attrlabl>
+				<attalias Sync="TRUE">LANG_YIDDI</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">LANG_OTH_W</attrlabl>
+				<attalias Sync="TRUE">LANG_OTH_W</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">LANG_SCAND</attrlabl>
+				<attalias Sync="TRUE">LANG_SCAND</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">LANG_GREEK</attrlabl>
+				<attalias Sync="TRUE">LANG_GREEK</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">LANG_INDIC</attrlabl>
+				<attalias Sync="TRUE">LANG_INDIC</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">LANG_ITALI</attrlabl>
+				<attalias Sync="TRUE">LANG_ITALI</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">6</attwidth>
+				<atprecis Sync="TRUE">6</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+		</detailed>
+	</eainfo>
+	<mdDateSt Sync="TRUE">20151005</mdDateSt>
+	<Binary>
+		<Thumbnail>
+			<Data EsriPropertyType="PictureX">/9j/4AAQSkZJRgABAQEAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0a
+HBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIy
+MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCACFAMgDASIA
+AhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQA
+AAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3
+ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWm
+p6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEA
+AwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSEx
+BhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElK
+U1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3
+uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+iii
+gAooooAKKKa5ZY2KLuYAkLnGT6ZoAdRWb9ruHjmWRljdFJZVjJYD255/KmqwnCyW80hXGdrM4DA4
+5B/z1rlni6cXbUrlZoPcQRNtkmjRvRmANN+12w/5eIf++xVVHEJYSKU3HJcuWBPTqfwqEyreyvBF
+cx+WB8+zDEjHTPbnHY1g8c76R0HymnFNFPGJIZEkQ9GRgR+lPrK3PaTwcbztbzHA25UYHQcZGc/g
+cda1FZWGVII9Qa66NZVY3RLVhskiRLudtq5Aye1EcscoJjkVwOu05qtey/NHFglSw8wjsDkD8zjp
+S7vKnRz91vkbHueD+fH41MsQo1VTC2ly3RRRXQIKKKKACiiigAooooAKKKKACiiigAooooAKKKKA
+CiiigCne26llulj3yRqVYAcsh6j3Pcf/AF6gtbaGMCWKR3UglctwAfQVp1QmtJ4nL2TRhGyWiccZ
+9Vx09x0PtznjxWHc1zQ3Ki7CXZIh3LJsII7gZ9hnv6e9NSLKI9u+wFAo3Lnjt+NVry7he0feNpQ/
+PHKnGem0j3PQjjp68taWPy5Gjufsm8Ls3jC89wD/AE9PevM5WlZll+NEVmcN5kg+VmOM/TjpVa3i
+eSGYLMy7uR6ZIyCQMZ4IGOnFZqSyxCHZsWJ0GN8g3ygvzyCScgjr6nJPWrn2gXNsJLGN1wAVYY2M
+uPUHuOmOR7VSUo6pgOggikPlzRRsroQuxcAYOCM9cnPX2/O0gaQzwSjcikbWJ5II/p6/1FQxyWUX
+lmHLt91FDElc445PHapW8+SVWSPysY3M7DJHpgZB/Pufxht3At20jOrLJ99GI+o7H8v61PVEtIlz
++6K5KfMGHoePp1NEks5mjzJ5aOSoVQCRxnkkH0P516dPGQ5E5PUhxdy9RVPbIetxKR/wEfyFEUty
+06rlHjHDsIyuOD3zzz6CtaeKhUfLG4nFouUUUV0CCiiigAooooAKKKKACiiigAooooAKKKKACiii
+gDOvxDbTx3ZjUu7CJjwCepXGfQk/mfSqkjwrdlzbu2/926HBCn1Az3yM/h6YrYlhinULLGrqCGAY
+ZwR0NZEUlna3lxG0CxSRlnDbOSDzwR1Pt1rz8XR/5eIuL6Ecr27AhX8yKblEyfkPHVT/AA8Z6cel
+RefDJa27IZUEwVjF94MTjpnk8dMZFbDRxSx4KqyNz9feq6wpCvkEnLEFGzyxHOP0+mK4FJFCRD5p
+If3qxOfkckht2Mkc89u/uPSrSjy4wCxO0YLN39zVdle6shnbvyGwrEDIOcZ6jp+FU9sU4eVZmeUq
+RESM5ynfaOev04Hfmla4y5JcwJIsiyo2SEYKck88YA9z+pprzC5iWSIkxq6N8o5PI7dcY/P6dXAt
+NFBJHlmRud/y9iDn8arSabK94LhpEZlIKlcpgc5XjOMk5J79KFbqI0FkR1LAkAdcgjH50+ymie1g
+VZUZvLHAYE9KpxwwySSI8Kbxglg5Y85HU89B+VWkIa8QAg7VO4enTFdWDnyT5UtxSWhbooor1jMK
+KKKACiiigAooooAKKKKACiiigAooooAKKKKACsu8tvtMkrxkLImFQ54OOoJHY5wfpWpVOCyZUPny
+l5NxO5CVH5Z9c1jXhOceWI07FWG/F3C32ZD5gGOfuqcevfseOxFVnOyZWvATIqkZXqACDuGF55xx
+nvjknFS31v5STrFJ5NwyHbIo++OeMD+L6e3riqLebbW6XNy6SsHET+YeCOeTnoeeP/r15Tp8smma
+XNNLVtQSQSO8SH5X2Eq7Y6Z9Mgiq1476bPGjOqQTYRpMng9Oufl4789BUtjdC3sB5Qja3disBjXA
+BOTg+g9/0qrFM2pzxh5BKgIyGXG0DBPGO5wM/l3z1TjSjTV1qSr3LETN9nimS52RIDtB5UR54Lc9
+cY79fxqFNYgubV/KuyjsxETtERn0ByMdj+HoafMbSwcCKFIwGBaQfdX2+uM8ccfhTIT57ANGsrlt
+5iYKVAB5b0B54I65Ge5HLeHLt8xlnT7i2eMCF5HZ8k71OR359Op9jzirVpcFYIUaEg8KxBBBbPJH
+qM5OfxqihcmOPy5DJvLSoJeMdfX1b6de1STGfylM0UaRpKrgq+GVQwPTGM4znBq6FRwnp1Bq6Nii
+iivYMwooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAGSRrKhRs49jgiqklmIneaJDJuGGR
+jk474J/l7VeoqJ04zVpIadjndNFtb288N7JGnnE/6K/DMSOeM++AAB/LGXfk2+rqbaZxaO+xYwzA
+B9oBGBz69OmcdjTNSsj/AGk8hc/LIdmSMD5uCcnqMDr+VdHqWlfbLdJUjCXQIY7Dn6gZ4P6Z9s1g
+1zwcV0HsZktwkkLGIwC3jY7YzkPll7Ae7EY46da0bMzoCSiOrEnIkyx/PPPQdfxrLs757HcskO3C
+bpF2N8pzyM85POBk5P0wTekkjilUxCFt37yOVcE8HBXGRnggde/tXmzi1pYtFyUiWGO4XIZRlOBk
+5GMfrUE33AZponkiXO1Y92CCDkjPt7dadaRiSLy5ndzHtABBUYwOccHGfX0qxOqrZyqoAARsAD2q
+E+WSAupuMalwA+BuAOQDTqKK98yCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAO
+ZktWu3mkSML5qAynJxySQOD82Af89BesNdgn/dTny5FOwyE/IxHoSBzx07VZ8tLJ9gdjG+5wD/Cc
+9Bjr97ge1Ymq6XG0Dv5RWHj5Q2CpJ6gg+uODn2x0rzVVlSquMupdrov6hGReM6ohLgMjGLdngDrk
+f5I74qoEeJY3iZyy5LFpGJXp65HU9O2efSq9ne7d8c3mN5KsY9vPlgDOVz1HHqeo7Gp4Lm6kcR3S
+RR+YCS5fqCuOwwBgA4z6e+M62suZdRo1bVjLukkwJR8jKOgI5x79f/1VLcAm2lAGSUP8qzmmEEny
+3Mh8xt3IUB8Lzs4+h9O2c1dLGNY5fOd0ZgCCByDwOg9SK5GtblGgCGAIIIPIIpapwL5V4wUALIpc
+gf3gQM/jkfl+VyvdpVFUgpIyasFFFFaCCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAq
+6goa2VsHckiFSvUHIHH4E1Qdg0jozzFcK+6RSq5B6dBjoP8APXRvIjLAAFZirBtqnGeazltFllMk
+G5pG2lpmwcjpnsememPfNefi4SlUSS6FxehRax820R5Y0jeIEM7PtfJ6ZO3pg9Pf1FUZJZDcNGsJ
+VhIrqpZ0AO3ABGABnAPOOnFblzZTRfvpXjkVWVmcIQRjHJAPIGM54x9Mio7ixfmVmYvkEyR9R0z8
+uDkcAd8fnXPJSpu0x77FWwlnaALGqKzMBvYDAPuQeTxx9ce9aoeIWwikTOBsMYBbp2//AF1lT2yK
+Ymgid3VNrxsg3KuDjJ64JwM4J4OO9adtaGKQzS+UX24G1Mbep4OenJrGdtxoi8pPPG+JvMIXykf5
+zwSSAe3vzjpWzVCd1SMzqQWiyRjnn0/HpV+vRwLTgyJBRRRXaSFFFFABRRRQAUUUUAFFFFABRRRQ
+AUUUUAFFFFABRRRQAVFHbxxSySJuBfqM5HUn8OpqWiiwCModSrDKkYIqkbV7Z/8ARUBibgx7sBDz
+yPb2FXqKipTjUVpIadjKaK+huJHZoRbtjLLkuDwM88AY+uPem3CXFx+6KZidSpZHwOc8nnP4e/Wt
+YgEEHoapNC9ov7pd9uo+7n5k9gO4/X61w18Lb3qaKUu5Xli+zRSmMIIjGF2524PPP6j8q1InEsSS
+BWUMobDDBGfUVVFqLiMtMZF3fdAYjAx3HQn61aRSkaqzs5AALNjLe5xgflW+FpSpxfN1FJ3HUUUV
+1EhRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUU
+AFFFFAH/2Q==</Data>
+		</Thumbnail>
+	</Binary>
+</metadata>
