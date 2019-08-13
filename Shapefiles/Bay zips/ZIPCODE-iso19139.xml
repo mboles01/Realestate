@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MD_Metadata xmlns="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:srv="http://www.isotc211.org/2005/srv" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <fileIdentifier>
+    <gco:CharacterString>edu.stanford.purl:df986nv4623</gco:CharacterString>
+  </fileIdentifier>
+  <language>
+    <LanguageCode codeList="http://www.loc.gov/standards/iso639-2/php/code_list.php" codeListValue="eng" codeSpace="ISO639-2">eng</LanguageCode>
+  </language>
+  <characterSet>
+    <MD_CharacterSetCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode" codeListValue="utf8" codeSpace="ISOTC211/19115">utf8</MD_CharacterSetCode>
+  </characterSet>
+  <parentIdentifier>
+    <gco:CharacterString>http://www.purl.stanford.edu/bq589tv8583.mods</gco:CharacterString>
+  </parentIdentifier>
+  <hierarchyLevel>
+    <MD_ScopeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset" codeSpace="ISOTC211/19115">dataset</MD_ScopeCode>
+  </hierarchyLevel>
+  <hierarchyLevelName>
+    <gco:CharacterString>dataset</gco:CharacterString>
+  </hierarchyLevelName>
+  <contact>
+    <CI_ResponsibleParty>
+      <organisationName>
+        <gco:CharacterString>Stanford Geospatial Center</gco:CharacterString>
+      </organisationName>
+      <contactInfo>
+        <CI_Contact>
+          <phone>
+            <CI_Telephone>
+              <voice>
+                <gco:CharacterString>650-723-2746</gco:CharacterString>
+              </voice>
+            </CI_Telephone>
+          </phone>
+          <address>
+            <CI_Address>
+              <deliveryPoint>
+                <gco:CharacterString>Branner Earth Sciences Library</gco:CharacterString>
+              </deliveryPoint>
+              <deliveryPoint>
+                <gco:CharacterString>Mitchell Building, 2nd Floor</gco:CharacterString>
+              </deliveryPoint>
+              <deliveryPoint>
+                <gco:CharacterString>397 Panama Mall</gco:CharacterString>
+              </deliveryPoint>
+              <city>
+                <gco:CharacterString>Stanford</gco:CharacterString>
+              </city>
+              <administrativeArea>
+                <gco:CharacterString>California</gco:CharacterString>
+              </administrativeArea>
+              <postalCode>
+                <gco:CharacterString>94305</gco:CharacterString>
+              </postalCode>
+              <electronicMailAddress>
+                <gco:CharacterString>brannerlibrary@stanford.edu</gco:CharacterString>
+              </electronicMailAddress>
+            </CI_Address>
+          </address>
+        </CI_Contact>
+      </contactInfo>
+      <role>
+        <CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="pointOfContact" codeSpace="ISOTC211/19115">pointOfContact</CI_RoleCode>
+      </role>
+    </CI_ResponsibleParty>
+  </contact>
+  <dateStamp>
+    <gco:Date>2015-10-05</gco:Date>
+  </dateStamp>
+  <metadataStandardName>
+    <gco:CharacterString>ISO 19139 Geographic Information - Metadata - Implementation Specification</gco:CharacterString>
+  </metadataStandardName>
+  <metadataStandardVersion>
+    <gco:CharacterString>2007</gco:CharacterString>
+  </metadataStandardVersion>
+  <dataSetURI>
+    <gco:CharacterString>http://purl.stanford.edu/df986nv4623</gco:CharacterString>
+  </dataSetURI>
+  <spatialRepresentationInfo>
+    <MD_VectorSpatialRepresentation>
+      <topologyLevel>
+        <MD_TopologyLevelCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_TopologyLevelCode" codeListValue="geometryOnly" codeSpace="ISOTC211/19115">geometryOnly</MD_TopologyLevelCode>
+      </topologyLevel>
+      <geometricObjects>
+        <MD_GeometricObjects>
+          <geometricObjectType>
+            <MD_GeometricObjectTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_GeometricObjectTypeCode" codeListValue="composite" codeSpace="ISOTC211/19115">composite</MD_GeometricObjectTypeCode>
+          </geometricObjectType>
+          <geometricObjectCount>
+            <gco:Integer>266</gco:Integer>
+          </geometricObjectCount>
+        </MD_GeometricObjects>
+      </geometricObjects>
+    </MD_VectorSpatialRepresentation>
+  </spatialRepresentationInfo>
+  <referenceSystemInfo>
+    <MD_ReferenceSystem>
+      <referenceSystemIdentifier>
+        <RS_Identifier>
+          <code>
+            <gco:CharacterString>26910</gco:CharacterString>
+          </code>
+          <codeSpace>
+            <gco:CharacterString>EPSG</gco:CharacterString>
+          </codeSpace>
+          <version>
+            <gco:CharacterString>8.6.2</gco:CharacterString>
+          </version>
+        </RS_Identifier>
+      </referenceSystemIdentifier>
+    </MD_ReferenceSystem>
+  </referenceSystemInfo>
+  <identificationInfo>
+    <MD_DataIdentification>
+      <citation>
+        <CI_Citation>
+          <title>
+            <gco:CharacterString>Census Zip Code Tabulation Areas, 2000 - San Francisco Bay Area, California</gco:CharacterString>
+          </title>
+          <date>
+            <CI_Date>
+              <date>
+                <gco:Date>2002-05-28</gco:Date>
+              </date>
+              <dateType>
+                <CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication" codeSpace="ISOTC211/19115">publication</CI_DateTypeCode>
+              </dateType>
+            </CI_Date>
+          </date>
+          <identifier>
+            <MD_Identifier>
+              <code>
+                <gco:CharacterString>http://purl.stanford.edu/df986nv4623</gco:CharacterString>
+              </code>
+            </MD_Identifier>
+          </identifier>
+          <citedResponsibleParty>
+            <CI_ResponsibleParty>
+              <organisationName>
+                <gco:CharacterString>California. Metropolitan Transportation Commission</gco:CharacterString>
+              </organisationName>
+              <role>
+                <CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="originator" codeSpace="ISOTC211/19115">originator</CI_RoleCode>
+              </role>
+            </CI_ResponsibleParty>
+          </citedResponsibleParty>
+          <citedResponsibleParty>
+            <CI_ResponsibleParty>
+              <organisationName>
+                <gco:CharacterString>California. Metropolitan Transportation Commission</gco:CharacterString>
+              </organisationName>
+              <contactInfo>
+                <CI_Contact>
+                  <address>
+                    <CI_Address>
+                      <city>
+                        <gco:CharacterString>Oakland</gco:CharacterString>
+                      </city>
+                      <administrativeArea>
+                        <gco:CharacterString>California</gco:CharacterString>
+                      </administrativeArea>
+                      <country>
+                        <gco:CharacterString>US</gco:CharacterString>
+                      </country>
+                    </CI_Address>
+                  </address>
+                </CI_Contact>
+              </contactInfo>
+              <role>
+                <CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="publisher" codeSpace="ISOTC211/19115">publisher</CI_RoleCode>
+              </role>
+            </CI_ResponsibleParty>
+          </citedResponsibleParty>
+          <presentationForm>
+            <CI_PresentationFormCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_PresentationFormCode" codeListValue="mapDigital" codeSpace="ISOTC211/19115">mapDigital</CI_PresentationFormCode>
+          </presentationForm>
+          <collectiveTitle>
+            <gco:CharacterString>California Metropolitan Transportation Comission GIS Data</gco:CharacterString>
+          </collectiveTitle>
+        </CI_Citation>
+      </citation>
+      <abstract>
+        <gco:CharacterString>This polygon shapefile represents ZIP Code Tabulation Areas (ZCTAs) for the entire state. ZCTAs are a new statistical entity developed by the U.S. Census Bureau for tabulating summary statistics from Census 2000. This new entity was developed to overcome the difficulties in precisely defining the land area covered by each ZIP Code. Defining the extent of an area is necessary in order to accurately tabulate census data for that area. ZCTAs are generalized area representations of U.S. Postal Service (USPS) ZIP Code service areas. Simply put, each one is built by aggregating the Census 2000 blocks, whose addresses use a given ZIP Code, into a ZCTA which gets that ZIP Code assigned as its ZCTA code. They represent the majority USPS five-digit ZIP Code found in a given area. For those areas where it is difficult to determine the prevailing five-digit ZIP Code, the higher-level three-digit ZIP Code is used for the ZCTA code. ZCTAs are created based on the following criteria: - ZCTAs follow census block boundaries. The ZCTA code for each census block generally represents the majority ZIP Code of the addresses within that census block. - ZCTAs are not exact representations of the USPS's ZIP Code delivery areas. - ZCTA codes cover all land and water areas. - ZCTAs include some dedicated post office box ZIP Codes in areas served only by post office boxes. - ZCTAs representing post office box ZIP Codes generally have more than 10 addresses. - ZCTAs exclude unique, single delivery point ZIP Codes, such as those for firms and organizations. - ZCTAs are distinct from other Census Bureau statistical areas, such as census tracts, because they are not stable over time and are computer-delineated based on the location of addresses at the time of Census 2000 rather than manually delineated by local program participants or Census Bureau staff before the census. - ZCTAs are distinct from other representations of ZIP Codes because they are based on address information and ZIP Codes collected or verified during Census 2000 operations. - ZCTAs frequently cross county and place boundaries and may occasionally cross from one state into another. ZCTAs are approximate area representations of United States Postal Service (USPS) ZIP Code service areas that the U.S. Census Bureau is creating for statistical purposes for Census 2000. Data users should not use ZCTAs to identify the official USPS ZIP Code for mail delivery. Each Census 2000 tabulation block will have a single ZCTA code that will reflect the majority ZIP Code for addresses within that tabulation block. A ZCTA may not exist for every USPS ZIP Code. For instance, a special purpose ZIP Code may represent a point location that does not characterize the majority of the addresses for a Census 2000 tabulation block. Under these circumstances the special purpose ZIP Code will not appear as a ZCTA. The U.S. Census Bureau will be identifying ZCTAs by using a five-character alpha-numeric code. The first three characters will represent the 3-digit ZIP Code and may contain leading zeros. For ZCTAs defined only by a 3-digit ZIP Code the last two characters of the ZCTA code will be "XX." For example, ZCTA code "290XX" will represent the generic 3-digit ZIP Code290 where no 5-digit ZIP Code was available. For ZCTA codes that will reflect the 5-digit ZIP Code, the last two characters of the ZCTA code will be numeric. For example, the ZCTA code "00601" will represent the 5-digit ZIP Code 00601. The ZCTA delineation process will not recognize ZCTA codes ending in "00", such as "29000", as valid 5-digit ZCTA codes. Some water features will have a 3-digit ZCTA code followed by "HH", for example "290HH". These codes will apply only to water features and usually will belong to water features located along the edges of 5-digit ZCTAs. The codes will indicate that the water feature does not clearly fall within one 5-digit ZCTA and is distinct from the 3-digit ZCTA code that will be assigned to land areas. In effect, these codes will identify unassigned water areas. The ZCTA delineation process will attempt to assign a 5-digit ZCTA code to areas with no ZIP Code or address data. Where reliable data are unavailable for extensive areas, the ZCTA code may represent the more general 3-digit ZIP Code. This layer is part of the Bay Area Metropolitan Transportation Commission (MTC) GIS Maps and Data collection.</gco:CharacterString>
+      </abstract>
+      <purpose>
+        <gco:CharacterString>This dataset is intended for researchers, students, and policy makers for reference and mapping purposes, and may be used for basic applications such as viewing, querying, and map output production, or to provide a basemap to support graphical overlays and analysis with other spatial data.</gco:CharacterString>
+      </purpose>
+      <credit>
+        <gco:CharacterString>California, Metropolitan Transportation Commission. (2002). Census Zip Code Tabulation Areas, 2000 - San Francisco Bay Area, California. MTC. Available at: http://purl.stanford.edu/df986nv4623.</gco:CharacterString>
+      </credit>
+      <status>
+        <MD_ProgressCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ProgressCode" codeListValue="completed" codeSpace="ISOTC211/19115">completed</MD_ProgressCode>
+      </status>
+      <pointOfContact>
+        <CI_ResponsibleParty>
+          <organisationName>
+            <gco:CharacterString>California. Metropolitan Transportation Commission</gco:CharacterString>
+          </organisationName>
+          <contactInfo>
+            <CI_Contact>
+              <phone>
+                <CI_Telephone>
+                  <voice>
+                    <gco:CharacterString>510.817.5700</gco:CharacterString>
+                  </voice>
+                </CI_Telephone>
+              </phone>
+              <address>
+                <CI_Address>
+                  <deliveryPoint>
+                    <gco:CharacterString>101 Eighth Street</gco:CharacterString>
+                  </deliveryPoint>
+                  <city>
+                    <gco:CharacterString>Oakland</gco:CharacterString>
+                  </city>
+                  <administrativeArea>
+                    <gco:CharacterString>California</gco:CharacterString>
+                  </administrativeArea>
+                  <country>
+                    <gco:CharacterString>US</gco:CharacterString>
+                  </country>
+                  <electronicMailAddress>
+                    <gco:CharacterString>info@mtc.ca.gov</gco:CharacterString>
+                  </electronicMailAddress>
+                </CI_Address>
+              </address>
+            </CI_Contact>
+          </contactInfo>
+          <role>
+            <CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="pointOfContact" codeSpace="ISOTC211/19115">pointOfContact</CI_RoleCode>
+          </role>
+        </CI_ResponsibleParty>
+      </pointOfContact>
+      <resourceMaintenance>
+        <MD_MaintenanceInformation>
+          <maintenanceAndUpdateFrequency>
+            <MD_MaintenanceFrequencyCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_MaintenanceFrequencyCode" codeListValue="asNeeded" codeSpace="ISOTC211/19115">asNeeded</MD_MaintenanceFrequencyCode>
+          </maintenanceAndUpdateFrequency>
+        </MD_MaintenanceInformation>
+      </resourceMaintenance>
+      <descriptiveKeywords>
+        <MD_Keywords>
+          <keyword>
+            <gco:CharacterString>San Francisco Bay Area (Calif.)</gco:CharacterString>
+          </keyword>
+          <keyword>
+            <gco:CharacterString>San Francisco (Calif.)</gco:CharacterString>
+          </keyword>
+          <keyword>
+            <gco:CharacterString>Contra Costa County (Calif.)</gco:CharacterString>
+          </keyword>
+          <keyword>
+            <gco:CharacterString>Napa County (Calif.)</gco:CharacterString>
+          </keyword>
+          <keyword>
+            <gco:CharacterString>San Mateo County (Calif.)</gco:CharacterString>
+          </keyword>
+          <keyword>
+            <gco:CharacterString>San Mateo County (Calif.)</gco:CharacterString>
+          </keyword>
+          <keyword>
+            <gco:CharacterString>Solano County (Calif.)</gco:CharacterString>
+          </keyword>
+          <keyword>
+            <gco:CharacterString>Sonoma County (Calif.)</gco:CharacterString>
+          </keyword>
+          <keyword>
+            <gco:CharacterString>Marin County (Calif.)</gco:CharacterString>
+          </keyword>
+          <keyword>
+            <gco:CharacterString>Alameda County (Calif.)</gco:CharacterString>
+          </keyword>
+          <type>
+            <MD_KeywordTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="place" codeSpace="ISOTC211/19115">place</MD_KeywordTypeCode>
+          </type>
+          <thesaurusName>
+            <CI_Citation>
+              <title>
+                <gco:CharacterString>geonames</gco:CharacterString>
+              </title>
+              <date>
+                <CI_Date>
+                  <date>
+                    <gco:Date>2012-11-01</gco:Date>
+                  </date>
+                  <dateType>
+                    <CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="revision" codeSpace="ISOTC211/19115">revision</CI_DateTypeCode>
+                  </dateType>
+                </CI_Date>
+              </date>
+              <edition>
+                <gco:CharacterString>3.1</gco:CharacterString>
+              </edition>
+              <identifier>
+                <MD_Identifier>
+                  <code>
+                    <gco:CharacterString>http://www.geonames.org/ontology#</gco:CharacterString>
+                  </code>
+                </MD_Identifier>
+              </identifier>
+            </CI_Citation>
+          </thesaurusName>
+        </MD_Keywords>
+      </descriptiveKeywords>
+      <descriptiveKeywords>
+        <MD_Keywords>
+          <keyword>
+            <gco:CharacterString>2000</gco:CharacterString>
+          </keyword>
+          <type>
+            <MD_KeywordTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="temporal" codeSpace="ISOTC211/19115">temporal</MD_KeywordTypeCode>
+          </type>
+        </MD_Keywords>
+      </descriptiveKeywords>
+      <descriptiveKeywords>
+        <MD_Keywords>
+          <keyword>
+            <gco:CharacterString>Census</gco:CharacterString>
+          </keyword>
+          <keyword>
+            <gco:CharacterString>Zip codes</gco:CharacterString>
+          </keyword>
+          <type>
+            <MD_KeywordTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="theme" codeSpace="ISOTC211/19115">theme</MD_KeywordTypeCode>
+          </type>
+          <thesaurusName>
+            <CI_Citation>
+              <title>
+                <gco:CharacterString>lcsh</gco:CharacterString>
+              </title>
+              <date>
+                <CI_Date>
+                  <date>
+                    <gco:Date>2011-04-26</gco:Date>
+                  </date>
+                  <dateType>
+                    <CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="revision" codeSpace="ISOTC211/19115">revision</CI_DateTypeCode>
+                  </dateType>
+                </CI_Date>
+              </date>
+              <identifier>
+                <MD_Identifier>
+                  <code>
+                    <gco:CharacterString>http://id.loc.gov/authorities/subjects.html</gco:CharacterString>
+                  </code>
+                </MD_Identifier>
+              </identifier>
+            </CI_Citation>
+          </thesaurusName>
+        </MD_Keywords>
+      </descriptiveKeywords>
+      <resourceConstraints>
+        <MD_LegalConstraints>
+          <useConstraints>
+            <MD_RestrictionCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_RestrictionCode" codeListValue="otherRestrictions" codeSpace="ISOTC211/19115">otherRestrictions</MD_RestrictionCode>
+          </useConstraints>
+          <otherConstraints>
+            <gco:CharacterString>No restrictions on access or use.</gco:CharacterString>
+          </otherConstraints>
+        </MD_LegalConstraints>
+      </resourceConstraints>
+      <aggregationInfo>
+        <MD_AggregateInformation>
+          <aggregateDataSetName>
+            <CI_Citation>
+              <title>
+                <gco:CharacterString>California Metropolitan Transportation Comission GIS Data</gco:CharacterString>
+              </title>
+              <date>
+                <CI_Date>
+                  <date>
+                    <gco:Date>2010-01-01</gco:Date>
+                  </date>
+                  <dateType>
+                    <CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication" codeSpace="ISOTC211/19115">publication</CI_DateTypeCode>
+                  </dateType>
+                </CI_Date>
+              </date>
+              <identifier>
+                <MD_Identifier>
+                  <code>
+                    <gco:CharacterString>http://www.purl.stanford.edu/bq589tv8583</gco:CharacterString>
+                  </code>
+                </MD_Identifier>
+              </identifier>
+              <citedResponsibleParty>
+                <CI_ResponsibleParty>
+                  <organisationName>
+                    <gco:CharacterString>California. Metropolitan Transportation Commission</gco:CharacterString>
+                  </organisationName>
+                  <contactInfo>
+                    <CI_Contact>
+                      <phone>
+                        <CI_Telephone>
+                          <voice>
+                            <gco:CharacterString>510.817.5700</gco:CharacterString>
+                          </voice>
+                        </CI_Telephone>
+                      </phone>
+                      <address>
+                        <CI_Address>
+                          <deliveryPoint>
+                            <gco:CharacterString>101 Eighth Street</gco:CharacterString>
+                          </deliveryPoint>
+                          <city>
+                            <gco:CharacterString>Oakland</gco:CharacterString>
+                          </city>
+                          <administrativeArea>
+                            <gco:CharacterString>California</gco:CharacterString>
+                          </administrativeArea>
+                          <country>
+                            <gco:CharacterString>US</gco:CharacterString>
+                          </country>
+                          <electronicMailAddress>
+                            <gco:CharacterString>info@mtc.ca.gov</gco:CharacterString>
+                          </electronicMailAddress>
+                        </CI_Address>
+                      </address>
+                    </CI_Contact>
+                  </contactInfo>
+                  <role>
+                    <CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="publisher" codeSpace="ISOTC211/19115">publisher</CI_RoleCode>
+                  </role>
+                </CI_ResponsibleParty>
+              </citedResponsibleParty>
+              <citedResponsibleParty>
+                <CI_ResponsibleParty>
+                  <organisationName>
+                    <gco:CharacterString>California. Metropolitan Transportation Commission</gco:CharacterString>
+                  </organisationName>
+                  <role>
+                    <CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="originator" codeSpace="ISOTC211/19115">originator</CI_RoleCode>
+                  </role>
+                </CI_ResponsibleParty>
+              </citedResponsibleParty>
+            </CI_Citation>
+          </aggregateDataSetName>
+          <associationType>
+            <DS_AssociationTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#DS_AssociationTypeCode" codeListValue="largerWorkCitation" codeSpace="ISOTC211/19115">largerWorkCitation</DS_AssociationTypeCode>
+          </associationType>
+          <initiativeType>
+            <DS_InitiativeTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#DS_InitiativeTypeCode" codeListValue="collection" codeSpace="ISOTC211/19115">collection</DS_InitiativeTypeCode>
+          </initiativeType>
+        </MD_AggregateInformation>
+      </aggregationInfo>
+      <spatialRepresentationType>
+        <MD_SpatialRepresentationTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_SpatialRepresentationTypeCode" codeListValue="vector" codeSpace="ISOTC211/19115">vector</MD_SpatialRepresentationTypeCode>
+      </spatialRepresentationType>
+      <language>
+        <LanguageCode codeList="http://www.loc.gov/standards/iso639-2/php/code_list.php" codeListValue="eng" codeSpace="ISO639-2">eng</LanguageCode>
+      </language>
+      <characterSet>
+        <MD_CharacterSetCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode" codeListValue="utf8" codeSpace="ISOTC211/19115">utf8</MD_CharacterSetCode>
+      </characterSet>
+      <topicCategory>
+        <MD_TopicCategoryCode>boundaries</MD_TopicCategoryCode>
+      </topicCategory>
+      <topicCategory>
+        <MD_TopicCategoryCode>location</MD_TopicCategoryCode>
+      </topicCategory>
+      <environmentDescription>
+        <gco:CharacterString>Microsoft Windows 7 Version 6.1 (Build 7601) Service Pack 1; Esri ArcGIS 10.3.1.4959</gco:CharacterString>
+      </environmentDescription>
+      <extent>
+        <EX_Extent>
+          <description>
+            <gco:CharacterString>ground condition</gco:CharacterString>
+          </description>
+          <temporalElement>
+            <EX_TemporalExtent>
+              <extent>
+                <gml:TimePeriod gml:id="idp43088">
+                  <gml:beginPosition>2000-01-01T00:00:00</gml:beginPosition>
+                  <gml:endPosition>2000-12-31T00:00:00</gml:endPosition>
+                </gml:TimePeriod>
+              </extent>
+            </EX_TemporalExtent>
+          </temporalElement>
+        </EX_Extent>
+      </extent>
+      <extent>
+        <EX_Extent>
+          <geographicElement>
+            <EX_GeographicBoundingBox>
+              <extentTypeCode>
+                <gco:Boolean>true</gco:Boolean>
+              </extentTypeCode>
+              <westBoundLongitude>
+                <gco:Decimal>-123.533132</gco:Decimal>
+              </westBoundLongitude>
+              <eastBoundLongitude>
+                <gco:Decimal>-121.340121</gco:Decimal>
+              </eastBoundLongitude>
+              <southBoundLatitude>
+                <gco:Decimal>36.891764</gco:Decimal>
+              </southBoundLatitude>
+              <northBoundLatitude>
+                <gco:Decimal>38.865918</gco:Decimal>
+              </northBoundLatitude>
+            </EX_GeographicBoundingBox>
+          </geographicElement>
+        </EX_Extent>
+      </extent>
+    </MD_DataIdentification>
+  </identificationInfo>
+  <contentInfo>
+    <MD_FeatureCatalogueDescription>
+      <complianceCode>
+        <gco:Boolean>false</gco:Boolean>
+      </complianceCode>
+      <language>
+        <LanguageCode codeList="http://www.loc.gov/standards/iso639-2/php/code_list.php" codeListValue="eng" codeSpace="ISO639-2">eng</LanguageCode>
+      </language>
+      <includedWithDataset>
+        <gco:Boolean>true</gco:Boolean>
+      </includedWithDataset>
+      <featureCatalogueCitation>
+        <CI_Citation>
+          <title>
+            <gco:CharacterString>Feature catalog for Census Zip Code Tabulation Areas, 2000 - San Francisco Bay Area, California</gco:CharacterString>
+          </title>
+          <date>
+            <CI_Date>
+              <date>
+                <gco:Date>2010-01-01</gco:Date>
+              </date>
+              <dateType>
+                <CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication" codeSpace="ISOTC211/19115">publication</CI_DateTypeCode>
+              </dateType>
+            </CI_Date>
+          </date>
+          <identifier>
+            <MD_Identifier>
+              <code>
+                <gco:CharacterString>a20d24aa-f659-4e4d-b0de-d5709adad1e7</gco:CharacterString>
+              </code>
+            </MD_Identifier>
+          </identifier>
+        </CI_Citation>
+      </featureCatalogueCitation>
+    </MD_FeatureCatalogueDescription>
+  </contentInfo>
+  <distributionInfo>
+    <MD_Distribution>
+      <distributionFormat>
+        <MD_Format>
+          <name>
+            <gco:CharacterString>Shapefile</gco:CharacterString>
+          </name>
+          <version gco:nilReason="missing"/>
+        </MD_Format>
+      </distributionFormat>
+      <distributor>
+        <MD_Distributor>
+          <distributorContact>
+            <CI_ResponsibleParty>
+              <organisationName>
+                <gco:CharacterString>Stanford Geospatial Center</gco:CharacterString>
+              </organisationName>
+              <contactInfo>
+                <CI_Contact>
+                  <phone>
+                    <CI_Telephone>
+                      <voice>
+                        <gco:CharacterString>650-723-2746</gco:CharacterString>
+                      </voice>
+                    </CI_Telephone>
+                  </phone>
+                  <address>
+                    <CI_Address>
+                      <deliveryPoint>
+                        <gco:CharacterString>Branner Earth Sciences Library</gco:CharacterString>
+                      </deliveryPoint>
+                      <deliveryPoint>
+                        <gco:CharacterString>Mitchell Building, 2nd Floor</gco:CharacterString>
+                      </deliveryPoint>
+                      <deliveryPoint>
+                        <gco:CharacterString>397 Panama Mall</gco:CharacterString>
+                      </deliveryPoint>
+                      <city>
+                        <gco:CharacterString>Stanford</gco:CharacterString>
+                      </city>
+                      <administrativeArea>
+                        <gco:CharacterString>California</gco:CharacterString>
+                      </administrativeArea>
+                      <postalCode>
+                        <gco:CharacterString>94305</gco:CharacterString>
+                      </postalCode>
+                      <electronicMailAddress>
+                        <gco:CharacterString>brannerlibrary@stanford.edu</gco:CharacterString>
+                      </electronicMailAddress>
+                    </CI_Address>
+                  </address>
+                </CI_Contact>
+              </contactInfo>
+              <role>
+                <CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="distributor" codeSpace="ISOTC211/19115">distributor</CI_RoleCode>
+              </role>
+            </CI_ResponsibleParty>
+          </distributorContact>
+        </MD_Distributor>
+      </distributor>
+      <transferOptions>
+        <MD_DigitalTransferOptions>
+          <transferSize>
+            <gco:Real>0.25</gco:Real>
+          </transferSize>
+          <onLine>
+            <CI_OnlineResource>
+              <linkage>
+                <URL>http://purl.stanford.edu/df986nv4623</URL>
+              </linkage>
+              <protocol>
+                <gco:CharacterString>http</gco:CharacterString>
+              </protocol>
+              <name>
+                <gco:CharacterString>ZIPCODE.shp</gco:CharacterString>
+              </name>
+              <function>
+                <CI_OnLineFunctionCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_OnLineFunctionCode" codeListValue="download" codeSpace="ISOTC211/19115">download</CI_OnLineFunctionCode>
+              </function>
+            </CI_OnlineResource>
+          </onLine>
+        </MD_DigitalTransferOptions>
+      </transferOptions>
+    </MD_Distribution>
+  </distributionInfo>
+  <dataQualityInfo>
+    <DQ_DataQuality>
+      <scope>
+        <DQ_Scope>
+          <level>
+            <MD_ScopeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset" codeSpace="ISOTC211/19115">dataset</MD_ScopeCode>
+          </level>
+        </DQ_Scope>
+      </scope>
+    </DQ_DataQuality>
+  </dataQualityInfo>
+</MD_Metadata>
