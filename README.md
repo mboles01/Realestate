@@ -6,12 +6,12 @@ See also the associated report contained in the `./Text` directory: [Bay Area Ho
 ### Web scraping
 * `scrapeweb.py`: uses *Requests* to connect to mlslistings, *BeautifulSoup* to pull verification token, *html* to get web content, *Re* to clean the results, and *Pandas* to store scraped content as a dataframe
 
-* `getdata.py`: pulls zipcodes from .csv file, uses `webscrape` function defined in `scrapeweb.py` to scrape content from the webpage and store it in Pandas dataframe, and writes a .csv file with the scraped content
+* `getdata.py`: pulls zipcodes from .csv file, uses `webscrape` function defined in `scrapeweb.py` to scrape content from the webpage and store it in *Pandas* dataframe, and writes a .csv file with the scraped content
 
 ### Map plotting
 * `plotmaps.py`: pulls .csv file with listing information, uses `price_quintiles` function in `calculatequintiles.py` to place listings into five bins by price, uses `cartoplot_x_price` (`x = bay, sf, eastbay, peninsula, southbay`) functions defined in `cartoplotfunctions.py` to plot data points on a map of the respective region Also contains scripts to plot commute and school quality data using zip code shapefiles 
 
-* `cartoplotfunctions.py`: pulls data from .csv file and city or zipcode borders from shapefile, uses Matplotlib.pyplot and Cartopy to plot maps with terrain background and bounded by given set of latitude, longitude coordinates for full Bay Area as well as sub-regions
+* `cartoplotfunctions.py`: pulls data from .csv file and city or zipcode borders from shapefile, uses *Matplotlib.pyplot* and *Cartopy* to plot maps with terrain background and bounded by given set of latitude, longitude coordinates for full Bay Area as well as sub-regions
 
 ### Boxplot plotting
 * `plotboxplots.py`: pulls data from .csv file and selects cities of interest to plot price information with using *Seaborn* box + strip plots
