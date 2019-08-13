@@ -24,4 +24,4 @@ Seaborn (https://seaborn.pydata.org/)
 Statsmodels (https://www.statsmodels.org/stable/index.html)
 Scikit-learn (https://scikit-learn.org/stable/)
 
-Written by Michael Boles in summer of 2019 with help from the StackOverflow community. 
+Written by Michael Boles in summer of 2019 with help from the StackOverflow community.
