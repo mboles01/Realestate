@@ -8,16 +8,15 @@ Created on Mon May 27 10:03:23 2019
 
 # set up working directory
 import os
-os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
-#os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
+#os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
+os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
 
 # import packages
 import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
 
 # import master dataset    
-data_bay = pd.read_csv('./data/data_bay.csv')
+data_bay = pd.read_csv('./Data/listings/data_bay.csv')
 
 # count number of entries for each city/town
 city_counts = data_bay.groupby('City').count().iloc[:,1].to_frame()

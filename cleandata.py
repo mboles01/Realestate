@@ -28,7 +28,7 @@ def address_clean(address_raw):
             print('Failed to capture city of %s' % line)
             continue
         # get zipcode
-        zip_code_temp = re.findall(r'CA, (\d\d\d\d\d)', line)[0]
+        zip_code_temp = re.findall(r'CA (\d\d\d\d\d)', line)[0]
         # if address, city, and zip have been pulled successfully, create objects
         if address_temp2 and city_temp2 and zip_code_temp:
             address.append(address_temp2)

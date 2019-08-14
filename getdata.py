@@ -5,14 +5,14 @@ os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
 
 # import zipcodes
 from csvreader import csvread
-filename = 'zipcodes.csv'
+filename = './Data/zipcodes.csv'
 zipcodes_all = csvread(filename)
 
 # select subset of zip codes
-zipcodes = zipcodes_all[0:9]
+zipcodes = zipcodes_all[10:19]
 
 # scrape MLS listings
-from scrapeweb_realtor import webscrape
+from scrapeweb import webscrape
 data_all = webscrape(zipcodes)
 ## find zip codes with no listings found
 
@@ -20,7 +20,7 @@ data_all = webscrape(zipcodes)
 #missing_zips = np.setdiff1d(zipcodes,data_all.loc[:,'Zip'])
 
 # write .csv file with data
-data_all.to_csv('data_to_27.csv')
+data_all.to_csv('data_all.csv')
     
 
 # Calls the above functions

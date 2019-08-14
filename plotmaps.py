@@ -1,4 +1,4 @@
-s# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Created on Fri Jun  7 16:36:29 2019
 
@@ -8,15 +8,15 @@ Created on Fri Jun  7 16:36:29 2019
 # set up working directory
 import os
 import pandas as pd
-os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
-#os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
+#os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
+os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
 
 ### PRICE PLOTS ###
 
 ### Bay overview ###
 
 # import data
-data_bay = pd.read_csv('./data/data_bay.csv')
+data_bay = pd.read_csv('./Data/listings/data_bay.csv')
 shapefile = r'./shapefiles/Bay cities/ba_cities.shp'
 
 # calculate quintiles
