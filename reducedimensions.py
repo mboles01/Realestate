@@ -7,8 +7,8 @@ Created on Fri Aug 16 13:21:30 2019
 
 # set up working directory
 import os
-#os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
-os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
+os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
+#os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
 
 # import packages
 import pandas as pd
@@ -111,7 +111,7 @@ plt.xlabel('Dimension 1')
 plt.ylabel('Dimension 2')
 #plt.xlabel('Dimension 1 (%s%%)' % str(int(explained_variance[0]*100)))
 #plt.ylabel('Dimension 2 (%s%%)' % str(int(explained_variance[1]*100)))
-#plt.savefig('PCA_train.jpg', bbox_inches='tight', dpi = 400) 
+plt.savefig('LDA_train_2.jpg', bbox_inches='tight', dpi = 400) 
 plt.show()
 
 # visualize test set results
