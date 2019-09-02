@@ -44,13 +44,12 @@ data_all.describe()
 
 ### BUILD MODEL ###
 
-# build model from data
-
+# build model from data using backward elimination
 formula_1 = 'Price ~ Home_size + Lot_size + Beds + Baths + Commute_time + School_score'
 formula_2 = 'Price ~ Home_size + Lot_size + Beds + Commute_time + School_score'
 formula_3 = 'Price ~ Home_size + Lot_size + Commute_time + School_score'
 formula_4 = 'Price ~ Home_size + Lot_size + Beds + Baths'
-regressor = smf.ols(formula_3, data = data_all).fit()
+regressor = smf.ols(formula_3, data = data_all).fit() # settled on formula_3
 regressor.summary()
 summary = regressor.summary()
 summary_text = summary.as_text()
