@@ -1,7 +1,7 @@
 # Realestate
 This repository contains a set of Python scripts that scrape a real estate webpage, clean and analyze the data, plot visualizations, and perform a multiple linear regression fit.
 
-See also the associated report contained in the `./Text` directory: [Bay Area Housing - Michael Boles - August 2019](https://github.com/mboles01/Realestate/blob/master/Text/Bay%20Area%20Housing%20-%20Michael%20Boles%20-%20August%202019.pdf)
+See also the associated report featured on [Medium - Towards Data Science](https://towardsdatascience.com/house-hunting-in-the-san-francisco-bay-area-deal-hunting-using-machine-learning-3ed6fc8e8991)
 
 ### Web scraping
 * `scrapeweb.py`: uses *Requests* to connect to mlslistings, *BeautifulSoup* to pull verification token, *html* to get web content, *Re* to clean the results, and *Pandas* to store scraped content as a dataframe
