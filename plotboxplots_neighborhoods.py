@@ -56,7 +56,7 @@ plt.xticks(rotation=45, fontname = 'Helvetica', fontsize = 42, ha = 'right')
 plt.yticks(fontname = 'Helvetica', fontsize = 42)
 
 
-plt.xlabel('San Francisco neighborhood', fontsize = 55, fontname = 'Arial', fontweight = 'bold')
+plt.xlabel('Neighborhood', fontsize = 55, fontname = 'Arial', fontweight = 'bold')
 plt.ylabel('Price ($M)', fontsize = 55, fontname = 'Arial', 
            fontweight = 'bold')
 
@@ -86,7 +86,7 @@ plt.xticks(rotation=45, fontname = 'Helvetica', fontsize = 42, ha = 'right')
 plt.yticks(fontname = 'Helvetica', fontsize = 42)
 
 
-plt.xlabel('San Francisco neighborhood', fontsize = 55, fontname = 'Arial', fontweight = 'bold')
+plt.xlabel('Neighborhood', fontsize = 55, fontname = 'Arial', fontweight = 'bold')
 plt.ylabel('Actual - predicted price ($M)', fontsize = 55, fontname = 'Arial', 
            fontweight = 'bold')
 
