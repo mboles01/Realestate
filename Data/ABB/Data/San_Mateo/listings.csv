@@ -1,0 +1,8 @@
+id,name,host_id,host_name,neighbourhood_group,neighbourhood,latitude,longitude,room_type,price,minimum_nights,number_of_reviews,last_review,reviews_per_month,calculated_host_listings_count,availability_365
+208345,Loft View in San Mateo Family Home,1025039,Angela,,San Mateo,37.53154,-122.32422,Shared room,65,2,101,2019-01-21,1.08,1,307
+796558,Snug & Cozy Queen Room w/Parking & BRFT!,3153014,Lisa Myshall,,Burlingame,37.58126,-122.34891,Private room,97,1,256,2019-06-01,3.93,1,76
+1126135,HackerHome - Millbrae Caltrain 2,43806,Vic,,Millbrae,37.60006,-122.39358,Shared room,33,30,26,2019-03-21,0.36,5,289
+1157718,HackerHome - Millbrae Bart/Caltrain,43806,Vic,,Millbrae,37.60079,-122.39359,Shared room,40,30,36,2019-02-21,0.51,5,324
+1334378,HackerHome - Menlo Park: bunk 4,43806,Vic,,Menlo Park,37.45132,-122.18008,Shared room,31,2,48,2018-11-09,0.67,5,263
+1602634,HackerHome - Daly City: bunk 3,43806,Vic,,Daly City,37.68665,-122.46383,Shared room,35,2,32,2019-03-24,0.46,5,365
+1602655,HackerHome - Daly City: bunk 1,43806,Vic,,Colma,37.67474,-122.4678,Shared room,31,2,19,2019-04-23,0.27,5,358
