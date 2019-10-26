@@ -7,8 +7,8 @@ Created on Mon Jun 24 16:31:23 2019
 
 # set up working directory
 import os
-os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
-#os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
+#os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate') # Mac
+os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate') # PC
 
 # import packages
 import pandas as pd
@@ -49,7 +49,7 @@ formula_1 = 'Price ~ Home_size + Lot_size + Beds + Baths + Commute_time + School
 formula_2 = 'Price ~ Home_size + Lot_size + Beds + Commute_time + School_score'
 formula_3 = 'Price ~ Home_size + Lot_size + Commute_time + School_score'
 formula_4 = 'Price ~ Home_size + Lot_size + Beds + Baths'
-regressor = smf.ols(formula_3, data = data_all).fit() # settled on formula_3
+regressor = smf.ols(formula_4, data = data_all).fit() # settled on formula_3
 regressor.summary()
 summary = regressor.summary()
 summary_text = summary.as_text()
@@ -110,7 +110,19 @@ data1 = data_all['Price difference']/1000000
 data2 = data_all['Price difference 2']/1000000
 plothist2(data1, data2, 0.1, prices_textbox, -1, 1, 'Actual - predicted price ($M)', 'Counts', figure_name)
 
+# plot price difference in seaborn
+import seaborn as sns
+import numpy as np
+import matplotlib.pyplot as plt
 
-
-
+# Plot histograms
+plt.figure(figsize=(5,5))
+ax1 = sns.distplot(data1, kde=False, color='blue', hist_kws=dict(edgecolor="k", linewidth=.5))
+ax2 = sns.distplot(data2, kde=False, color='orangered', hist_kws=dict(edgecolor="k", linewidth=.5))
+plt.xlabel('Actual - predicted price ($M)', fontsize=13) #, fontweight='bold')
+plt.ylabel('Counts', fontsize=13) #, fontweight='bold')
+#plt.legend()
+plt.xticks(np.arange(-1, 1.1, 0.25))
+plt.xlim(-1,1)
+plt.savefig('.\Images\pricediffhist.jpg', dpi=600)
 

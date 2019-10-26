@@ -16,11 +16,9 @@ import pandas as pd
 
 # import SF listings and calendar datasets 
 listings_raw = pd.read_csv('.\Data\San_Francisco\listings_2.csv')
-calendar_raw = pd.read_csv('.\Data\San_Francisco\calendar_1.csv')
 
 # get column names 
 listings_colnames = list(listings_raw)
-calendar_colnames = list(calendar_raw)
 
 # get columns of interest: 
     
@@ -39,8 +37,8 @@ listings_1 = listings_raw[['id', 'name', 'host_name',
 # convert prices from string '$__' to float
 listings_1[['extra_people','price','cleaning_fee','security_deposit']] = listings_1[['extra_people','price','cleaning_fee','security_deposit']].replace('[\$,]', '', regex=True).astype(float)
 
-## convert 'last review' column from string to date time
-#listings_1['last_review'] = pd.to_datetime(listings_1['last_review'])
+# convert 'last review' column from string to date time
+listings_1['last_review'] = pd.to_datetime(listings_1['last_review'])
 
 # remove outliers: > 5 beds, > 4 baths, > $1000/night
 listings_2 = listings_1[(listings_1['bedrooms'] < 5) & (listings_1['bathrooms'] < 4) & (listings_1['bathrooms'] < 4) & (listings_1['price'] < 1000)]
@@ -48,13 +46,16 @@ listings_2 = listings_1[(listings_1['bedrooms'] < 5) & (listings_1['bathrooms'] 
 # exclude hotels, listings with zero bookings
 listings_3 = listings_2[(listings_2['property_type'] != 'Hotel') & (listings_2['number_of_reviews'] != 0)]
 
+# exclude listings that have not been reviewed in the last 6 months (for data from 10/14, use 4/14)
+listings_4 = listings_3[(listings_3['last_review'] > '2019-04-14')]
+
 # CREATE REVENUE ESTIMATE
 
 # assume 50% of bookings result in a review and average booking is 5.5 nights
 # revenue/month = (reviews/month)*(2 bookings/review)*(5.5 nights/booking)*(nightly price)
 
-listings_4 = listings_3
-listings_4['monthly_revenue'] = 11*listings_3['reviews_per_month']*listings_3['price'] 
+listings_5 = listings_4.copy()
+listings_5['monthly_revenue'] = 11*listings_4['reviews_per_month']*listings_4['price'] 
 
 # visualize key metrics
 import matplotlib.pyplot as plt
@@ -74,6 +75,9 @@ g = sns.pairplot(listings_4, diag_kind = 'kde', kind = 'reg',
 g.map_lower(corrfunc)
 g.savefig('.\Images\pairplot_3.jpg', dpi=600)
 
+
+
+g = sns.kdeplot(listings_5['monthly_revenue'], shade=True, clip=(0,20000))
 
 
 

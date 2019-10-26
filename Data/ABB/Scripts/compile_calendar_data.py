@@ -21,24 +21,13 @@ calendar_raw = pd.read_csv('.\Data\San_Francisco\calendar_1.csv')
 calendar_colnames = list(calendar_raw)
 
 # get columns of interest: 
-    
 calendar_1 = calendar_raw[['listing_id', 'date', 'available','price']].copy()
 
 # CLEAN DATA
 
 # convert prices from string '$__' to float
-listings_1[['extra_people','price','cleaning_fee','security_deposit']] = listings_1[['extra_people','price','cleaning_fee','security_deposit']].replace('[\$,]', '', regex=True).astype(float)
+calendar_1[['price']] = calendar_1[['price']].replace('[\$,]', '', regex=True).astype(float)
 
-## convert 'last review' column from string to date time
-#listings_1['last_review'] = pd.to_datetime(listings_1['last_review'])
-
-# remove outliers: > 5 beds, > 4 baths, > $1000/night
-listings_2 = listings_1[(listings_1['bedrooms'] < 5) & (listings_1['bathrooms'] < 4) & (listings_1['bathrooms'] < 4) & (listings_1['price'] < 1000)]
-
-# exclude hotels, listings with zero bookings
-listings_3 = listings_2[(listings_2['property_type'] != 'Hotel') & (listings_2['number_of_reviews'] != 0)]
-
-# CREATE REVENUE ESTIMATE
 
 
 
