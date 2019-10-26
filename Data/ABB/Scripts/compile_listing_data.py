@@ -60,20 +60,35 @@ listings_5['monthly_revenue'] = 11*listings_4['reviews_per_month']*listings_4['p
 # visualize key metrics
 import matplotlib.pyplot as plt
 import seaborn as sns
+#import numpy as np
 
 def corrfunc(x, y, **kws):
     r = x.corr(y)
     ax = plt.gca()
     ax.annotate(r'$R^{2}$ = ' + str(round(r, 2)), xy=(.1, .9), xycoords=ax.transAxes, backgroundcolor = 'white')
 
-g = sns.pairplot(listings_4, diag_kind = 'kde', kind = 'reg',
+g = sns.pairplot(listings_5, diag_kind = 'kde', kind = 'reg',
              plot_kws=dict(line_kws=dict(color = '#3148a3'), 
                            scatter_kws=dict(facecolor = '#5797ff', edgecolor = '#3148a3', 
                                             linewidth = 0.33, alpha = 0.1, s = 20)),
              x_vars = ['bedrooms', 'bathrooms', 'price', 'number_of_reviews', 'reviews_per_month', 'monthly_revenue'], 
              y_vars = ['bedrooms', 'bathrooms', 'price', 'number_of_reviews', 'reviews_per_month', 'monthly_revenue'])
+
+#g.map_upper(sns.regplot, truncate=True)
 g.map_lower(corrfunc)
-g.savefig('.\Images\pairplot_3.jpg', dpi=600)
+
+x_vars = ['bedrooms', 'bathrooms', 'price', 'number_of_reviews', 'reviews_per_month', 'monthly_revenue']
+y_vars = ['bedrooms', 'bathrooms', 'price', 'number_of_reviews', 'reviews_per_month', 'monthly_revenue']
+
+
+#for i in range(len(x_vars)):
+#    for j in range(len(y_vars)):
+#        
+#        g.axes[i,j].set_xlim((0,np.max(listings_5[x_vars[i])))
+#        g.axes[i,j].set_ylim((0,np.max(listings_5[y_vars[j])))
+#        
+
+g.savefig('.\Images\pairplot_5.jpg', dpi=300)
 
 
 
