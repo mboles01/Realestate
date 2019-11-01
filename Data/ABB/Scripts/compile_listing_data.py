@@ -91,8 +91,19 @@ y_vars = ['bedrooms', 'bathrooms', 'price', 'number_of_reviews', 'reviews_per_mo
 g.savefig('.\Images\pairplot_5.jpg', dpi=300)
 
 
+# plot histograms of features
+plt.rcParams["patch.force_edgecolor"] = True
+ax1, ax2, ax3, ax4, ax5 = plt.subplots(1,5, figsize = (20,4))
+ax1 = sns.distplot(listings_5['monthly_revenue'], kde=False); plt.xlim(0,20000)
+ax2 = sns.distplot(listings_5['price'], kde=False); plt.xlim(0,1000)
+ax3 = sns.distplot(listings_5['bedrooms'], kde=False); plt.xlim(0,5)
+ax4 = sns.distplot(listings_5['number_of_reviews'], kde=False); plt.xlim(0,500)
+ax5 = sns.distplot(listings_5['reviews_per_month'], kde=False); plt.xlim(0,10)
 
+# plot kde (kernel density estimate) plots of features
 g = sns.kdeplot(listings_5['monthly_revenue'], shade=True, clip=(0,20000))
+g = sns.kdeplot(listings_5['price'], shade=True, clip=(0,1000))
+g = sns.kdeplot(listings_5['bedrooms'], shade=True, clip=(0,10))
 
 
 
