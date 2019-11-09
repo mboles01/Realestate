@@ -15,7 +15,7 @@ os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate\\Data\ABB') 
 import pandas as pd
 
 # import SF listings and calendar datasets 
-listings_raw = pd.read_csv('.\Data\San_Francisco\listings_2.csv')
+listings_raw = pd.read_csv('.\Data\Raw\San_Francisco\listings_2.csv')
 
 # get column names 
 listings_colnames = list(listings_raw)
@@ -49,13 +49,20 @@ listings_3 = listings_2[(listings_2['property_type'] != 'Hotel') & (listings_2['
 # exclude listings that have not been reviewed in the last 6 months (for data from 10/14, use 4/14)
 listings_4 = listings_3[(listings_3['last_review'] > '2019-04-14')]
 
+# replace blanks with zeros in cleaning fee, security deposit columns
+listings_5 = listings_4.copy()
+listings_5[['cleaning_fee','security_deposit']] = listings_5[['cleaning_fee','security_deposit']].fillna(0)
+
 # CREATE REVENUE ESTIMATE
 
 # assume 50% of bookings result in a review and average booking is 5.5 nights
 # revenue/month = (reviews/month)*(2 bookings/review)*(5.5 nights/booking)*(nightly price)
 
-listings_5 = listings_4.copy()
-listings_5['monthly_revenue'] = 11*listings_4['reviews_per_month']*listings_4['price'] 
+listings_6 = listings_5.copy()
+listings_6['monthly_revenue'] = 11*listings_5['reviews_per_month']*listings_5['price'] 
+
+# write .csv file with data
+listings_6.to_csv('.\Data\Clean\San_Francisco\listings_sf_data_clean.csv', index=False)
 
 # visualize key metrics
 import matplotlib.pyplot as plt

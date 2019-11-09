@@ -15,7 +15,7 @@ os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate\\Data\ABB') 
 import pandas as pd
 
 # import SF calendar dataset
-calendar_raw = pd.read_csv('.\Data\San_Francisco\calendar_1.csv')
+calendar_raw = pd.read_csv('.\Data\Raw\San_Francisco\calendar_1.csv')
 
 # get column names 
 calendar_colnames = list(calendar_raw)
