@@ -5,12 +5,17 @@ Created on Fri Nov  8 17:39:51 2019
 @author: BolesMi
 """
 
+# set up working directory
+import os
+os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate/Data/ABB/Data/Clean/San_Francisco') # Mac
+#os.chdir('C:\\Users\\bolesmi\\Lam\\Coding\\Python\\2019\\Realestate\\Data\ABB') # PC
+
 # import packages
 import pandas as pd
 import statsmodels.formula.api as smf
 
 # import cleaned SF listing dataset
-listings_sf_clean = pd.read_csv('.\Data\Clean\San_Francisco\listings_sf_data_clean.csv')
+listings_sf_clean = pd.read_csv('listings_sf_data_clean.csv')
 
 # encode categorical variables in new dataframe
 listings_sf_1 = listings_sf_clean.copy()
