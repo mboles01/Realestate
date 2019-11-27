@@ -31,28 +31,30 @@ listings_sf_clean_text = listings_sf_clean[['id', 'name', 'host_name',
 listings_text1 = listings_sf_clean_text.replace(np.nan, '', regex=True)
 
 # replace hyphens with spaces
-summaries_1 = listings_text1.replace('-' ,'', regex=True)
+listings_text2 = listings_text1.replace('-' ,' ', regex=True)
 
 # create list of summaries
-summaries_2 = list(summaries_1['summary'])
+listings_text3 = list(listings_text2['summary'])
+
+### will need to figure out how to execute following on entire dataframe, not just list ###
 
 # strip punctuation
 import string
-summaries_3 = [line.translate(str.maketrans('', '', string.punctuation)) for line in summaries_2]
+listings_text4 = [line.translate(str.maketrans('', '', string.punctuation)) for line in listings_text3]
 
 # make all lowercase
-[line.lower() for line in summaries_3]
+listings_text5 = [line.lower() for line in listings_text4]
 
 # split into words
-summaries_split = [line.split() for line in summaries_list]
+listings_text6 = [line.split() for line in listings_text5]
 
-[line.translate(None, line.punctuation) for line in summaries_split]
-
-[print(line) for line in summaries_split]
 
 # count frequency of words
 from collections import Counter
-counts = Counter(summaries_list)
+counts = [Counter(line) for line in listings_text6]
+ 
+
+
 
 # filter, token, lemmatize text
 from sklearn.feature_extraction.text import CountVectorizer
