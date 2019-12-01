@@ -30,31 +30,91 @@ listings_sf_clean_text = listings_sf_clean[['id', 'name', 'host_name',
 # replace NaNs with empty string
 listings_text1 = listings_sf_clean_text.replace(np.nan, '', regex=True)
 
-# replace hyphens with spaces
-listings_text2 = listings_text1.replace('-' ,' ', regex=True)
-
-# create list of summaries
-listings_text3 = list(listings_text2['summary'])
-
-### will need to figure out how to execute following on entire dataframe, not just list ###
-
-# strip punctuation
+# replace punctuation with spaces
 import string
-listings_text4 = [line.translate(str.maketrans('', '', string.punctuation)) for line in listings_text3]
+listings_text2 = listings_text1.replace('['+string.punctuation+']', ' ', regex=True)
+
+## replace double or triple spaces with single
+#listings_text3 = listings_text2.replace('  ', ' ').replace('   ', ' ')
 
 # make all lowercase
-listings_text5 = [line.lower() for line in listings_text4]
+listings_text3 = listings_text2.apply(lambda x: x.astype(str).str.lower())
+
+# split and lemmatize text
+import nltk
+w_tokenizer = nltk.tokenize.WhitespaceTokenizer()
+lemmatizer = nltk.stem.WordNetLemmatizer()
+
+def lemmatize_text(text):
+    return [lemmatizer.lemmatize(w) for w in w_tokenizer.tokenize(text)]
+
+summaries_lemmatized = listings_text3['summary'].apply(lemmatize_text)
+
+# count words
+
+# create word frequency dictionary across all listings and sort - doesn't work yet
+words = []
+wordfreq = []
+df_word_count = pd.DataFrame(data = [], columns = ['Word', 'Count']).set_index('Word')
+for row in summaries_lemmatized[0:10]:
+#    print(row)
+#    print('//////')
+    for word in row:
+#        print(word)
+#        print('/')
+        df_word_count_temp = pd.DataFrame(data = [[word, 1]], 
+                                          columns = ['Word', 'Count']).set_index('Word')
+        df_word_count_sum = df_word_count_temp.merge(df_word_count_sum, 
+                                on='Word', how='outer').sum(axis=1)
+
+        
+        words.append(word)
+        wordfreq.append(row.count(word))
+
+    
+word_count = dict(list(zip(summaries_lemmatized, wordfreq)))
+word_count_sorted = sorted(word_count.items(), key=lambda kv: kv[1], reverse=True)
+df_word_count_all = pd.DataFrame(word_count_sorted).merge(df_word_count, 
+                                on='Zip', how='outer').sum(axis=1)
+
+
+df_word_count = pd.DataFrame(word_count_sorted)
+
+# create word frequency dictionary across two listings, sort and merge
+wordfreq1 = []
+for word in summaries_lemmatized[1]:
+    wordfreq1.append(summaries_lemmatized[1].count(word))
+
+word_count_1 = dict(list(zip(summaries_lemmatized[1], wordfreq1)))
+word_count_sorted_1 = sorted(word_count_1.items(), key=lambda kv: kv[1], reverse=True)
+df_word_count_1 = pd.DataFrame(data = word_count_sorted_1, columns = ['Word', 'Count']).set_index('Word')
+
+wordfreq2 = []
+for word in summaries_lemmatized[2]:
+    wordfreq2.append(summaries_lemmatized[2].count(word))
+
+word_count_2 = dict(list(zip(summaries_lemmatized[2], wordfreq2)))
+word_count_sorted_2 = sorted(word_count_2.items(), key=lambda kv: kv[1], reverse=True)
+df_word_count_2 = pd.DataFrame(data = word_count_sorted_2, columns = ['Word', 'Count']).set_index('Word')
+
+df_word_count_all = df_word_count_1.merge(df_word_count_2, 
+                                on='Word', how='outer').sum(axis=1)
+
+
+# remove generic words
+words_to_remove = ['is', 'a', 'the', 'and', 'our', 'are', 'this', 
+                   'with', 'and', 'you', 'your', 'to', 'of', 'in']
+
+
+
+
 
 # split into words
 listings_text6 = [line.split() for line in listings_text5]
 
-
 # count frequency of words
 from collections import Counter
 counts = [Counter(line) for line in listings_text6]
- 
-
-
 
 # filter, token, lemmatize text
 from sklearn.feature_extraction.text import CountVectorizer
