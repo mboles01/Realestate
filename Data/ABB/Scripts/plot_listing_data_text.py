@@ -25,7 +25,8 @@ listings_sf_clean = pd.read_csv('./Data/Clean/San_Francisco/listings_sf_data_cle
 listings_sf_clean_text = listings_sf_clean[['id', 'name', 'host_name',
                                     'name', 'summary', 'space', 'description',
                                     'neighborhood_overview', 'notes', 'transit', 
-                                    'access', 'interaction', 'house_rules']]
+                                    'access', 'interaction', 'house_rules', 
+                                    'monthly_revenue']]
 
 # replace NaNs with empty string
 listings_text1 = listings_sf_clean_text.replace(np.nan, '', regex=True)
@@ -33,9 +34,6 @@ listings_text1 = listings_sf_clean_text.replace(np.nan, '', regex=True)
 # replace punctuation with spaces
 import string
 listings_text2 = listings_text1.replace('['+string.punctuation+']', ' ', regex=True)
-
-## replace double or triple spaces with single
-#listings_text3 = listings_text2.replace('  ', ' ').replace('   ', ' ')
 
 # make all lowercase
 listings_text3 = listings_text2.apply(lambda x: x.astype(str).str.lower())
@@ -50,27 +48,27 @@ def lemmatize_text(text):
 
 summaries_lemmatized = listings_text3['summary'].apply(lemmatize_text)
 
-# count words
-
 # create word frequency dictionary across all listings and sort
-df_word_count = pd.DataFrame(data = [], columns = ['Word', 'Count']).set_index('Word')
-for row in summaries_lemmatized[0:9]:
-    for word in row:
-        df_word_count_temp = pd.DataFrame(data = [[word, 1]], 
-                                          columns = ['Word', 'Count']).set_index('Word')
-        
-        df_word_count = df_word_count_temp.merge(df_word_count, 
-                                on='Word', how='outer')
-        
-df_word_count = df_word_count.sum(axis=1)
-df_word_count.rename('Count') # does it work? not sure
-df_word_count.name
+wordcount = {}
+for row in summaries_lemmatized:
+    for word in row:        
+        if not word in wordcount:
+            wordcount[word] = 1
+        else:
+            wordcount[word] = wordcount[word] + 1
+
+import operator
+sortedwords = sorted(wordcount.items(),key=operator.itemgetter(1),reverse=True)
+df_sortedwords = pd.DataFrame(data = sortedwords, columns =['Word', 'Count'])
 
 # remove generic words
-words_to_remove = ['is', 'a', 'the', 'and', 'our', 'are', 'this', 
-                   'with', 'and', 'you', 'your', 'to', 'of', 'in']
+topcount = sortedwords[0:50]
+words_to_remove = ['the', 'and', 'a', 'to', 'in', 'of', 'is', 'with', 'for',
+                   'room', 'from', 'this', 'you', 'on', 'our', 'or', 'it', '2',
+                    'are', 's', 'one', 'ha']
 
 
+sortedwords2 = [word for word in sortedwords if word != words_to_remove]
 
 
 

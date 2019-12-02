@@ -21,7 +21,7 @@ listings_colnames = list(listings_raw)
 
 # get columns of interest
 
-listings_1 = listings_raw[['id', 'name', 'host_name', 'host_since', 'host_is_superhost',
+listings_1 = listings_raw[['id', 'host_name', 'host_since', 'host_is_superhost',
                          'name', 'summary', 'space', 'description',
                          'neighborhood_overview', 'notes', 'transit', 'access',
                          'interaction', 'house_rules',
@@ -65,9 +65,21 @@ listings_5[['cleaning_fee','security_deposit']] = listings_5[['cleaning_fee','se
 # revenue/month = (reviews/month)*(2 bookings/review)*(5.5 nights/booking)*(nightly price)
 
 listings_6 = listings_5.copy()
-listings_6['monthly_revenue'] = 11*listings_5['reviews_per_month']*listings_5['price'] 
+listings_6['monthly_revenue'] = 11*listings_5['reviews_per_month']*listings_5['price']
+
+# CREATE HIGH, MEDIUM, LOW REVENUE CATEGORIES 
+listings_7 = listings_6.copy()
+revenue_category = []
+for revenue in listings_7['monthly_revenue']:
+    if revenue > listings_7['monthly_revenue'].quantile(0.67):
+        revenue_category.append('High')
+    elif revenue < listings_7['monthly_revenue'].quantile(0.33):
+        revenue_category.append('Low')
+    else:
+        revenue_category.append('Medium')
+listings_7['revenue_category'] = revenue_category
 
 # write .csv file with data
-listings_6.to_csv('./Data/Clean/San_Francisco/listings_sf_data_clean_full.csv', index=False)
+listings_7.to_csv('./Data/Clean/San_Francisco/listings_sf_data_clean_full.csv', index=False)
 
 
