@@ -24,3 +24,21 @@ def count_words(text):
             else:
                 wordcount[word] = wordcount[word] + 1
     return wordcount
+
+# remove stop words 
+from nltk.corpus import stopwords
+def remove_stopwords(text):
+    stop_words = stopwords.words('english')
+    new_text = []
+    for word in text:
+        if word not in stop_words:
+            new_text.append(word)
+    return(new_text)
+
+# remove single characters
+def remove_singlechar(text):
+    new_text = []
+    for word in text:
+        if len(word) > 1:
+           new_text.append(word)
+    return(new_text)
