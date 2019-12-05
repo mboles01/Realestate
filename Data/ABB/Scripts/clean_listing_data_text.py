@@ -7,6 +7,7 @@ Created on Sun Nov 24 16:43:36 2019
 """
 
 # set up working directory
+import sys
 import os
 #os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate/Data/ABB') # Mac
 os.chdir('/Users/bolesmi/Lam/Coding/Python/2019/Realestate/Data/ABB') # PC
@@ -14,6 +15,9 @@ os.chdir('/Users/bolesmi/Lam/Coding/Python/2019/Realestate/Data/ABB') # PC
 # import standard packages
 import numpy as np
 import pandas as pd
+
+# add additional path to get nlp functions
+sys.path.append('./Scripts')
 
 # import cleaned SF listing dataset with text descriptions
 listings_sf_clean = pd.read_csv('./Data/Clean/San_Francisco/listings_sf_data_clean_full.csv')
@@ -66,19 +70,28 @@ listings_text9 = listings_text8.apply(lambda x: remove_nonlatin(x))
 
 ### CREATE BAG OF WORDS ### 
 
-# create bag of words vector for listing text
+# create simple bag of words vector for listing text
 from sklearn.feature_extraction.text import CountVectorizer
-vectorizer = CountVectorizer()
+vectorizer_bow = CountVectorizer()
 corpus = listings_text9.apply(lambda x: ' '.join(x))
-bagofwords = vectorizer.fit_transform(corpus).toarray()
-bagofwords_labeled = pd.DataFrame(data = bagofwords, columns = vectorizer.get_feature_names())
+bagofwords = vectorizer_bow.fit_transform(corpus).toarray()
+bagofwords_labeled = pd.DataFrame(data = bagofwords, columns = vectorizer_bow.get_feature_names())
+
+# create tf-idf (term frequency - inverse document frequency) vector for listing text
+from sklearn.feature_extraction.text import TfidfVectorizer
+vectorizer_tfidf = TfidfVectorizer()
+tfidf = vectorizer_tfidf.fit_transform(corpus).toarray()
+tfidf_labeled = pd.DataFrame(data = tfidf, columns = vectorizer_tfidf.get_feature_names())
 
 # recombine numerical listing data with bag of words vector
 selected = listings_sf_clean_text[['id', 'name', 'monthly_revenue', 'revenue_category']]
 listings_bow = pd.concat([selected, bagofwords_labeled], axis=1)
+listings_tfidf = pd.concat([selected, tfidf_labeled], axis=1)
 
 # write .csv file with data
 listings_bow.to_csv('.\Data\Clean\San_Francisco\listings_sf_data_bow.csv', 
                     index=False, compression='gzip')
 
+listings_tfidf.to_csv('.\Data\Clean\San_Francisco\listings_sf_data_tfidf.csv', 
+                    index=False, compression='gzip')
 
