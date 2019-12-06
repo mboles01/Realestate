@@ -87,10 +87,10 @@ tfidf_labeled = pd.DataFrame(data = tfidf, columns = vectorizer_tfidf.get_featur
 
 # create word2vec vectors - 300 dimensions per word, relates to meaning, pre-trained on giant dataset
 from gensim.models import Word2Vec 
-model_cbow = Word2Vec(corpus[0], min_count = 1, size = 100, window = 5)
+model_cbow = Word2Vec(corpus, min_count = 1, size = 100, window = 5)
 model_skipgram = Word2Vec(corpus[0], min_count = 1, size = 100, window = 5, sg = 1)
 
-
+help(Word2Vec)
 model_cbow.wv['time']
 model_cbow.similarity('france', 'spain')
 
