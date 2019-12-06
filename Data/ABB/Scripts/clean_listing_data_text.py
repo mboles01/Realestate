@@ -68,12 +68,14 @@ from nlp_functions import remove_nonlatin
 listings_text9 = listings_text8.apply(lambda x: remove_nonlatin(x))
 
 
-### CREATE BAG OF WORDS ### 
+### VECTORIZE TEXT ### 
+
+# combine all text to create full vocab library ('corpus')
+corpus = listings_text9.apply(lambda x: ' '.join(x))
 
 # create simple bag of words vector for listing text
 from sklearn.feature_extraction.text import CountVectorizer
 vectorizer_bow = CountVectorizer()
-corpus = listings_text9.apply(lambda x: ' '.join(x))
 bagofwords = vectorizer_bow.fit_transform(corpus).toarray()
 bagofwords_labeled = pd.DataFrame(data = bagofwords, columns = vectorizer_bow.get_feature_names())
 
@@ -82,6 +84,15 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 vectorizer_tfidf = TfidfVectorizer()
 tfidf = vectorizer_tfidf.fit_transform(corpus).toarray()
 tfidf_labeled = pd.DataFrame(data = tfidf, columns = vectorizer_tfidf.get_feature_names())
+
+# create word2vec vectors - 300 dimensions per word, relates to meaning, pre-trained on giant dataset
+from gensim.models import Word2Vec 
+model_cbow = Word2Vec(corpus[0], min_count = 1, size = 100, window = 5)
+model_skipgram = Word2Vec(corpus[0], min_count = 1, size = 100, window = 5, sg = 1)
+
+
+model_cbow.wv['time']
+model_cbow.similarity('france', 'spain')
 
 # recombine numerical listing data with bag of words vector
 selected = listings_sf_clean_text[['id', 'name', 'monthly_revenue', 'revenue_category']]
