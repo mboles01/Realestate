@@ -9,8 +9,8 @@ Created on Sun Nov 24 16:43:36 2019
 # set up working directory
 import sys
 import os
-#os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate/Data/ABB') # Mac
-os.chdir('/Users/bolesmi/Lam/Coding/Python/2019/Realestate/Data/ABB') # PC
+os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate/Data/ABB') # Mac
+# os.chdir('/Users/bolesmi/Lam/Coding/Python/2019/Realestate/Data/ABB') # PC
 
 # import standard packages
 import numpy as np
@@ -71,7 +71,7 @@ listings_text9 = listings_text8.apply(lambda x: remove_nonlatin(x))
 ### VECTORIZE TEXT ### 
 
 # combine all text to create full vocab library ('corpus')
-corpus = listings_text9.apply(lambda x: ' '.join(x))
+corpus = listings_text9.apply(lambda x: ' '.join(x)).array
 
 # create simple bag of words vector for listing text
 from sklearn.feature_extraction.text import CountVectorizer
@@ -85,14 +85,34 @@ vectorizer_tfidf = TfidfVectorizer()
 tfidf = vectorizer_tfidf.fit_transform(corpus).toarray()
 tfidf_labeled = pd.DataFrame(data = tfidf, columns = vectorizer_tfidf.get_feature_names())
 
-# create word2vec vectors - 300 dimensions per word, relates to meaning, pre-trained on giant dataset
+# create word2vec vectors - embedding words in vector space - similar words near each other
+import nltk
 from gensim.models import Word2Vec 
-model_cbow = Word2Vec(corpus, min_count = 1, size = 100, window = 5)
-model_skipgram = Word2Vec(corpus[0], min_count = 1, size = 100, window = 5, sg = 1)
+corpus_tokenized = [nltk.word_tokenize(word) for word in corpus]
 
-help(Word2Vec)
-model_cbow.wv['time']
-model_cbow.similarity('france', 'spain')
+# train model on my vocabulary set
+model_myvocab = Word2Vec(corpus_tokenized, min_count=1, size = 100)
+print(model_myvocab)
+
+# Load Google's pre-trained Word2Vec model
+# Pre-trained Google News corpus word vector model (3 billion English words by 300-dimensions)
+import gensim
+model_google = gensim.models.KeyedVectors.load_word2vec_format('./Google_Word2Vec/GoogleNews-vectors-negative300.bin.gz', binary=True)  
+
+# # test a word with each model
+# model_myvocab.most_similar('michael')
+# model_google.most_similar('michael')
+
+# # test vector math on words with each model
+# model_myvocab.most_similar([model_myvocab['michael'] - model_myvocab['man'] + model_myvocab['woman']])
+# model_google.most_similar([model_google['michael'] - model_google['man'] + model_google['woman']])
+
+# add word vectors to words
+for word in corpus[1]:
+    vector = model_google[word]
+  
+
+
 
 # recombine numerical listing data with bag of words vector
 selected = listings_sf_clean_text[['id', 'name', 'monthly_revenue', 'revenue_category']]

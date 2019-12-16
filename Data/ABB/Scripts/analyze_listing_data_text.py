@@ -8,8 +8,8 @@ Created on Sun Nov 24 16:43:36 2019
 
 # set up working directory
 import os
-#os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate/Data/ABB') # Mac
-os.chdir('/Users/bolesmi/Lam/Coding/Python/2019/Realestate/Data/ABB') # PC
+os.chdir('/Users/michaelboles/Michael/Coding/2019/Realestate/Data/ABB') # Mac
+# os.chdir('/Users/bolesmi/Lam/Coding/Python/2019/Realestate/Data/ABB') # PC
 
 # import standard packages
 import numpy as np
@@ -110,8 +110,8 @@ for i, j in enumerate(np.unique(y_set)):
                 c = ListedColormap(('blue', 'red'))(i), label = j,
                 s = .5)
 plt.title('PCA: high- vs. low-revenue Airbnbs \n using listing text tf-idf vector')
-#plt.xlim(-0.15, 0.15)
-#plt.ylim(-0.25, 0.4)
+plt.xlim(-0.15, 0.15)
+plt.ylim(-0.25, 0.4)
 plt.xlabel('Dimension 1')
 plt.ylabel('Dimension 2')
 plt.legend(markerscale = 10)
@@ -126,18 +126,20 @@ sns.heatmap(cm_df, annot=True, annot_kws={"size": 20}, fmt="d", cmap="YlGnBu",
 plt.title('Airbnb revenue category prediction from \n listing text with tfidf (accuracy: %s)' % round(score,3), fontsize=14)
 plt.xlabel('Predicted label', fontsize=14)
 plt.ylabel('True label', fontsize=14)
-plt.savefig('./Images/NLP/Confusion_matrix_tfidf.jpg', bbox_inches='tight', dpi = 600) 
+plt.ylim(0, 2)
+# plt.savefig('./Images/NLP/Confusion_matrix_tfidf.jpg', bbox_inches='tight', dpi = 600) 
 
 # plot word importance bar graphs
 fig, axes = plt.subplots(1,2,figsize=(5,10))
 plt.subplots_adjust(wspace = 1)
 
 axes[0].set_title('Low revenue')
-axes[0].invert_yaxis()
+axes[0].invert_yaxis()  
 axes[0].barh(np.arange(len(lowrev_topten)), lowrev_topten['Coefficient'])
 axes[0].set_yticklabels(list(lowrev_topten['Word']))
 axes[0].set_xlabel('Coefficient')
 axes[0].set_yticks(np.arange(0,10))
+axes[0].set_ylim(len(lowrev_topten)-0.5, -0.5)
 
 axes[1].set_title('High revenue')
 axes[1].invert_yaxis()
@@ -145,8 +147,10 @@ axes[1].barh(np.arange(len(highrev_topten)), highrev_topten['Coefficient'])
 axes[1].set_yticklabels(list(highrev_topten['Word']))
 axes[1].set_xlabel('Coefficient')
 axes[1].set_yticks(np.arange(0,10))
+axes[1].set_ylim(len(highrev_topten)-0.5, -0.5)
 
-plt.savefig('./Images/NLP/Word_rank_tfidf.jpg', bbox_inches='tight', dpi = 600) 
+
+# plt.savefig('./Images/NLP/Word_rank_tfidf.jpg', bbox_inches='tight', dpi = 600) 
 
 
 
