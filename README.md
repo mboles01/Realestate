@@ -3,6 +3,8 @@ This repository contains a set of Python scripts that scrape a real estate webpa
 
 See also the associated report featured on [Medium - Towards Data Science](https://towardsdatascience.com/house-hunting-in-the-san-francisco-bay-area-deal-hunting-using-machine-learning-3ed6fc8e8991)
 
+## Files
+
 ### Web scraping
 * `scrapeweb.py`: uses *Requests* to connect to mlslistings, *BeautifulSoup* to pull verification token, *html* to get web content, *Re* to clean the results, and *Pandas* to store scraped content as a dataframe
 
